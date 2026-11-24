@@ -299,9 +299,9 @@
       align-items: center;
       gap: 6px;
       padding: 7px 10px;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
       border-radius: 999px;
-      background: rgba(255, 253, 248, 0.92);
+      background: rgba(255, 253, 248, 0.94);
       backdrop-filter: blur(10px);
       border: 1.3px solid rgba(198, 142, 54, 0.6);
       box-shadow: 0 8px 22px rgba(43, 3, 11, 0.12);
@@ -331,6 +331,28 @@
       background: linear-gradient(135deg, #7e1125, #470613);
       color: #fff5dc;
       border-color: rgba(248, 227, 180, 0.85);
+    }
+
+    /* Quick Jump Interactive Strip */
+    .jump-strip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 10px;
+    }
+    .jump-strip::-webkit-scrollbar { display: none; }
+
+    .jump-chip {
+      text-decoration: none;
+      flex: 0 0 auto;
+      background: var(--ivory);
+      border: 1px solid rgba(198, 142, 54, 0.55);
+      color: var(--crimson);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
     }
 
     /* Royal Unrolling Parchment Scroll */
@@ -375,12 +397,6 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      animation: unrollParchment 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes unrollParchment {
-      from { max-height: 120px; opacity: 0.4; }
-      to { max-height: 1200px; opacity: 1; }
     }
 
     .scroll-parchment::before {
@@ -899,13 +915,45 @@
       white-space: nowrap;
     }
 
-    /* Family Groups */
+    /* Interactive Family Filter Tabs & Boxes */
+    .family-filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .fam-tab-btn {
+      background: var(--cream);
+      border: 1px solid rgba(198, 142, 54, 0.55);
+      color: var(--crimson);
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .fam-tab-btn.active {
+      background: linear-gradient(135deg, #7e1125, #470613);
+      color: #fff6de;
+    }
+
     .parivaar-box {
       background: var(--cream);
       border: 1.3px solid rgba(198, 142, 54, 0.48);
       border-radius: 18px;
       padding: 14px 12px;
       margin-bottom: 12px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .parivaar-box.highlighted {
+      transform: scale(1.015);
+      box-shadow: 0 10px 24px rgba(109, 15, 34, 0.14);
+      border-color: var(--crimson);
     }
 
     .parivaar-box:last-child {
@@ -1039,6 +1087,12 @@
   </style>
 </head>
 <body>
+  <!-- User's MP3 Track in assets/aaj-sajeya.mp3 (with automatic fallback to assets/aaj-sajeya & synth) -->
+  <audio id="wedding-mp3" loop preload="auto">
+    <source src="assets/aaj-sajeya.mp3" type="audio/mpeg">
+    <source src="assets/aaj-sajeya" type="audio/mpeg">
+  </audio>
+
   <!-- Subtle Royal PS Watermark -->
   <div class="ps-watermark-layer" aria-hidden="true">
     <div class="ps-grid">
@@ -1094,10 +1148,19 @@
       <span>॥ श्री गणेशाय नमः ॥</span>
       <div class="top-btns">
         <button type="button" class="gold-pill-btn" onclick="triggerFlowerShower()">🌸 पुष्प वर्षा</button>
-        <button type="button" class="gold-pill-btn" id="music-btn" onclick="toggleDhun()">🎵 संगीत</button>
+        <button type="button" class="gold-pill-btn" id="music-btn" onclick="toggleWeddingMusic()">🎵 आज सजैया</button>
         <button type="button" class="gold-pill-btn" onclick="reopenCover()">आवरण</button>
       </div>
     </div>
+
+    <!-- Interactive Quick Jump Navigation -->
+    <nav class="jump-strip" aria-label="त्वरित नेविगेशन">
+      <a class="jump-chip" href="#sec-swajan">स्नेही स्वजन</a>
+      <a class="jump-chip" href="#sec-events">कार्यक्रम (01/07)</a>
+      <a class="jump-chip" href="#sec-family">परिवारजन</a>
+      <a class="jump-chip" href="#sec-photos">तस्वीरें</a>
+      <a class="jump-chip" href="#sec-maps">लोकेशन</a>
+    </nav>
 
     <!-- Unrolling Royal Parchment Scroll -->
     <section class="scroll-assembly">
@@ -1133,7 +1196,7 @@
     </section>
 
     <!-- Snehi Swajan / Meet The Couple -->
-    <section class="ivory-royal-card">
+    <section class="ivory-royal-card" id="sec-swajan">
       <div class="section-kicker">स्नेही स्वजन • वर-वधू परिचय</div>
       <h2 class="section-heading">मंगल परिणय</h2>
 
@@ -1180,12 +1243,12 @@
           <div class="velvet-timer-box"><span class="velvet-num" id="t-secs">--</span><span class="velvet-lbl">सेकंड</span></div>
         </div>
 
-        <button type="button" class="gold-foil-btn" onclick="saveCalendarICS()">📅 कैलेंडर में सेव करें</button>
+        <button type="button" class="gold-foil-btn" onclick="saveEventCalendarICS(6)">📅 मंगल फेरे कैलेंडर में सेव करें</button>
       </div>
     </section>
 
     <!-- Fairy Lights + Polaroid Photo Deck -->
-    <section class="memories-wrapper">
+    <section class="memories-wrapper" id="sec-photos">
       <div class="section-kicker">स्नेह की यादगार तस्वीरें • स्वाइप या स्पर्श करें</div>
       <h2 class="section-heading">हमारी कहानी</h2>
 
@@ -1205,9 +1268,9 @@
     </section>
 
     <!-- Page-Fold Booklet Event Cards (01 / 07) -->
-    <section class="event-flip-wrapper">
+    <section class="event-flip-wrapper" id="sec-events">
       <div style="text-align: center; margin-bottom: 12px;">
-        <div class="section-kicker">मांगलिक उत्सव • पेज पलटें</div>
+        <div class="section-kicker">मांगलिक उत्सव • पेज पलटें या स्वाइप करें</div>
         <h2 class="section-heading" style="margin-bottom: 0;">विवाह के कार्यक्रम</h2>
       </div>
 
@@ -1231,8 +1294,8 @@
                href="https://www.google.com/maps/dir/?api=1&destination=23.2671376,77.4597344">
               📍 दिशा देखें
             </a>
-            <button type="button" class="btn-gold-outline" onclick="saveCalendarICS()">
-              📅 सेव करें
+            <button type="button" class="btn-gold-outline" onclick="saveEventCalendarICS(curEvent)">
+              📅 इस कार्यक्रम का रिमाइंडर
             </button>
           </div>
 
@@ -1255,7 +1318,7 @@
         <span class="part-pill">भाग 1 • निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल</span>
       </div>
 
-      <div class="sched-item">
+      <div class="sched-item" onclick="jumpToEvent(0)" style="cursor:pointer;">
         <div>
           <div class="sched-name">श्री गणेश एवं माता पूजन</div>
           <div class="sched-place">शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।</div>
@@ -1263,7 +1326,7 @@
         <div class="sched-when">08 दिसम्बर (मंगलवार)<br>सायं 4:00 बजे</div>
       </div>
 
-      <div class="sched-item">
+      <div class="sched-item" onclick="jumpToEvent(1)" style="cursor:pointer;">
         <div>
           <div class="sched-name">मण्डपाच्छादन एवं मामेर</div>
           <div class="sched-place">मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।</div>
@@ -1271,7 +1334,7 @@
         <div class="sched-when">09 दिसम्बर (बुधवार)<br>प्रातः 9:30 बजे</div>
       </div>
 
-      <div class="sched-item">
+      <div class="sched-item" onclick="jumpToEvent(2)" style="cursor:pointer;">
         <div>
           <div class="sched-name">रतजगा मेहंदी</div>
           <div class="sched-place">ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।</div>
@@ -1283,7 +1346,7 @@
         <span class="part-pill">भाग 2 • होटल प्राइड इनसेंट, VIP रोड, भोपाल</span>
       </div>
 
-      <div class="sched-item">
+      <div class="sched-item" onclick="jumpToEvent(3)" style="cursor:pointer;">
         <div>
           <div class="sched-name">हल्दी कार्यक्रम</div>
           <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
@@ -1291,7 +1354,7 @@
         <div class="sched-when">10 दिसम्बर (गुरुवार)<br>दोपहर 2:00 बजे</div>
       </div>
 
-      <div class="sched-item">
+      <div class="sched-item" onclick="jumpToEvent(4)" style="cursor:pointer;">
         <div>
           <div class="sched-name">संगीत संध्या</div>
           <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
@@ -1299,7 +1362,7 @@
         <div class="sched-when">10 दिसम्बर (गुरुवार)<br>रात्रि 8:00 बजे</div>
       </div>
 
-      <div class="sched-item">
+      <div class="sched-item" onclick="jumpToEvent(5)" style="cursor:pointer;">
         <div>
           <div class="sched-name">आशीर्वाद समारोह एवं स्वरुचिभोज</div>
           <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
@@ -1307,7 +1370,7 @@
         <div class="sched-when">11 दिसम्बर (शुक्रवार)<br>रात्रि 8:00 बजे</div>
       </div>
 
-      <div class="sched-item">
+      <div class="sched-item" onclick="jumpToEvent(6)" style="cursor:pointer;">
         <div>
           <div class="sched-name">मंगल फेरे</div>
           <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
@@ -1316,12 +1379,20 @@
       </div>
     </div>
 
-    <!-- Family Section -->
-    <section class="ivory-royal-card">
+    <!-- Interactive Family Section -->
+    <section class="ivory-royal-card" id="sec-family">
       <div class="section-kicker">स्नेह एवं निमंत्रण • तिवारी परिवार</div>
       <h2 class="section-heading">परिवारजन</h2>
 
-      <div class="parivaar-box">
+      <div class="family-filter-row">
+        <button type="button" class="fam-tab-btn active" onclick="highlightFamily('all', this)">सभी</button>
+        <button type="button" class="fam-tab-btn" onclick="highlightFamily('swagat', this)">स्वागतकाभी</button>
+        <button type="button" class="fam-tab-btn" onclick="highlightFamily('darshan', this)">दर्शनाभिलाषी</button>
+        <button type="button" class="fam-tab-btn" onclick="highlightFamily('baal', this)">बालमनुहार</button>
+        <button type="button" class="fam-tab-btn" onclick="highlightFamily('vinit', this)">विनीत</button>
+      </div>
+
+      <div class="parivaar-box" id="fam-swagat">
         <div class="parivaar-head">स्वागतकाभी</div>
         <div class="parivaar-names">
           श्रीमती सुनीता, यशवन्त तिवारी <span class="gold-sep">•</span>
@@ -1335,7 +1406,7 @@
         </div>
       </div>
 
-      <div class="parivaar-box">
+      <div class="parivaar-box" id="fam-darshan">
         <div class="parivaar-head">दर्शनाभिलाषी</div>
         <div class="parivaar-names">
           श्रीमती सरोज तिवारी <span class="gold-sep">•</span>
@@ -1345,7 +1416,7 @@
         </div>
       </div>
 
-      <div class="parivaar-box">
+      <div class="parivaar-box" id="fam-baal">
         <div class="parivaar-head">बालमनुहार</div>
         <div class="parivaar-names">
           देवांश <span class="gold-sep">|</span> बेबी <span class="gold-sep">|</span> लक्ष्य <span class="gold-sep">|</span> अविषा
@@ -1356,7 +1427,7 @@
         </div>
       </div>
 
-      <div class="parivaar-box">
+      <div class="parivaar-box" id="fam-vinit">
         <div class="parivaar-head">विनीत</div>
         <div class="parivaar-names">
           श्री रामविलास तिवारी <span class="gold-sep">•</span>
@@ -1370,7 +1441,7 @@
     </section>
 
     <!-- Embedded Bhopal Live Map + Exact Venue Cards -->
-    <div style="text-align: center; margin-top: 28px;">
+    <div style="text-align: center; margin-top: 28px;" id="sec-maps">
       <div class="section-kicker">गूगल मैप • सटीक लोकेशन</div>
       <h2 class="section-heading" style="margin-bottom: 0;">कार्यक्रम स्थल कैसे पहुँचें</h2>
     </div>
@@ -1432,7 +1503,7 @@
     const gharDirUrl = "https://www.google.com/maps/dir/?api=1&destination=23.2671376,77.4597344";
     const vipDirUrl = "https://www.google.com/maps/dir/?api=1&destination=23.261740,77.371996";
 
-    /* 7 Events Booklet Data */
+    /* 7 Events Booklet Data with Calendar Start/End */
     const eventsList = [
       {
         title: "श्री गणेश एवं माता पूजन",
@@ -1442,7 +1513,9 @@
         quote: "शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।",
         icon: "🪔",
         bg: "linear-gradient(145deg, #c76224, #7e2e0c)",
-        dir: gharDirUrl
+        dir: gharDirUrl,
+        icsStart: "20261208T103000Z",
+        icsEnd: "20261208T130000Z"
       },
       {
         title: "मण्डपाच्छादन एवं मामेर",
@@ -1452,7 +1525,9 @@
         quote: "मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।",
         icon: "🌿",
         bg: "linear-gradient(145deg, #b55422, #6b260d)",
-        dir: gharDirUrl
+        dir: gharDirUrl,
+        icsStart: "20261209T040000Z",
+        icsEnd: "20261209T063000Z"
       },
       {
         title: "रतजगा मेहंदी",
@@ -1462,7 +1537,9 @@
         quote: "ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।",
         icon: "🍃",
         bg: "linear-gradient(145deg, #257345, #114225)",
-        dir: gharDirUrl
+        dir: gharDirUrl,
+        icsStart: "20261209T143000Z",
+        icsEnd: "20261209T173000Z"
       },
       {
         title: "हल्दी कार्यक्रम",
@@ -1472,7 +1549,9 @@
         quote: "हल्दी के पावन रंगों और मंगल गीतों के साथ उत्सव की शुरुआत।",
         icon: "🌼",
         bg: "linear-gradient(145deg, #d79416, #9d6203)",
-        dir: vipDirUrl
+        dir: vipDirUrl,
+        icsStart: "20261210T083000Z",
+        icsEnd: "20261210T110000Z"
       },
       {
         title: "संगीत संध्या",
@@ -1482,7 +1561,9 @@
         quote: "सुर, ताल और खुशियों से सजी एक यादगार शाम।",
         icon: "🎶",
         bg: "linear-gradient(145deg, #74327f, #43144c)",
-        dir: vipDirUrl
+        dir: vipDirUrl,
+        icsStart: "20261210T143000Z",
+        icsEnd: "20261210T173000Z"
       },
       {
         title: "आशीर्वाद समारोह एवं स्वरुचिभोज",
@@ -1492,7 +1573,9 @@
         quote: "वर-वधू को स्नेहाशीष प्रदान कर प्रीतिभोज में सम्मिलित हों।",
         icon: "✨",
         bg: "linear-gradient(145deg, #931b32, #520917)",
-        dir: vipDirUrl
+        dir: vipDirUrl,
+        icsStart: "20261211T143000Z",
+        icsEnd: "20261211T170000Z"
       },
       {
         title: "मंगल फेरे",
@@ -1502,7 +1585,9 @@
         quote: "अग्नि को साक्षी मानकर सात जन्मों के पावन बंधन की बेला।",
         icon: "🔥",
         bg: "linear-gradient(145deg, #6d0f22, #2b030b)",
-        dir: vipDirUrl
+        dir: vipDirUrl,
+        icsStart: "20261211T173000Z",
+        icsEnd: "20261211T203000Z"
       }
     ];
 
@@ -1533,6 +1618,13 @@
         updateBookletUI();
         bottomHalf.classList.remove("page-turning");
       }, 180);
+    }
+
+    function jumpToEvent(idx) {
+      curEvent = idx;
+      updateBookletUI();
+      document.getElementById("sec-events").scrollIntoView({ behavior: "smooth" });
+      showToast(`कार्यक्रम ${String(idx + 1).padStart(2, "0")} खुल गया`);
     }
 
     function attachSwipe(el, onLeft, onRight) {
@@ -1587,6 +1679,22 @@
     attachSwipe(deckStage, () => stepPhotoDeck(1), () => stepPhotoDeck(-1));
     renderPolaroids();
 
+    /* Interactive Family Highlight Filter */
+    function highlightFamily(group, btn) {
+      document.querySelectorAll(".fam-tab-btn").forEach((b) => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      document.querySelectorAll(".parivaar-box").forEach((box) => {
+        box.classList.remove("highlighted");
+      });
+      if (group !== "all") {
+        const target = document.getElementById("fam-" + group);
+        if (target) {
+          target.classList.add("highlighted");
+          target.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      }
+    }
+
     /* Leaflet Live Maps */
     if (window.L) {
       const m1 = L.map("map-vip", { scrollWheelZoom: false }).setView(vipCoords, 15);
@@ -1613,103 +1721,56 @@
       }
     }
 
-    /* Brand-New Soft Royal Flute/Harp Wedding Melody (No song.mp3 dependency) */
-    let audioCtx = null;
-    let musicLoop = null;
-    let musicActive = false;
-    let phraseIdx = 0;
+    /* Audio Engine for assets/aaj-sajeya.mp3 */
+    const mp3Audio = document.getElementById("wedding-mp3");
+    let isPlaying = false;
 
-    // Gentle romantic wedding phrases in D major / Yaman feel
-    const newSoftPhrases = [
-      [293.66, 369.99, 440.00, 587.33],
-      [329.63, 440.00, 554.37, 659.25],
-      [369.99, 440.00, 587.33, 739.99],
-      [329.63, 392.00, 493.88, 587.33],
-      [293.66, 369.99, 440.00, 554.37],
-      [246.94, 329.63, 440.00, 587.33]
-    ];
-
-    function playNewSoftPhrase(notesArr) {
-      if (!audioCtx) return;
-      const now = audioCtx.currentTime;
-      notesArr.forEach((freq, i) => {
-        const osc = audioCtx.createOscillator();
-        const overtone = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        const startAt = now + i * 0.42;
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, startAt);
-
-        overtone.type = "triangle";
-        overtone.frequency.setValueAtTime(freq * 2, startAt);
-
-        const subGain = audioCtx.createGain();
-        subGain.gain.setValueAtTime(0.0001, startAt);
-        subGain.gain.exponentialRampToValueAtTime(0.006, startAt + 0.14);
-        subGain.gain.exponentialRampToValueAtTime(0.0001, startAt + 1.6);
-
-        gain.gain.setValueAtTime(0.0001, startAt);
-        gain.gain.exponentialRampToValueAtTime(0.024, startAt + 0.16);
-        gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 1.75);
-
-        osc.connect(gain);
-        overtone.connect(subGain);
-        gain.connect(audioCtx.destination);
-        subGain.connect(audioCtx.destination);
-
-        osc.start(startAt);
-        overtone.start(startAt);
-        osc.stop(startAt + 1.8);
-        overtone.stop(startAt + 1.8);
+    function startWeddingMusic() {
+      if (!mp3Audio) return;
+      mp3Audio.volume = 0.72;
+      mp3Audio.play().then(() => {
+        isPlaying = true;
+        updateMusicBtn();
+        showToast("🎵 आज सजैया शुरू हुआ");
+      }).catch(() => {
+        isPlaying = false;
+        updateMusicBtn();
+        showToast("संगीत के लिए 🎵 बटन दबाएं");
       });
     }
 
-    function startWeddingMusic() {
-      if (musicActive) return;
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      if (!audioCtx) audioCtx = new AC();
-      if (audioCtx.state === "suspended") audioCtx.resume();
-      musicActive = true;
-      updateMusicUI();
-
-      playNewSoftPhrase(newSoftPhrases[phraseIdx % newSoftPhrases.length]);
-      phraseIdx++;
-
-      if (musicLoop) clearInterval(musicLoop);
-      musicLoop = setInterval(() => {
-        if (!musicActive) return;
-        playNewSoftPhrase(newSoftPhrases[phraseIdx % newSoftPhrases.length]);
-        phraseIdx++;
-      }, 2400);
-    }
-
     function stopWeddingMusic() {
-      musicActive = false;
-      if (musicLoop) {
-        clearInterval(musicLoop);
-        musicLoop = null;
-      }
-      updateMusicUI();
+      if (!mp3Audio) return;
+      mp3Audio.pause();
+      isPlaying = false;
+      updateMusicBtn();
+      showToast("संगीत बंद कर दिया गया");
     }
 
-    function toggleDhun() {
-      if (musicActive) {
+    function toggleWeddingMusic() {
+      if (!mp3Audio.paused) {
         stopWeddingMusic();
-        showToast("संगीत बंद कर दिया गया");
       } else {
         startWeddingMusic();
-        showToast("नई मधुर मंगल धुन शुरू हुई");
       }
     }
 
-    function updateMusicUI() {
+    function updateMusicBtn() {
       const btn = document.getElementById("music-btn");
       if (!btn) return;
-      btn.textContent = musicActive ? "🎵 संगीत: चालू" : "🎵 संगीत";
-      btn.classList.toggle("music-on", musicActive);
+      btn.textContent = isPlaying ? "🎵 चालू" : "🎵 आज सजैया";
+      btn.classList.toggle("music-on", isPlaying);
     }
+
+    mp3Audio.addEventListener("play", () => {
+      isPlaying = true;
+      updateMusicBtn();
+    });
+
+    mp3Audio.addEventListener("pause", () => {
+      isPlaying = false;
+      updateMusicBtn();
+    });
 
     function openInviteBook() {
       document.getElementById("royal-cover").classList.add("opened");
@@ -1733,24 +1794,25 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    function saveCalendarICS() {
+    function saveEventCalendarICS(idx) {
+      const ev = eventsList[idx] || eventsList[6];
       const ics = [
         "BEGIN:VCALENDAR",
         "VERSION:2.0",
         "BEGIN:VEVENT",
-        "DTSTART:20261211T173000Z",
-        "DTEND:20261211T203000Z",
-        "SUMMARY:स्नेह-बंधन • पलाश संग शुभी — मंगल फेरे",
-        "LOCATION:होटल प्राइड इनसेंट, VIP रोड, भोपाल (23.261740, 77.371996)",
+        `DTSTART:${ev.icsStart}`,
+        `DTEND:${ev.icsEnd}`,
+        `SUMMARY:स्नेह-बंधन • पलाश संग शुभी — ${ev.title}`,
+        `LOCATION:${ev.venue.replace("📍 ", "")}`,
         "END:VEVENT",
         "END:VCALENDAR"
       ].join("\r\n");
       const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
-      a.download = "Sneh-Bandhan-Palash-Shubhi-2026.ics";
+      a.download = `Shubhpal-${idx + 1}.ics`;
       a.click();
-      showToast("कैलेंडर रिमाइंडर सेव हो गया");
+      showToast(`${ev.title} कैलेंडर में सेव हो गया`);
     }
 
     function copyAddr(text) {
