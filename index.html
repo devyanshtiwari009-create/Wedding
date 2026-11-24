@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>पलाश संग शुभी — 11 दिसम्बर 2026</title>
+  <title>स्नेह-बंधन • पलाश संग शुभी</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,6 +14,7 @@
       --maroon: #681322;
       --maroon-dark: #3d0711;
       --gold: #bc8e46;
+      --gold-bright: #f4d799;
       --gold-soft: #efe0bc;
       --ink: #291518;
       --muted: #72575b;
@@ -97,14 +98,6 @@
       font-weight: 700;
     }
 
-    .hi {
-      font-family: 'Noto Serif Devanagari', serif;
-    }
-
-    .serif {
-      font-family: 'Cormorant Garamond', 'Noto Serif Devanagari', serif;
-    }
-
     .display {
       font-family: 'Cinzel Decorative', 'Cormorant Garamond', serif;
     }
@@ -135,7 +128,7 @@
       100% { transform: translateY(112vh) rotate(330deg); opacity: 0; }
     }
 
-    /* Book Cover Intro */
+    /* Royal Velvet Book Cover Intro */
     #book-cover {
       position: fixed;
       inset: 0;
@@ -146,13 +139,14 @@
       justify-content: center;
       padding: 24px;
       background:
-        radial-gradient(circle at 50% 24%, rgba(229, 165, 174, 0.34), transparent 55%),
-        linear-gradient(180deg, #faf2ee 0%, #f1dede 100%);
-      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease;
+        radial-gradient(circle at 50% 22%, rgba(212, 163, 89, 0.24), transparent 52%),
+        radial-gradient(circle at 50% 80%, rgba(104, 19, 34, 0.22), transparent 60%),
+        linear-gradient(180deg, #f8efe8 0%, #edd8d6 100%);
+      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s ease;
     }
 
     #book-cover.open {
-      transform: perspective(1500px) rotateY(-85deg);
+      transform: perspective(1600px) rotateY(-88deg);
       transform-origin: left center;
       opacity: 0;
       pointer-events: none;
@@ -160,44 +154,131 @@
 
     .book-cover-card {
       width: 100%;
-      max-width: 344px;
-      aspect-ratio: 3 / 4.25;
-      border-radius: 12px 24px 24px 12px;
-      background: linear-gradient(155deg, #7a1829 0%, #520d19 58%, #38060f 100%);
-      border: 1.5px solid rgba(239, 224, 188, 0.78);
+      max-width: 350px;
+      aspect-ratio: 3 / 4.35;
+      border-radius: 14px 26px 26px 14px;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(244, 215, 153, 0.14), transparent 62%),
+        linear-gradient(158deg, #7d1527 0%, #530a17 55%, #34040d 100%);
+      border: 2px solid rgba(244, 215, 153, 0.85);
       box-shadow:
-        -12px 18px 34px rgba(56, 6, 15, 0.34),
-        inset 0 0 0 8px rgba(239, 224, 188, 0.14);
+        -14px 22px 42px rgba(45, 4, 12, 0.4),
+        0 0 0 6px rgba(125, 21, 39, 0.12),
+        inset 0 0 0 8px rgba(244, 215, 153, 0.16);
       padding: 24px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       text-align: center;
-      color: var(--gold-soft);
+      color: var(--gold-bright);
       position: relative;
       cursor: pointer;
+      overflow: hidden;
     }
 
+    /* Spine & Inner Gold Filigree */
     .book-cover-card::before {
       content: "";
       position: absolute;
-      left: 14px;
+      left: 15px;
       top: 0;
       bottom: 0;
       width: 2px;
-      background: linear-gradient(180deg, transparent, rgba(239, 224, 188, 0.52), transparent);
+      background: linear-gradient(180deg, transparent, rgba(244, 215, 153, 0.65), transparent);
+    }
+
+    .book-cover-card::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 8px 18px 18px 8px;
+      border: 1px dashed rgba(244, 215, 153, 0.42);
+      pointer-events: none;
+    }
+
+    .cover-top-crest {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cover-crest-line {
+      width: 78px;
+      height: 1px;
+      margin: 7px auto 0;
+      background: linear-gradient(90deg, transparent, rgba(244, 215, 153, 0.85), transparent);
+    }
+
+    /* Arch Jharokha + Rotating Gold Mandala */
+    .monogram-stage {
+      position: relative;
+      width: 136px;
+      height: 148px;
+      display: grid;
+      place-items: center;
+      z-index: 2;
+    }
+
+    .gold-mandala-ring {
+      position: absolute;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      border: 1px dashed rgba(244, 215, 153, 0.52);
+      box-shadow: inset 0 0 18px rgba(244, 215, 153, 0.14);
+      animation: slowMandalaSpin 26s linear infinite;
+    }
+
+    .gold-mandala-ring::before {
+      content: "✦";
+      position: absolute;
+      top: -9px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: var(--gold-bright);
+    }
+
+    @keyframes slowMandalaSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .monogram-arch {
+      position: relative;
       width: 98px;
-      height: 114px;
-      border-radius: 52px 52px 14px 14px;
-      border: 1.3px solid rgba(239, 224, 188, 0.78);
-      background: radial-gradient(circle, rgba(239, 224, 188, 0.16), transparent 74%);
+      height: 116px;
+      border-radius: 52px 52px 16px 16px;
+      border: 1.5px solid rgba(244, 215, 153, 0.9);
+      background:
+        radial-gradient(circle at 50% 35%, rgba(244, 215, 153, 0.22), rgba(52, 4, 13, 0.65) 78%);
       display: grid;
       place-items: center;
-      box-shadow: 0 0 24px rgba(239, 224, 188, 0.22);
+      box-shadow:
+        0 0 28px rgba(244, 215, 153, 0.25),
+        inset 0 0 14px rgba(244, 215, 153, 0.16);
+    }
+
+    .ps-shimmer-text {
+      background: linear-gradient(120deg, #d8aa56 0%, #fff2cc 48%, #c9943b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 1.62rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .cover-bottom-box {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cover-ornament {
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: rgba(244, 215, 153, 0.82);
+      margin-bottom: 4px;
     }
 
     .tap-open-trigger {
@@ -208,7 +289,7 @@
       gap: 8px;
       color: var(--maroon);
       font-size: 11.5px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.08em;
       font-weight: 700;
       cursor: pointer;
     }
@@ -240,22 +321,36 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
       padding: 4px 2px 12px;
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--muted);
       font-weight: 600;
     }
 
-    .cover-btn {
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-btn {
       background: var(--surface);
       border: 1px solid rgba(188, 142, 70, 0.5);
       color: var(--maroon);
-      padding: 5px 13px;
+      padding: 5px 11px;
       border-radius: 999px;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
       font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .pill-btn.active-music {
+      background: linear-gradient(135deg, #7a1829, #4d0b17);
+      color: #fff7e6;
+      border-color: transparent;
     }
 
     /* Royal Arch Hero */
@@ -347,7 +442,6 @@
       font-size: 12px;
       font-weight: 700;
       color: var(--gold);
-      letter-spacing: 0.05em;
     }
 
     .front-preshak-names {
@@ -967,21 +1061,26 @@
 
   <div class="petals" id="petals"></div>
 
-  <!-- Royal Cover -->
+  <!-- Royal Velvet Book Cover -->
   <div id="book-cover">
     <div class="book-cover-card" onclick="openCardInvite()">
-      <div>
-        <div style="font-size: 13px; font-weight: 600;">॥ मंगल परिणय ॥</div>
-        <div class="display" style="font-size: 1.15rem; margin-top: 6px; letter-spacing: 0.08em;">PS</div>
+      <div class="cover-top-crest">
+        <div style="font-size: 13px; font-weight: 700;">॥ मंगल परिणय ॥</div>
+        <div class="display" style="font-size: 0.95rem; margin-top: 4px; letter-spacing: 0.14em; color: var(--gold-soft);">SHUBHPAL</div>
+        <div class="cover-crest-line"></div>
       </div>
 
-      <div class="monogram-arch">
-        <span class="display" style="font-size: 1.65rem; font-weight: 700; letter-spacing: 0.04em;">P &amp; S</span>
+      <div class="monogram-stage">
+        <div class="gold-mandala-ring"></div>
+        <div class="monogram-arch">
+          <span class="display ps-shimmer-text">P &amp; S</span>
+        </div>
       </div>
 
-      <div>
-        <div style="font-size: 1.35rem; font-weight: 700;">पलाश संग शुभी</div>
-        <div style="font-size: 12px; opacity: 0.92; margin-top: 4px;">
+      <div class="cover-bottom-box">
+        <div class="cover-ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+        <div style="font-size: 1.28rem; font-weight: 700;">स्नेह-बंधन • पलाश संग शुभी</div>
+        <div style="font-size: 12px; color: var(--gold-soft); opacity: 0.95; margin-top: 4px;">
           शुक्रवार • 11 दिसम्बर 2026 • भोपाल
         </div>
       </div>
@@ -989,14 +1088,17 @@
 
     <div class="tap-open-trigger" onclick="openCardInvite()">
       <span class="tap-pulse-ring"></span>
-      <span>निमंत्रण पत्र खोलने के लिए स्पर्श करें</span>
+      <span>शाही निमंत्रण खोलने के लिए स्पर्श करें</span>
     </div>
   </div>
 
   <main class="invite-container">
     <div class="top-header-bar">
       <span>॥ श्री गणेशाय नमः ॥</span>
-      <button type="button" class="cover-btn" onclick="showCardCover()">आवरण देखें</button>
+      <div class="header-actions">
+        <button type="button" class="pill-btn" id="music-toggle-btn" onclick="toggleSoftDhun()">🎵 संगीत: बंद</button>
+        <button type="button" class="pill-btn" onclick="showCardCover()">आवरण देखें</button>
+      </div>
     </div>
 
     <!-- Arch Hero + Front Page Preshak -->
@@ -1006,7 +1108,7 @@
         वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
         निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
       </div>
-      <div class="mangal-tag">॥ मंगल परिणय • शुभ विवाह ॥</div>
+      <div class="mangal-tag">॥ स्नेह-बंधन • मंगल परिणय ॥</div>
       <h1 class="hero-couple-hi">
         पलाश
         <span class="hero-amp">संग</span>
@@ -1415,8 +1517,95 @@
       festContainer.appendChild(card);
     });
 
+    /* Soft Royal Wedding Instrumental Melody (Web Audio API) */
+    let audioCtx = null;
+    let dhunTimer = null;
+    let isDhunPlaying = false;
+    let noteStep = 0;
+
+    const softMelody = [293.66, 329.63, 392.00, 440.00, 392.00, 329.63, 293.66, 220.00];
+
+    function playSoftTone(freq) {
+      if (!audioCtx) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const subOsc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now);
+
+      subOsc.type = "triangle";
+      subOsc.frequency.setValueAtTime(freq * 0.5, now);
+
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.032, now + 0.18);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.45);
+
+      osc.connect(gain);
+      subOsc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      subOsc.start(now);
+      osc.stop(now + 1.5);
+      subOsc.stop(now + 1.5);
+    }
+
+    function startSoftDhun() {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      if (!audioCtx) {
+        audioCtx = new AudioContextClass();
+      }
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+      if (isDhunPlaying) return;
+      isDhunPlaying = true;
+      updateMusicButton();
+      playSoftTone(softMelody[noteStep % softMelody.length]);
+      noteStep++;
+      dhunTimer = setInterval(() => {
+        playSoftTone(softMelody[noteStep % softMelody.length]);
+        noteStep++;
+      }, 1550);
+    }
+
+    function stopSoftDhun() {
+      isDhunPlaying = false;
+      if (dhunTimer) {
+        clearInterval(dhunTimer);
+        dhunTimer = null;
+      }
+      updateMusicButton();
+    }
+
+    function toggleSoftDhun() {
+      if (isDhunPlaying) {
+        stopSoftDhun();
+        showToastMsg("संगीत बंद कर दिया गया");
+      } else {
+        startSoftDhun();
+        showToastMsg("मधुर वाद्य धुन शुरू हुई");
+      }
+    }
+
+    function updateMusicButton() {
+      const btn = document.getElementById("music-toggle-btn");
+      if (!btn) return;
+      if (isDhunPlaying) {
+        btn.textContent = "🎵 संगीत: चालू";
+        btn.classList.add("active-music");
+      } else {
+        btn.textContent = "🎵 संगीत: बंद";
+        btn.classList.remove("active-music");
+      }
+    }
+
     function openCardInvite() {
       document.getElementById("book-cover").classList.add("open");
+      startSoftDhun();
     }
 
     function showCardCover() {
@@ -1450,7 +1639,7 @@
         "BEGIN:VEVENT",
         "DTSTART:20261211T173000Z",
         "DTEND:20261211T203000Z",
-        "SUMMARY:पलाश संग शुभी — मंगल फेरे",
+        "SUMMARY:स्नेह-बंधन • पलाश संग शुभी — मंगल फेरे",
         "LOCATION:होटल प्राइड इनसेंट, VIP रोड, भोपाल (23.261740, 77.371996)",
         "END:VEVENT",
         "END:VCALENDAR"
@@ -1458,7 +1647,7 @@
       const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "Palash-weds-Shubhi-2026.ics";
+      link.download = "Sneh-Bandhan-Palash-Shubhi-2026.ics";
       link.click();
       showToastMsg("कैलेंडर रिमाइंडर सेव हो गया");
     }
