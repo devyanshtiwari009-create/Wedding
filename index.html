@@ -147,7 +147,7 @@
         radial-gradient(circle at 50% 20%, rgba(242, 193, 96, 0.34), transparent 52%),
         radial-gradient(circle at 50% 85%, rgba(109, 15, 34, 0.3), transparent 62%),
         linear-gradient(180deg, #f8ede3 0%, #ead0cd 100%);
-      transition: opacity 0.75s ease, visibility 0.75s ease;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
 
     #royal-cover.opened {
@@ -178,7 +178,7 @@
       color: var(--gold-light);
       position: relative;
       cursor: pointer;
-      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     #royal-cover.opened .cover-velvet-box {
@@ -643,7 +643,7 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
     }
 
-    /* परियों की रोशनी + स्क्रॉल पर खिसकती तस्वीरें */
+    /* परियों की रोशनी + धीमे एवं स्मूथ स्क्रॉल पर खिसकती तस्वीरें */
     .memories-wrapper {
       margin-top: 28px;
       text-align: center;
@@ -697,7 +697,7 @@
       box-shadow: 0 18px 40px rgba(43, 3, 11, 0.2);
       border: 1px solid rgba(198, 142, 54, 0.35);
       cursor: pointer;
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+      transition: transform 0.7s cubic-bezier(0.25, 0.85, 0.25, 1), opacity 0.6s ease;
     }
 
     .polaroid-card img {
@@ -729,10 +729,10 @@
       color: var(--crimson);
     }
 
-    /* पेज-फोल्ड कार्यक्रम कार्ड (01 / 07) */
+    /* धीमे एवं स्मूथ पेज-फोल्ड कार्यक्रम कार्ड (01 / 07) */
     .event-flip-wrapper {
       margin-top: 30px;
-      perspective: 1400px;
+      perspective: 1600px;
     }
 
     .event-booklet-card {
@@ -773,6 +773,7 @@
       font-size: 2.6rem;
       color: #fff;
       box-shadow: 0 12px 26px rgba(63, 6, 18, 0.2);
+      transition: transform 0.65s cubic-bezier(0.25, 0.85, 0.25, 1), background 0.65s ease;
     }
 
     .event-quote-hi {
@@ -787,12 +788,12 @@
       text-align: center;
       background: var(--ivory);
       transform-origin: top center;
-      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      transition: transform 0.65s cubic-bezier(0.25, 0.85, 0.25, 1), opacity 0.55s ease;
     }
 
     .booklet-bottom-half.page-turning {
-      transform: rotateX(68deg);
-      opacity: 0.35;
+      transform: rotateX(36deg) translateY(6px);
+      opacity: 0.45;
     }
 
     .booklet-event-name {
@@ -947,7 +948,7 @@
       border-radius: 18px;
       padding: 14px 12px;
       margin-bottom: 12px;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
 
     .parivaar-box.highlighted {
@@ -1247,9 +1248,9 @@
       </div>
     </section>
 
-    <!-- स्क्रॉल पर खिसकती हमारी कहानी की तस्वीरें -->
+    <!-- परियों की रोशनी + धीमे एवं स्मूथ स्क्रॉल पर खिसकती तस्वीरें -->
     <section class="memories-wrapper" id="sec-photos">
-      <div class="section-kicker">स्क्रॉल करने पर तस्वीरें स्वचालित बदलती हैं</div>
+      <div class="section-kicker">धीमे स्क्रॉल करने पर तस्वीरें सहज बदलती हैं</div>
       <h2 class="section-heading">हमारी कहानी</h2>
 
       <div class="fairy-lights-bar" aria-hidden="true">
@@ -1267,10 +1268,10 @@
       </div>
     </section>
 
-    <!-- स्क्रॉल एवं स्पर्श पर पलटने वाले कार्यक्रम कार्ड (01 / 07) -->
+    <!-- धीमे एवं स्मूथ स्क्रॉल/स्पर्श पर पलटने वाले कार्यक्रम कार्ड (01 / 07) -->
     <section class="event-flip-wrapper" id="sec-events">
       <div style="text-align: center; margin-bottom: 12px;">
-        <div class="section-kicker">स्क्रॉल करें या पेज पलटें • 01 से 07</div>
+        <div class="section-kicker">धीरे स्क्रॉल करें या पेज पलटें • 01 से 07</div>
         <h2 class="section-heading" style="margin-bottom: 0;">विवाह के कार्यक्रम</h2>
       </div>
 
@@ -1627,7 +1628,7 @@
         curEvent = normalized;
         updateBookletUI();
         bottomHalf.classList.remove("page-turning");
-      }, 170);
+      }, 280);
     }
 
     function flipEventCard(dir) {
@@ -1647,7 +1648,7 @@
       }, { passive: true });
       el.addEventListener("touchend", (e) => {
         const dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 38) {
+        if (Math.abs(dx) > 42) {
           if (dx < 0) onLeft();
           else onRight();
         }
@@ -1692,32 +1693,39 @@
     attachSwipe(deckStage, () => stepPhotoDeck(1), () => stepPhotoDeck(-1));
     renderPolaroids();
 
-    /* स्क्रॉल करने पर अपने आप फ़ोटो और कार्यक्रम स्लाइड हों */
+    /* धीमे एवं स्मूथ स्क्रॉल पर अपने आप फ़ोटो और कार्यक्रम बदलना */
     let lastScrollY = window.scrollY;
     let photoScrollAcc = 0;
     let eventScrollAcc = 0;
+    let scrollCooldown = 0;
 
     window.addEventListener("scroll", () => {
       const currentY = window.scrollY;
       const deltaY = currentY - lastScrollY;
       lastScrollY = currentY;
 
+      const now = Date.now();
+      if (now < scrollCooldown) return;
+
       const photoRect = deckStage.getBoundingClientRect();
-      if (photoRect.top < window.innerHeight * 0.85 && photoRect.bottom > window.innerHeight * 0.15) {
+      if (photoRect.top < window.innerHeight * 0.78 && photoRect.bottom > window.innerHeight * 0.22) {
         photoScrollAcc += deltaY;
-        if (Math.abs(photoScrollAcc) > 130) {
+        if (Math.abs(photoScrollAcc) > 240) {
           stepPhotoDeck(photoScrollAcc > 0 ? 1 : -1);
           photoScrollAcc = 0;
+          scrollCooldown = now + 520;
+          return;
         }
       }
 
       const bookletEl = document.getElementById("event-booklet");
       const evRect = bookletEl.getBoundingClientRect();
-      if (evRect.top < window.innerHeight * 0.85 && evRect.bottom > window.innerHeight * 0.15) {
+      if (evRect.top < window.innerHeight * 0.78 && evRect.bottom > window.innerHeight * 0.22) {
         eventScrollAcc += deltaY;
-        if (Math.abs(eventScrollAcc) > 125) {
+        if (Math.abs(eventScrollAcc) > 220) {
           setEventIndex(curEvent + (eventScrollAcc > 0 ? 1 : -1), true);
           eventScrollAcc = 0;
+          scrollCooldown = now + 520;
         }
       }
     }, { passive: true });
@@ -1764,90 +1772,35 @@
       }
     }
 
-    /* संगीत प्लेयर (assets/aaj-sajeya.mp3 + मधुर वाद्य बैकअप) */
+    /* संगीत प्लेयर (assets/aaj-sajeya.mp3) */
     const mp3Audio = document.getElementById("wedding-mp3");
-    let audioCtx = null;
-    let fallbackInterval = null;
     let isPlaying = false;
-    let usingFallback = false;
-    let phraseStep = 0;
 
-    const fallbackNotes = [
-      [293.66, 369.99, 440.00, 587.33],
-      [329.63, 440.00, 554.37, 659.25],
-      [369.99, 440.00, 587.33, 739.99],
-      [329.63, 392.00, 493.88, 587.33]
-    ];
-
-    function playFallbackPhrase(arr) {
-      if (!audioCtx) return;
-      const now = audioCtx.currentTime;
-      arr.forEach((freq, i) => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        const t0 = now + i * 0.42;
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, t0);
-        gain.gain.setValueAtTime(0.0001, t0);
-        gain.gain.exponentialRampToValueAtTime(0.022, t0 + 0.15);
-        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.65);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start(t0);
-        osc.stop(t0 + 1.7);
+    function startWeddingMusic() {
+      if (!mp3Audio) return;
+      mp3Audio.volume = 0.72;
+      mp3Audio.play().then(() => {
+        isPlaying = true;
+        updateMusicBtn();
+        showToast("🎵 आज सजैया शुरू हुआ");
+      }).catch(() => {
+        isPlaying = false;
+        updateMusicBtn();
+        showToast("संगीत के लिए 🎵 बटन दबाएं");
       });
     }
 
-    function startFallbackSynth() {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      if (!audioCtx) audioCtx = new AC();
-      if (audioCtx.state === "suspended") audioCtx.resume();
-      usingFallback = true;
-      playFallbackPhrase(fallbackNotes[phraseStep % fallbackNotes.length]);
-      phraseStep++;
-      if (fallbackInterval) clearInterval(fallbackInterval);
-      fallbackInterval = setInterval(() => {
-        if (!isPlaying || !usingFallback) return;
-        playFallbackPhrase(fallbackNotes[phraseStep % fallbackNotes.length]);
-        phraseStep++;
-      }, 2200);
-    }
-
-    function startWeddingMusic() {
-      if (isPlaying) return;
-      isPlaying = true;
-      usingFallback = false;
-      updateMusicBtn();
-
-      if (mp3Audio) {
-        mp3Audio.volume = 0.72;
-        mp3Audio.play().then(() => {
-          showToast("🎵 आज सजैया शुरू हुआ");
-        }).catch(() => {
-          startFallbackSynth();
-          showToast("🎵 मधुर मंगल धुन शुरू हुई");
-        });
-      } else {
-        startFallbackSynth();
-      }
-    }
-
     function stopWeddingMusic() {
+      if (!mp3Audio) return;
+      mp3Audio.pause();
       isPlaying = false;
-      usingFallback = false;
-      if (mp3Audio) mp3Audio.pause();
-      if (fallbackInterval) {
-        clearInterval(fallbackInterval);
-        fallbackInterval = null;
-      }
       updateMusicBtn();
+      showToast("संगीत बंद कर दिया गया");
     }
 
     function toggleWeddingMusic() {
-      if (isPlaying) {
+      if (!mp3Audio.paused) {
         stopWeddingMusic();
-        showToast("संगीत बंद कर दिया गया");
       } else {
         startWeddingMusic();
       }
@@ -1859,6 +1812,16 @@
       btn.textContent = isPlaying ? "🎵 चालू" : "🎵 आज सजैया";
       btn.classList.toggle("music-on", isPlaying);
     }
+
+    mp3Audio.addEventListener("play", () => {
+      isPlaying = true;
+      updateMusicBtn();
+    });
+
+    mp3Audio.addEventListener("pause", () => {
+      isPlaying = false;
+      updateMusicBtn();
+    });
 
     function openInviteBook() {
       document.getElementById("royal-cover").classList.add("opened");
@@ -1915,7 +1878,7 @@
       setTimeout(() => el.classList.remove("show"), 2200);
     }
 
-  
+    /* कोमल पंखुड़ियाँ */
     for (let i = 0; i < 14; i++) {
       const p = document.createElement("div");
       p.className = "petal";
