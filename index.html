@@ -147,7 +147,7 @@
         radial-gradient(circle at 50% 20%, rgba(242, 193, 96, 0.34), transparent 52%),
         radial-gradient(circle at 50% 85%, rgba(109, 15, 34, 0.3), transparent 62%),
         linear-gradient(180deg, #f8ede3 0%, #ead0cd 100%);
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 0.75s ease, visibility 0.75s ease;
     }
 
     #royal-cover.opened {
@@ -178,7 +178,7 @@
       color: var(--gold-light);
       position: relative;
       cursor: pointer;
-      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     #royal-cover.opened .cover-velvet-box {
@@ -643,11 +643,19 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
     }
 
-    /* परियों की रोशनी + धीमे एवं स्मूथ स्क्रॉल पर खिसकती तस्वीरें */
+    /* परियों की रोशनी + स्क्रॉल-लॉक तस्वीरें */
     .memories-wrapper {
       margin-top: 28px;
+      padding: 14px 8px 18px;
+      border-radius: 26px;
       text-align: center;
       position: relative;
+      transition: box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    .memories-wrapper.stage-locked {
+      box-shadow: 0 0 0 2px rgba(198, 142, 54, 0.7), var(--shadow-royal);
+      background: rgba(255, 253, 248, 0.55);
     }
 
     .fairy-lights-bar {
@@ -684,7 +692,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      touch-action: pan-y;
+      touch-action: none;
     }
 
     .polaroid-card {
@@ -697,7 +705,7 @@
       box-shadow: 0 18px 40px rgba(43, 3, 11, 0.2);
       border: 1px solid rgba(198, 142, 54, 0.35);
       cursor: pointer;
-      transition: transform 0.7s cubic-bezier(0.25, 0.85, 0.25, 1), opacity 0.6s ease;
+      transition: transform 0.72s cubic-bezier(0.25, 0.85, 0.25, 1), opacity 0.6s ease;
     }
 
     .polaroid-card img {
@@ -729,10 +737,18 @@
       color: var(--crimson);
     }
 
-    /* धीमे एवं स्मूथ पेज-फोल्ड कार्यक्रम कार्ड (01 / 07) */
+    /* स्क्रॉल-लॉक पेज-फोल्ड कार्यक्रम कार्ड (01 / 07) */
     .event-flip-wrapper {
       margin-top: 30px;
+      padding: 10px 6px 14px;
+      border-radius: 26px;
       perspective: 1600px;
+      transition: box-shadow 0.4s ease;
+    }
+
+    .event-flip-wrapper.stage-locked {
+      box-shadow: 0 0 0 2px rgba(198, 142, 54, 0.72), var(--shadow-royal);
+      background: rgba(255, 253, 248, 0.55);
     }
 
     .event-booklet-card {
@@ -743,7 +759,7 @@
       border: 2px solid rgba(198, 142, 54, 0.72);
       box-shadow: var(--shadow-royal);
       overflow: hidden;
-      touch-action: pan-y;
+      touch-action: none;
       user-select: none;
     }
 
@@ -1248,9 +1264,9 @@
       </div>
     </section>
 
-    <!-- परियों की रोशनी + धीमे एवं स्मूथ स्क्रॉल पर खिसकती तस्वीरें -->
+    <!-- परियों की रोशनी + स्क्रॉल-लॉक हमारी कहानी की तस्वीरें -->
     <section class="memories-wrapper" id="sec-photos">
-      <div class="section-kicker">धीमे स्क्रॉल करने पर तस्वीरें सहज बदलती हैं</div>
+      <div class="section-kicker" id="photo-lock-status">स्क्रॉल करें • सभी तस्वीरें स्लाइड होने तक पेज केंद्र में रुकेगा</div>
       <h2 class="section-heading">हमारी कहानी</h2>
 
       <div class="fairy-lights-bar" aria-hidden="true">
@@ -1268,10 +1284,10 @@
       </div>
     </section>
 
-    <!-- धीमे एवं स्मूथ स्क्रॉल/स्पर्श पर पलटने वाले कार्यक्रम कार्ड (01 / 07) -->
+    <!-- स्क्रॉल-लॉक पेज-फोल्ड कार्यक्रम कार्ड (01 / 07) -->
     <section class="event-flip-wrapper" id="sec-events">
       <div style="text-align: center; margin-bottom: 12px;">
-        <div class="section-kicker">धीरे स्क्रॉल करें या पेज पलटें • 01 से 07</div>
+        <div class="section-kicker" id="event-lock-status">स्क्रॉल करें • 01 से 07 तक सभी कार्यक्रम स्लाइड होने तक पेज रुकेगा</div>
         <h2 class="section-heading" style="margin-bottom: 0;">विवाह के कार्यक्रम</h2>
       </div>
 
@@ -1616,47 +1632,32 @@
     }
 
     function setEventIndex(nextIdx, animate = true) {
-      const normalized = ((nextIdx % eventsList.length) + eventsList.length) % eventsList.length;
-      if (normalized === curEvent) return;
+      const clamped = Math.max(0, Math.min(eventsList.length - 1, nextIdx));
+      if (clamped === curEvent) return;
       if (!animate) {
-        curEvent = normalized;
+        curEvent = clamped;
         updateBookletUI();
         return;
       }
       bottomHalf.classList.add("page-turning");
       setTimeout(() => {
-        curEvent = normalized;
+        curEvent = clamped;
         updateBookletUI();
         bottomHalf.classList.remove("page-turning");
       }, 280);
     }
 
     function flipEventCard(dir) {
-      setEventIndex(curEvent + dir, true);
+      const next = (curEvent + dir + eventsList.length) % eventsList.length;
+      setEventIndex(next, true);
     }
 
     function jumpToEvent(idx) {
+      eventCompleted = true;
       setEventIndex(idx, true);
-      document.getElementById("sec-events").scrollIntoView({ behavior: "smooth" });
+      document.getElementById("sec-events").scrollIntoView({ behavior: "smooth", block: "center" });
       showToast(`कार्यक्रम ${String(idx + 1).padStart(2, "0")} खुल गया`);
     }
-
-    function attachSwipe(el, onLeft, onRight) {
-      let startX = 0;
-      el.addEventListener("touchstart", (e) => {
-        startX = e.changedTouches[0].clientX;
-      }, { passive: true });
-      el.addEventListener("touchend", (e) => {
-        const dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 42) {
-          if (dx < 0) onLeft();
-          else onRight();
-        }
-      }, { passive: true });
-    }
-
-    attachSwipe(document.getElementById("event-booklet"), () => flipEventCard(1), () => flipEventCard(-1));
-    updateBookletUI();
 
     /* हमारी कहानी फ़ोटो डेक */
     const photos = [
@@ -1675,7 +1676,10 @@
         card.className = "polaroid-card";
         card.style.zIndex = String(photos.length - off);
         card.style.transform = `translateX(${off * 8}px) translateY(${off * 6}px) rotate(${off === 0 ? -1.5 : 3.5}deg) scale(${1 - off * 0.04})`;
-        card.onclick = () => stepPhotoDeck(1);
+        card.onclick = () => {
+          topPhoto = (topPhoto + 1) % photos.length;
+          renderPolaroids();
+        };
         card.innerHTML = `
           <img src="${p.src}" alt="${p.caption}">
           <div class="polaroid-caption">${p.caption}</div>
@@ -1690,45 +1694,136 @@
       renderPolaroids();
     }
 
-    attachSwipe(deckStage, () => stepPhotoDeck(1), () => stepPhotoDeck(-1));
     renderPolaroids();
 
-    /* धीमे एवं स्मूथ स्क्रॉल पर अपने आप फ़ोटो और कार्यक्रम बदलना */
-    let lastScrollY = window.scrollY;
-    let photoScrollAcc = 0;
-    let eventScrollAcc = 0;
-    let scrollCooldown = 0;
+    /* केंद्र-लॉक स्क्रॉल इंजन: जब तक सभी फ़ोटो / कार्यक्रम स्लाइड न हों, तब तक नीचे स्क्रॉल रुका रहे */
+    const photoSection = document.getElementById("sec-photos");
+    const eventSection = document.getElementById("sec-events");
+    const photoStatusEl = document.getElementById("photo-lock-status");
+    const eventStatusEl = document.getElementById("event-lock-status");
+
+    let photoCompleted = false;
+    let eventCompleted = false;
+    let stepLockUntil = 0;
+    let wheelAccum = 0;
+    let touchStartY = 0;
+    let touchAccum = 0;
+
+    function isCenteredEnough(el) {
+      const r = el.getBoundingClientRect();
+      const mid = window.innerHeight * 0.5;
+      return r.top < mid + 95 && r.bottom > mid - 95;
+    }
+
+    function centerSectionSmooth(el) {
+      const r = el.getBoundingClientRect();
+      const targetY = window.scrollY + r.top + r.height / 2 - window.innerHeight / 2;
+      window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+    }
+
+    function refreshLockBadges() {
+      photoSection.classList.toggle("stage-locked", !photoCompleted && isCenteredEnough(photoSection));
+      eventSection.classList.toggle("stage-locked", !eventCompleted && isCenteredEnough(eventSection));
+    }
 
     window.addEventListener("scroll", () => {
-      const currentY = window.scrollY;
-      const deltaY = currentY - lastScrollY;
-      lastScrollY = currentY;
+      const y = window.scrollY;
+      // यदि उपयोगकर्ता ऊपर लौट जाए तो दोबारा स्क्रॉल करने पर स्लाइड अनुभव मिले
+      const pTop = photoSection.getBoundingClientRect().top + y;
+      if (y < pTop - window.innerHeight * 0.85) {
+        photoCompleted = false;
+        topPhoto = 0;
+        renderPolaroids();
+      }
+      const eTop = eventSection.getBoundingClientRect().top + y;
+      if (y < eTop - window.innerHeight * 0.85) {
+        eventCompleted = false;
+        curEvent = 0;
+        updateBookletUI();
+      }
+      refreshLockBadges();
+    }, { passive: true });
 
+    function handleStepScroll(deltaY) {
       const now = Date.now();
-      if (now < scrollCooldown) return;
+      if (now < stepLockUntil) return true;
 
-      const photoRect = deckStage.getBoundingClientRect();
-      if (photoRect.top < window.innerHeight * 0.78 && photoRect.bottom > window.innerHeight * 0.22) {
-        photoScrollAcc += deltaY;
-        if (Math.abs(photoScrollAcc) > 240) {
-          stepPhotoDeck(photoScrollAcc > 0 ? 1 : -1);
-          photoScrollAcc = 0;
-          scrollCooldown = now + 520;
-          return;
+      // 1) हमारी कहानी फ़ोटो डेक लॉक
+      if (!photoCompleted && isCenteredEnough(photoSection)) {
+        centerSectionSmooth(photoSection);
+        wheelAccum += deltaY;
+        if (Math.abs(wheelAccum) >= 95) {
+          if (wheelAccum > 0) {
+            if (topPhoto < photos.length - 1) {
+              topPhoto += 1;
+              renderPolaroids();
+            } else {
+              photoCompleted = true;
+              photoStatusEl.textContent = "सभी तस्वीरें दिख गईं • अब नीचे स्क्रॉल करें";
+              refreshLockBadges();
+              wheelAccum = 0;
+              return false;
+            }
+          } else if (topPhoto > 0) {
+            topPhoto -= 1;
+            renderPolaroids();
+          }
+          wheelAccum = 0;
+          stepLockUntil = now + 560;
         }
+        return true;
       }
 
-      const bookletEl = document.getElementById("event-booklet");
-      const evRect = bookletEl.getBoundingClientRect();
-      if (evRect.top < window.innerHeight * 0.78 && evRect.bottom > window.innerHeight * 0.22) {
-        eventScrollAcc += deltaY;
-        if (Math.abs(eventScrollAcc) > 220) {
-          setEventIndex(curEvent + (eventScrollAcc > 0 ? 1 : -1), true);
-          eventScrollAcc = 0;
-          scrollCooldown = now + 520;
+      // 2) विवाह के कार्यक्रम (01 / 07 - 07 / 07) लॉक
+      if (!eventCompleted && isCenteredEnough(eventSection)) {
+        centerSectionSmooth(eventSection);
+        wheelAccum += deltaY;
+        if (Math.abs(wheelAccum) >= 95) {
+          if (wheelAccum > 0) {
+            if (curEvent < eventsList.length - 1) {
+              setEventIndex(curEvent + 1, true);
+            } else {
+              eventCompleted = true;
+              eventStatusEl.textContent = "सभी 7 कार्यक्रम दिख गए • अब नीचे स्क्रॉल करें";
+              refreshLockBadges();
+              wheelAccum = 0;
+              return false;
+            }
+          } else if (curEvent > 0) {
+            setEventIndex(curEvent - 1, true);
+          }
+          wheelAccum = 0;
+          stepLockUntil = now + 560;
         }
+        return true;
+      }
+
+      return false;
+    }
+
+    window.addEventListener("wheel", (e) => {
+      if (handleStepScroll(e.deltaY)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    window.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY;
+        touchAccum = 0;
       }
     }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (e.touches.length !== 1) return;
+      const currentY = e.touches[0].clientY;
+      const dy = touchStartY - currentY;
+      touchStartY = currentY;
+      touchAccum += dy;
+      if (handleStepScroll(touchAccum * 1.4)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
 
     /* परिवारजन हाइलाइट फ़िल्टर */
     function highlightFamily(group, btn) {
