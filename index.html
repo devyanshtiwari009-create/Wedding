@@ -47,7 +47,7 @@
       position: relative;
     }
 
-    /* Subtle Royal PS Watermark */
+    /* शाही PS वाटरमार्क */
     .ps-watermark-layer {
       position: fixed;
       inset: 0;
@@ -91,7 +91,7 @@
       font-weight: 700;
     }
 
-    /* Floating Petals */
+    /* गिरती पंखुड़ियाँ एवं पुष्प वर्षा */
     .petals-wrap {
       position: fixed;
       inset: 0;
@@ -133,7 +133,7 @@
       100% { transform: translateY(108vh) translateX(var(--drift, 40px)) rotate(540deg) scale(1.05); opacity: 0; }
     }
 
-    /* Royal Velvet Book Cover */
+    /* शाही मखमली आवरण */
     #royal-cover {
       position: fixed;
       inset: 0;
@@ -280,7 +280,7 @@
       100% { transform: scale(0.92); opacity: 0.95; }
     }
 
-    /* Main Page Shell */
+    /* मुख्य पेज ढाँचा */
     .page-shell {
       position: relative;
       z-index: 2;
@@ -289,7 +289,7 @@
       padding: 12px 14px 86px;
     }
 
-    /* Sticky Top Pill Bar */
+    /* ऊपर की पट्टी */
     .top-bar {
       position: sticky;
       top: 8px;
@@ -333,7 +333,7 @@
       border-color: rgba(248, 227, 180, 0.85);
     }
 
-    /* Quick Jump Interactive Strip */
+    /* त्वरित नेविगेशन पट्टी */
     .jump-strip {
       display: flex;
       gap: 6px;
@@ -355,7 +355,7 @@
       font-weight: 700;
     }
 
-    /* Royal Unrolling Parchment Scroll */
+    /* खुलता हुआ शाही स्वर्ण पत्र */
     .scroll-assembly {
       position: relative;
       margin-bottom: 24px;
@@ -513,7 +513,7 @@
       gap: 5px;
     }
 
-    /* Snehi Swajan / Meet The Couple */
+    /* स्नेही स्वजन कार्ड */
     .ivory-royal-card {
       margin-top: 22px;
       background: var(--ivory);
@@ -571,7 +571,7 @@
       margin-top: 4px;
     }
 
-    /* Crimson Velvet Save The Date Section */
+    /* मखमली मंगल फेरे एवं समय गणना */
     .crimson-velvet-band {
       margin-top: 24px;
       border-radius: 28px;
@@ -643,7 +643,7 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
     }
 
-    /* Fairy Lights + Polaroid Photo Memories Deck */
+    /* परियों की रोशनी + स्क्रॉल पर खिसकती तस्वीरें */
     .memories-wrapper {
       margin-top: 28px;
       text-align: center;
@@ -729,7 +729,7 @@
       color: var(--crimson);
     }
 
-    /* Page-Fold / Calendar Flip Event Card (EVENT 01 - 07) */
+    /* पेज-फोल्ड कार्यक्रम कार्ड (01 / 07) */
     .event-flip-wrapper {
       margin-top: 30px;
       perspective: 1400px;
@@ -756,7 +756,7 @@
 
     .event-code-tag {
       font-size: 11px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.14em;
       font-weight: 700;
       color: var(--gold);
       margin-bottom: 10px;
@@ -857,7 +857,7 @@
       cursor: pointer;
     }
 
-    /* Full 7 Function Schedule List */
+    /* संपूर्ण 7 कार्यक्रम सूची */
     .schedule-list-card {
       margin-top: 18px;
       background: var(--ivory);
@@ -915,7 +915,7 @@
       white-space: nowrap;
     }
 
-    /* Interactive Family Filter Tabs & Boxes */
+    /* परिवारजन विभाग */
     .family-filter-row {
       display: flex;
       flex-wrap: wrap;
@@ -979,7 +979,7 @@
       font-weight: 700;
     }
 
-    /* Map & Venue Cards */
+    /* मानचित्र एवं स्थल कार्ड */
     .venue-card {
       margin-top: 16px;
       background: var(--ivory);
@@ -1050,7 +1050,7 @@
       font-family: inherit;
     }
 
-    /* Footer Preshak */
+    /* नीचे प्रेषक संपर्क बॉक्स */
     .footer-preshak {
       margin-top: 22px;
       background: var(--ivory);
@@ -1087,13 +1087,13 @@
   </style>
 </head>
 <body>
-  <!-- User's MP3 Track in assets/aaj-sajeya.mp3 (with automatic fallback to assets/aaj-sajeya & synth) -->
+  <!-- ऑडियो ट्रैक (assets/aaj-sajeya.mp3) -->
   <audio id="wedding-mp3" loop preload="auto">
     <source src="assets/aaj-sajeya.mp3" type="audio/mpeg">
     <source src="assets/aaj-sajeya" type="audio/mpeg">
   </audio>
 
-  <!-- Subtle Royal PS Watermark -->
+  <!-- शाही PS वाटरमार्क -->
   <div class="ps-watermark-layer" aria-hidden="true">
     <div class="ps-grid">
       <div class="ps-cell"><span class="ps-crest">PS</span><span class="ps-tag">SHUBHPAL</span></div>
@@ -1108,10 +1108,10 @@
     </div>
   </div>
 
-  <!-- Floating Petals & Shower Layer -->
+  <!-- गिरती पंखुड़ियाँ एवं पुष्प वर्षा -->
   <div class="petals-wrap" id="petals-wrap"></div>
 
-  <!-- Royal Velvet Book Cover -->
+  <!-- शाही मखमली आवरण -->
   <div id="royal-cover">
     <div class="cover-velvet-box" onclick="openInviteBook()">
       <div>
@@ -1142,7 +1142,7 @@
     </div>
   </div>
 
-  <!-- Main Invite Content -->
+  <!-- मुख्य निमंत्रण सामग्री -->
   <main class="page-shell">
     <div class="top-bar">
       <span>॥ श्री गणेशाय नमः ॥</span>
@@ -1153,16 +1153,16 @@
       </div>
     </div>
 
-    <!-- Interactive Quick Jump Navigation -->
+    <!-- त्वरित नेविगेशन -->
     <nav class="jump-strip" aria-label="त्वरित नेविगेशन">
       <a class="jump-chip" href="#sec-swajan">स्नेही स्वजन</a>
+      <a class="jump-chip" href="#sec-photos">हमारी कहानी</a>
       <a class="jump-chip" href="#sec-events">कार्यक्रम (01/07)</a>
       <a class="jump-chip" href="#sec-family">परिवारजन</a>
-      <a class="jump-chip" href="#sec-photos">तस्वीरें</a>
       <a class="jump-chip" href="#sec-maps">लोकेशन</a>
     </nav>
 
-    <!-- Unrolling Royal Parchment Scroll -->
+    <!-- खुलता हुआ शाही स्वर्ण पत्र -->
     <section class="scroll-assembly">
       <div class="scroll-roller"></div>
       <div class="scroll-parchment">
@@ -1195,7 +1195,7 @@
       <div class="scroll-roller"></div>
     </section>
 
-    <!-- Snehi Swajan / Meet The Couple -->
+    <!-- स्नेही स्वजन -->
     <section class="ivory-royal-card" id="sec-swajan">
       <div class="section-kicker">स्नेही स्वजन • वर-वधू परिचय</div>
       <h2 class="section-heading">मंगल परिणय</h2>
@@ -1206,7 +1206,7 @@
           <div class="swajan-person">चि. पलाश तिवारी</div>
           <div class="swajan-bio">
             सुपुत्र: श्रीमती सुनीता एवं श्री यशवन्त तिवारी<br>
-            निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)
+            निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल (म.प्र.)
           </div>
         </div>
 
@@ -1221,7 +1221,7 @@
       </div>
     </section>
 
-    <!-- Crimson Velvet Save The Date & Live Countdown -->
+    <!-- मखमली मंगल फेरे एवं समय गणना -->
     <section class="crimson-velvet-band">
       <div style="font-size: 11.5px; color: var(--gold-light); font-weight: 700;">शुभ विवाह की पावन बेला</div>
       <h2 style="font-size: 1.85rem; font-weight: 700; margin-top: 2px;">मंगल फेरे</h2>
@@ -1234,7 +1234,7 @@
           शुभ विवाह तिथि
         </div>
         <div class="velvet-date-big">शुक्रवार, 11 दिसम्बर 2026</div>
-        <div style="font-size: 12.5px; opacity: 0.95;">रात्रि 11:00 बजे बेला • होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+        <div style="font-size: 12.5px; opacity: 0.95;">रात्रि 11:00 बजे बेला • होटल इम्पीरियल सेवरे, VIP रोड, भोपाल</div>
 
         <div class="velvet-timer-grid">
           <div class="velvet-timer-box"><span class="velvet-num" id="t-days">--</span><span class="velvet-lbl">दिन</span></div>
@@ -1247,9 +1247,9 @@
       </div>
     </section>
 
-    <!-- Fairy Lights + Polaroid Photo Deck -->
+    <!-- स्क्रॉल पर खिसकती हमारी कहानी की तस्वीरें -->
     <section class="memories-wrapper" id="sec-photos">
-      <div class="section-kicker">स्नेह की यादगार तस्वीरें • स्वाइप या स्पर्श करें</div>
+      <div class="section-kicker">स्क्रॉल करने पर तस्वीरें स्वचालित बदलती हैं</div>
       <h2 class="section-heading">हमारी कहानी</h2>
 
       <div class="fairy-lights-bar" aria-hidden="true">
@@ -1267,10 +1267,10 @@
       </div>
     </section>
 
-    <!-- Page-Fold Booklet Event Cards (01 / 07) -->
+    <!-- स्क्रॉल एवं स्पर्श पर पलटने वाले कार्यक्रम कार्ड (01 / 07) -->
     <section class="event-flip-wrapper" id="sec-events">
       <div style="text-align: center; margin-bottom: 12px;">
-        <div class="section-kicker">मांगलिक उत्सव • पेज पलटें या स्वाइप करें</div>
+        <div class="section-kicker">स्क्रॉल करें या पेज पलटें • 01 से 07</div>
         <h2 class="section-heading" style="margin-bottom: 0;">विवाह के कार्यक्रम</h2>
       </div>
 
@@ -1286,7 +1286,7 @@
           <div class="booklet-event-day" id="ev-day">मंगलवार, 08 दिसम्बर 2026</div>
           <div class="booklet-meta">
             <div id="ev-time">⏰ सायं 4:00 बजे</div>
-            <div id="ev-venue">📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल</div>
+            <div id="ev-venue">📍 निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल</div>
           </div>
 
           <div class="booklet-cta-row">
@@ -1295,7 +1295,7 @@
               📍 दिशा देखें
             </a>
             <button type="button" class="btn-gold-outline" onclick="saveEventCalendarICS(curEvent)">
-              📅 इस कार्यक्रम का रिमाइंडर
+              📅 रिमाइंडर सेव करें
             </button>
           </div>
 
@@ -1312,10 +1312,10 @@
       </div>
     </section>
 
-    <!-- Complete 7 Function Schedule List -->
+    <!-- संपूर्ण 7 कार्यक्रम सूची -->
     <div class="schedule-list-card">
       <div style="text-align: center;">
-        <span class="part-pill">भाग 1 • निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल</span>
+        <span class="part-pill">भाग 1 • निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल</span>
       </div>
 
       <div class="sched-item" onclick="jumpToEvent(0)" style="cursor:pointer;">
@@ -1343,13 +1343,13 @@
       </div>
 
       <div style="text-align: center; margin-top: 14px;">
-        <span class="part-pill">भाग 2 • होटल प्राइड इनसेंट, VIP रोड, भोपाल</span>
+        <span class="part-pill">भाग 2 • होटल इम्पीरियल सेवरे, VIP रोड, भोपाल</span>
       </div>
 
       <div class="sched-item" onclick="jumpToEvent(3)" style="cursor:pointer;">
         <div>
           <div class="sched-name">हल्दी कार्यक्रम</div>
-          <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="sched-place">होटल इम्पीरियल सेवरे, VIP रोड, भोपाल</div>
         </div>
         <div class="sched-when">10 दिसम्बर (गुरुवार)<br>दोपहर 2:00 बजे</div>
       </div>
@@ -1357,7 +1357,7 @@
       <div class="sched-item" onclick="jumpToEvent(4)" style="cursor:pointer;">
         <div>
           <div class="sched-name">संगीत संध्या</div>
-          <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="sched-place">होटल इम्पीरियल सेवरे, VIP रोड, भोपाल</div>
         </div>
         <div class="sched-when">10 दिसम्बर (गुरुवार)<br>रात्रि 8:00 बजे</div>
       </div>
@@ -1365,7 +1365,7 @@
       <div class="sched-item" onclick="jumpToEvent(5)" style="cursor:pointer;">
         <div>
           <div class="sched-name">आशीर्वाद समारोह एवं स्वरुचिभोज</div>
-          <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="sched-place">होटल इम्पीरियल सेवरे, VIP रोड, भोपाल</div>
         </div>
         <div class="sched-when">11 दिसम्बर (शुक्रवार)<br>रात्रि 8:00 बजे</div>
       </div>
@@ -1373,13 +1373,13 @@
       <div class="sched-item" onclick="jumpToEvent(6)" style="cursor:pointer;">
         <div>
           <div class="sched-name">मंगल फेरे</div>
-          <div class="sched-place">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="sched-place">होटल इम्पीरियल सेवरे, VIP रोड, भोपाल</div>
         </div>
         <div class="sched-when">11 दिसम्बर (शुक्रवार)<br>रात्रि 11:00 बजे बेला</div>
       </div>
     </div>
 
-    <!-- Interactive Family Section -->
+    <!-- परिवारजन विभाग -->
     <section class="ivory-royal-card" id="sec-family">
       <div class="section-kicker">स्नेह एवं निमंत्रण • तिवारी परिवार</div>
       <h2 class="section-heading">परिवारजन</h2>
@@ -1440,7 +1440,7 @@
       </div>
     </section>
 
-    <!-- Embedded Bhopal Live Map + Exact Venue Cards -->
+    <!-- मानचित्र एवं सटीक लोकेशन -->
     <div style="text-align: center; margin-top: 28px;" id="sec-maps">
       <div class="section-kicker">गूगल मैप • सटीक लोकेशन</div>
       <h2 class="section-heading" style="margin-bottom: 0;">कार्यक्रम स्थल कैसे पहुँचें</h2>
@@ -1448,15 +1448,15 @@
 
     <div class="venue-card">
       <div id="map-vip" class="leaflet-map-box"></div>
-      <div class="venue-title">होटल प्राइड इनसेंट, VIP रोड</div>
-      <div class="venue-addr">होटल प्राइड इनसेंट, VIP रोड, भोपाल (23.261740, 77.371996)</div>
+      <div class="venue-title">होटल इम्पीरियल सेवरे, VIP रोड</div>
+      <div class="venue-addr">होटल इम्पीरियल सेवरे, VIP रोड, भोपाल (23.261740, 77.371996)</div>
       <div class="two-col-btns">
         <a class="btn-maroon-grad" target="_blank" rel="noopener"
            href="https://www.google.com/maps/dir/?api=1&destination=23.261740,77.371996">
           दिशा देखें
         </a>
         <button type="button" class="btn-gold-outline"
-                onclick="copyAddr('होटल प्राइड इनसेंट, VIP रोड, भोपाल (23.261740, 77.371996)')">
+                onclick="copyAddr('होटल इम्पीरियल सेवरे, VIP रोड, भोपाल (23.261740, 77.371996)')">
           पता कॉपी करें
         </button>
       </div>
@@ -1464,28 +1464,28 @@
 
     <div class="venue-card">
       <div id="map-ghar" class="leaflet-map-box"></div>
-      <div class="venue-title">84, ट्रायटन हिल्स, बी.के. रोड</div>
-      <div class="venue-addr">निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (23.2671376, 77.4597344)</div>
+      <div class="venue-title">निज निवास: 84, दुर्गेश विहार, जे.के. रोड</div>
+      <div class="venue-addr">निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल (23.2671376, 77.4597344)</div>
       <div class="two-col-btns">
         <a class="btn-maroon-grad" target="_blank" rel="noopener"
            href="https://www.google.com/maps/dir/?api=1&destination=23.2671376,77.4597344">
           दिशा देखें
         </a>
         <button type="button" class="btn-gold-outline"
-                onclick="copyAddr('निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (23.2671376, 77.4597344)')">
+                onclick="copyAddr('निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल (23.2671376, 77.4597344)')">
           पता कॉपी करें
         </button>
       </div>
     </div>
 
-    <!-- Footer Preshak -->
+    <!-- प्रेषक संपर्क सूत्र -->
     <div class="footer-preshak">
       <div style="color: var(--gold); font-weight: 700; font-size: 14px; margin-bottom: 4px;">
         प्रेषक से • सम्पर्क सूत्र
       </div>
       <div style="font-weight: 700; color: var(--crimson); font-size: 15px;">श्रीमती संगीता, चंद्रभान तिवारी</div>
       <div style="color: var(--muted); font-size: 12.5px;">
-        निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)
+        निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल (म.प्र.)
       </div>
       <div class="call-grid" style="margin-top: 12px;">
         <a class="call-btn-dark" href="tel:+917354959808">&#128222; 7354959808</a>
@@ -1503,13 +1503,16 @@
     const gharDirUrl = "https://www.google.com/maps/dir/?api=1&destination=23.2671376,77.4597344";
     const vipDirUrl = "https://www.google.com/maps/dir/?api=1&destination=23.261740,77.371996";
 
-    /* 7 Events Booklet Data with Calendar Start/End */
+    const gharAddressText = "निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल";
+    const vipAddressText = "होटल इम्पीरियल सेवरे, VIP रोड, भोपाल";
+
+    /* 7 कार्यक्रम डेटा */
     const eventsList = [
       {
         title: "श्री गणेश एवं माता पूजन",
         day: "मंगलवार, 08 दिसम्बर 2026",
         time: "⏰ सायं 4:00 बजे",
-        venue: "📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
+        venue: `📍 ${gharAddressText}`,
         quote: "शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।",
         icon: "🪔",
         bg: "linear-gradient(145deg, #c76224, #7e2e0c)",
@@ -1521,7 +1524,7 @@
         title: "मण्डपाच्छादन एवं मामेर",
         day: "बुधवार, 09 दिसम्बर 2026",
         time: "⏰ प्रातः 9:30 बजे",
-        venue: "📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
+        venue: `📍 ${gharAddressText}`,
         quote: "मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।",
         icon: "🌿",
         bg: "linear-gradient(145deg, #b55422, #6b260d)",
@@ -1533,7 +1536,7 @@
         title: "रतजगा मेहंदी",
         day: "बुधवार, 09 दिसम्बर 2026",
         time: "⏰ रात्रि 8:00 बजे",
-        venue: "📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
+        venue: `📍 ${gharAddressText}`,
         quote: "ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।",
         icon: "🍃",
         bg: "linear-gradient(145deg, #257345, #114225)",
@@ -1545,7 +1548,7 @@
         title: "हल्दी कार्यक्रम",
         day: "गुरुवार, 10 दिसम्बर 2026",
         time: "⏰ दोपहर 2:00 बजे",
-        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        venue: `📍 ${vipAddressText}`,
         quote: "हल्दी के पावन रंगों और मंगल गीतों के साथ उत्सव की शुरुआत।",
         icon: "🌼",
         bg: "linear-gradient(145deg, #d79416, #9d6203)",
@@ -1557,7 +1560,7 @@
         title: "संगीत संध्या",
         day: "गुरुवार, 10 दिसम्बर 2026",
         time: "⏰ रात्रि 8:00 बजे",
-        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        venue: `📍 ${vipAddressText}`,
         quote: "सुर, ताल और खुशियों से सजी एक यादगार शाम।",
         icon: "🎶",
         bg: "linear-gradient(145deg, #74327f, #43144c)",
@@ -1569,7 +1572,7 @@
         title: "आशीर्वाद समारोह एवं स्वरुचिभोज",
         day: "शुक्रवार, 11 दिसम्बर 2026",
         time: "⏰ रात्रि 8:00 बजे",
-        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        venue: `📍 ${vipAddressText}`,
         quote: "वर-वधू को स्नेहाशीष प्रदान कर प्रीतिभोज में सम्मिलित हों।",
         icon: "✨",
         bg: "linear-gradient(145deg, #931b32, #520917)",
@@ -1581,7 +1584,7 @@
         title: "मंगल फेरे",
         day: "शुक्रवार, 11 दिसम्बर 2026",
         time: "⏰ रात्रि 11:00 बजे बेला",
-        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        venue: `📍 ${vipAddressText}`,
         quote: "अग्नि को साक्षी मानकर सात जन्मों के पावन बंधन की बेला।",
         icon: "🔥",
         bg: "linear-gradient(145deg, #6d0f22, #2b030b)",
@@ -1611,18 +1614,28 @@
       document.getElementById("ev-counter").textContent = `${num} / ${tot}`;
     }
 
-    function flipEventCard(dir) {
+    function setEventIndex(nextIdx, animate = true) {
+      const normalized = ((nextIdx % eventsList.length) + eventsList.length) % eventsList.length;
+      if (normalized === curEvent) return;
+      if (!animate) {
+        curEvent = normalized;
+        updateBookletUI();
+        return;
+      }
       bottomHalf.classList.add("page-turning");
       setTimeout(() => {
-        curEvent = (curEvent + dir + eventsList.length) % eventsList.length;
+        curEvent = normalized;
         updateBookletUI();
         bottomHalf.classList.remove("page-turning");
-      }, 180);
+      }, 170);
+    }
+
+    function flipEventCard(dir) {
+      setEventIndex(curEvent + dir, true);
     }
 
     function jumpToEvent(idx) {
-      curEvent = idx;
-      updateBookletUI();
+      setEventIndex(idx, true);
       document.getElementById("sec-events").scrollIntoView({ behavior: "smooth" });
       showToast(`कार्यक्रम ${String(idx + 1).padStart(2, "0")} खुल गया`);
     }
@@ -1644,7 +1657,7 @@
     attachSwipe(document.getElementById("event-booklet"), () => flipEventCard(1), () => flipEventCard(-1));
     updateBookletUI();
 
-    /* Polaroid Photo Memories Deck */
+    /* हमारी कहानी फ़ोटो डेक */
     const photos = [
       { src: "photo1.jpeg", caption: "हर पल साथ-साथ" },
       { src: "photo2.jpeg", caption: "खुशियाँ, स्नेह और उत्सव" }
@@ -1679,7 +1692,37 @@
     attachSwipe(deckStage, () => stepPhotoDeck(1), () => stepPhotoDeck(-1));
     renderPolaroids();
 
-    /* Interactive Family Highlight Filter */
+    /* स्क्रॉल करने पर अपने आप फ़ोटो और कार्यक्रम स्लाइड हों */
+    let lastScrollY = window.scrollY;
+    let photoScrollAcc = 0;
+    let eventScrollAcc = 0;
+
+    window.addEventListener("scroll", () => {
+      const currentY = window.scrollY;
+      const deltaY = currentY - lastScrollY;
+      lastScrollY = currentY;
+
+      const photoRect = deckStage.getBoundingClientRect();
+      if (photoRect.top < window.innerHeight * 0.85 && photoRect.bottom > window.innerHeight * 0.15) {
+        photoScrollAcc += deltaY;
+        if (Math.abs(photoScrollAcc) > 130) {
+          stepPhotoDeck(photoScrollAcc > 0 ? 1 : -1);
+          photoScrollAcc = 0;
+        }
+      }
+
+      const bookletEl = document.getElementById("event-booklet");
+      const evRect = bookletEl.getBoundingClientRect();
+      if (evRect.top < window.innerHeight * 0.85 && evRect.bottom > window.innerHeight * 0.15) {
+        eventScrollAcc += deltaY;
+        if (Math.abs(eventScrollAcc) > 125) {
+          setEventIndex(curEvent + (eventScrollAcc > 0 ? 1 : -1), true);
+          eventScrollAcc = 0;
+        }
+      }
+    }, { passive: true });
+
+    /* परिवारजन हाइलाइट फ़िल्टर */
     function highlightFamily(group, btn) {
       document.querySelectorAll(".fam-tab-btn").forEach((b) => b.classList.remove("active"));
       if (btn) btn.classList.add("active");
@@ -1695,18 +1738,18 @@
       }
     }
 
-    /* Leaflet Live Maps */
+    /* लाइव मानचित्र */
     if (window.L) {
       const m1 = L.map("map-vip", { scrollWheelZoom: false }).setView(vipCoords, 15);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(m1);
-      L.marker(vipCoords).addTo(m1).bindPopup("होटल प्राइड इनसेंट, VIP रोड").openPopup();
+      L.marker(vipCoords).addTo(m1).bindPopup(vipAddressText).openPopup();
 
       const m2 = L.map("map-ghar", { scrollWheelZoom: false }).setView(gharCoords, 15);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(m2);
-      L.marker(gharCoords).addTo(m2).bindPopup("84, ट्रायटन हिल्स, बी.के. रोड").openPopup();
+      L.marker(gharCoords).addTo(m2).bindPopup(gharAddressText).openPopup();
     }
 
-    /* Interactive Flower Shower */
+    /* पुष्प वर्षा */
     const petalsBox = document.getElementById("petals-wrap");
     function triggerFlowerShower() {
       showToast("🌸 पुष्प वर्षा एवं स्नेहाशीष 🌸");
@@ -1721,35 +1764,90 @@
       }
     }
 
-    /* Audio Engine for assets/aaj-sajeya.mp3 */
+    /* संगीत प्लेयर (assets/aaj-sajeya.mp3 + मधुर वाद्य बैकअप) */
     const mp3Audio = document.getElementById("wedding-mp3");
+    let audioCtx = null;
+    let fallbackInterval = null;
     let isPlaying = false;
+    let usingFallback = false;
+    let phraseStep = 0;
 
-    function startWeddingMusic() {
-      if (!mp3Audio) return;
-      mp3Audio.volume = 0.72;
-      mp3Audio.play().then(() => {
-        isPlaying = true;
-        updateMusicBtn();
-        showToast("🎵 आज सजैया शुरू हुआ");
-      }).catch(() => {
-        isPlaying = false;
-        updateMusicBtn();
-        showToast("संगीत के लिए 🎵 बटन दबाएं");
+    const fallbackNotes = [
+      [293.66, 369.99, 440.00, 587.33],
+      [329.63, 440.00, 554.37, 659.25],
+      [369.99, 440.00, 587.33, 739.99],
+      [329.63, 392.00, 493.88, 587.33]
+    ];
+
+    function playFallbackPhrase(arr) {
+      if (!audioCtx) return;
+      const now = audioCtx.currentTime;
+      arr.forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const t0 = now + i * 0.42;
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, t0);
+        gain.gain.setValueAtTime(0.0001, t0);
+        gain.gain.exponentialRampToValueAtTime(0.022, t0 + 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 1.65);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(t0);
+        osc.stop(t0 + 1.7);
       });
     }
 
-    function stopWeddingMusic() {
-      if (!mp3Audio) return;
-      mp3Audio.pause();
-      isPlaying = false;
+    function startFallbackSynth() {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!audioCtx) audioCtx = new AC();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+      usingFallback = true;
+      playFallbackPhrase(fallbackNotes[phraseStep % fallbackNotes.length]);
+      phraseStep++;
+      if (fallbackInterval) clearInterval(fallbackInterval);
+      fallbackInterval = setInterval(() => {
+        if (!isPlaying || !usingFallback) return;
+        playFallbackPhrase(fallbackNotes[phraseStep % fallbackNotes.length]);
+        phraseStep++;
+      }, 2200);
+    }
+
+    function startWeddingMusic() {
+      if (isPlaying) return;
+      isPlaying = true;
+      usingFallback = false;
       updateMusicBtn();
-      showToast("संगीत बंद कर दिया गया");
+
+      if (mp3Audio) {
+        mp3Audio.volume = 0.72;
+        mp3Audio.play().then(() => {
+          showToast("🎵 आज सजैया शुरू हुआ");
+        }).catch(() => {
+          startFallbackSynth();
+          showToast("🎵 मधुर मंगल धुन शुरू हुई");
+        });
+      } else {
+        startFallbackSynth();
+      }
+    }
+
+    function stopWeddingMusic() {
+      isPlaying = false;
+      usingFallback = false;
+      if (mp3Audio) mp3Audio.pause();
+      if (fallbackInterval) {
+        clearInterval(fallbackInterval);
+        fallbackInterval = null;
+      }
+      updateMusicBtn();
     }
 
     function toggleWeddingMusic() {
-      if (!mp3Audio.paused) {
+      if (isPlaying) {
         stopWeddingMusic();
+        showToast("संगीत बंद कर दिया गया");
       } else {
         startWeddingMusic();
       }
@@ -1762,16 +1860,6 @@
       btn.classList.toggle("music-on", isPlaying);
     }
 
-    mp3Audio.addEventListener("play", () => {
-      isPlaying = true;
-      updateMusicBtn();
-    });
-
-    mp3Audio.addEventListener("pause", () => {
-      isPlaying = false;
-      updateMusicBtn();
-    });
-
     function openInviteBook() {
       document.getElementById("royal-cover").classList.add("opened");
       startWeddingMusic();
@@ -1782,7 +1870,7 @@
       document.getElementById("royal-cover").classList.remove("opened");
     }
 
-    /* Live Countdown */
+    /* समय गणना */
     const phereTime = new Date("2026-12-11T23:00:00+05:30").getTime();
     function updateCountdown() {
       const diff = Math.max(0, phereTime - Date.now());
@@ -1827,7 +1915,7 @@
       setTimeout(() => el.classList.remove("show"), 2200);
     }
 
-    /* Ambient Falling Petals */
+  
     for (let i = 0; i < 14; i++) {
       const p = document.createElement("div");
       p.className = "petal";
