@@ -1674,5 +1674,37 @@
       petalsLayer.appendChild(petal);
     }
   </script>
+  <!-- Tera baaki purana code yahan tak hoga -->
+
+  <!-- Yahan se music code shuru -->
+  <audio id="weddingAudio" loop preload="metadata">
+    <source src="./assets/aaj-sajeya.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="musicBtn" type="button" aria-label="Toggle Background Music">
+    🎵 Play Music
+  </button>
+
+  <script>
+    const weddingAudio = document.getElementById("weddingAudio");
+    const musicBtn = document.getElementById("musicBtn");
+
+    weddingAudio.volume = 0.35;
+
+    musicBtn.addEventListener("click", async () => {
+      try {
+        if (weddingAudio.paused) {
+          await weddingAudio.play();
+          musicBtn.textContent = "🔊 Pause Music";
+        } else {
+          weddingAudio.pause();
+          musicBtn.textContent = "🎵 Play Music";
+        }
+      } catch (err) {
+        console.error("Audio playback failed:", err);
+      }
+    });
+  </script>
+  <!-- Yahan tak music code -->
 </body>
 </html>
