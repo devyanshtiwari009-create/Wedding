@@ -6,24 +6,22 @@
   <title>स्नेह-बंधन • पलाश संग शुभी</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root {
-      --bg-cream: #fbf5ec;
-      --bg-rose: #f1dad6;
-      --maroon: #5e0b1c;
-      --maroon-deep: #38040f;
-      --maroon-velvet: #240209;
-      --gold: #c48d34;
-      --gold-foil: linear-gradient(125deg, #a9711d 0%, #fae5ab 44%, #c68e32 70%, #fff3cc 100%);
-      --gold-light: #f8e3b4;
-      --ivory: #fffdf9;
-      --parchment: #fdf5e7;
-      --ink: #260f14;
-      --muted: #6c4c52;
-      --shadow-royal: 0 26px 60px rgba(36, 2, 9, 0.2);
-      --shadow-gold: 0 10px 30px rgba(196, 141, 52, 0.25);
+      --cream: #fbf5ec;
+      --cream-warm: #f7ebdc;
+      --crimson: #6d0f22;
+      --crimson-dark: #3f0612;
+      --crimson-velvet: #2b030b;
+      --gold: #c68e36;
+      --gold-foil: linear-gradient(125deg, #a66f1c 0%, #f9e4a8 45%, #c58d33 70%, #fff2c8 100%);
+      --gold-light: #f7e1b0;
+      --ivory: #fffdf8;
+      --ink: #291116;
+      --muted: #6e4e54;
+      --shadow-royal: 0 24px 55px rgba(43, 3, 11, 0.18);
     }
 
     * {
@@ -41,23 +39,22 @@
       font-family: 'Noto Serif Devanagari', serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 12% 6%, rgba(214, 118, 134, 0.26), transparent 42%),
-        radial-gradient(circle at 90% 14%, rgba(226, 173, 72, 0.28), transparent 46%),
-        radial-gradient(circle at 50% 60%, rgba(94, 11, 28, 0.07), transparent 62%),
-        linear-gradient(180deg, #f8ede4 0%, var(--bg-rose) 48%, var(--bg-cream) 100%);
+        radial-gradient(circle at 12% 8%, rgba(214, 118, 134, 0.2), transparent 42%),
+        radial-gradient(circle at 88% 15%, rgba(226, 173, 72, 0.24), transparent 46%),
+        linear-gradient(180deg, #faf1e6 0%, #f5e5dc 50%, #fbf5ec 100%);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Royal PS Watermark Layer */
+    /* Subtle Royal PS Watermark */
     .ps-watermark-layer {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       overflow: hidden;
-      opacity: 0.06;
+      opacity: 0.05;
     }
 
     .ps-grid {
@@ -72,7 +69,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: var(--maroon);
+      color: var(--crimson);
       user-select: none;
     }
 
@@ -80,7 +77,7 @@
       font-family: 'Cinzel Decorative', serif;
       font-size: 2rem;
       font-weight: 700;
-      border: 1.2px solid rgba(94, 11, 28, 0.55);
+      border: 1.2px solid rgba(109, 15, 34, 0.55);
       border-radius: 34px 34px 10px 10px;
       padding: 8px 14px;
       line-height: 1.05;
@@ -94,22 +91,22 @@
       font-weight: 700;
     }
 
-    /* Floating Rose & Gold Petals + Sparkles */
+    /* Floating Petals */
     .petals-wrap {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 40;
+      z-index: 45;
       overflow: hidden;
     }
 
     .petal {
       position: absolute;
       top: -10%;
-      width: 12px;
-      height: 16px;
+      width: 11px;
+      height: 15px;
       border-radius: 80% 15% 80% 25%;
-      background: linear-gradient(135deg, rgba(214, 86, 110, 0.68), rgba(232, 180, 74, 0.44));
+      background: linear-gradient(135deg, rgba(208, 66, 92, 0.72), rgba(232, 180, 74, 0.4));
       animation: fallPetal linear infinite;
     }
 
@@ -119,15 +116,15 @@
       width: 14px;
       height: 18px;
       border-radius: 80% 15% 80% 25%;
-      background: linear-gradient(135deg, #d94364, #f7d58b);
-      box-shadow: 0 2px 8px rgba(217, 67, 100, 0.35);
+      background: linear-gradient(135deg, #d13858, #f7d58b);
+      box-shadow: 0 2px 8px rgba(209, 56, 88, 0.35);
       animation: burstFall 3.4s cubic-bezier(0.25, 0.8, 0.4, 1) forwards;
     }
 
     @keyframes fallPetal {
       0% { transform: translateY(-8vh) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.82; }
-      85% { opacity: 0.65; }
+      15% { opacity: 0.85; }
+      85% { opacity: 0.68; }
       100% { transform: translateY(112vh) rotate(340deg); opacity: 0; }
     }
 
@@ -136,19 +133,19 @@
       100% { transform: translateY(108vh) translateX(var(--drift, 40px)) rotate(540deg) scale(1.05); opacity: 0; }
     }
 
-    /* Royal Double-Door Velvet Cover */
+    /* Royal Velvet Book Cover */
     #royal-cover {
       position: fixed;
       inset: 0;
-      z-index: 80;
+      z-index: 90;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 22px;
       background:
-        radial-gradient(circle at 50% 20%, rgba(242, 193, 96, 0.32), transparent 52%),
-        radial-gradient(circle at 50% 85%, rgba(94, 11, 28, 0.28), transparent 62%),
+        radial-gradient(circle at 50% 20%, rgba(242, 193, 96, 0.34), transparent 52%),
+        radial-gradient(circle at 50% 85%, rgba(109, 15, 34, 0.3), transparent 62%),
         linear-gradient(180deg, #f8ede3 0%, #ead0cd 100%);
       transition: opacity 0.75s ease, visibility 0.75s ease;
     }
@@ -165,12 +162,12 @@
       aspect-ratio: 3 / 4.4;
       border-radius: 16px 28px 28px 16px;
       background:
-        radial-gradient(circle at 50% 45%, rgba(250, 229, 171, 0.2), transparent 62%),
+        radial-gradient(circle at 50% 45%, rgba(250, 229, 171, 0.22), transparent 62%),
         linear-gradient(155deg, #7e1125 0%, #4b0715 54%, #240209 100%);
       border: 2px solid rgba(248, 227, 180, 0.92);
       box-shadow:
         -16px 26px 50px rgba(36, 2, 9, 0.48),
-        0 0 0 6px rgba(196, 141, 52, 0.2),
+        0 0 0 6px rgba(196, 141, 52, 0.22),
         inset 0 0 0 10px rgba(248, 227, 180, 0.16);
       padding: 26px 20px;
       display: flex;
@@ -208,17 +205,6 @@
       pointer-events: none;
     }
 
-    .corner-gem {
-      position: absolute;
-      font-size: 13px;
-      color: rgba(248, 227, 180, 0.8);
-      z-index: 2;
-    }
-    .cg-tl { top: 18px; left: 24px; }
-    .cg-tr { top: 18px; right: 20px; }
-    .cg-bl { bottom: 18px; left: 24px; }
-    .cg-br { bottom: 18px; right: 20px; }
-
     .mandala-wrap {
       position: relative;
       width: 150px;
@@ -233,21 +219,8 @@
       height: 144px;
       border-radius: 50%;
       border: 1.4px dashed rgba(248, 227, 180, 0.72);
-      box-shadow: 0 0 28px rgba(248, 227, 180, 0.22);
       animation: spinMandala 22s linear infinite;
     }
-
-    .mandala-ring::before,
-    .mandala-ring::after {
-      content: "✦";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--gold-light);
-      font-size: 12px;
-    }
-    .mandala-ring::before { top: -10px; }
-    .mandala-ring::after { bottom: -10px; }
 
     @keyframes spinMandala {
       from { transform: rotate(0deg); }
@@ -276,12 +249,6 @@
       background-clip: text;
       color: transparent;
       letter-spacing: 0.05em;
-      animation: foilShine 4s linear infinite;
-    }
-
-    @keyframes foilShine {
-      0% { background-position: 0% center; }
-      100% { background-position: 200% center; }
     }
 
     .open-book-hint {
@@ -290,7 +257,7 @@
       flex-direction: column;
       align-items: center;
       gap: 8px;
-      color: var(--maroon);
+      color: var(--crimson);
       font-size: 12.5px;
       font-weight: 700;
       cursor: pointer;
@@ -300,7 +267,7 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 1.8px solid rgba(94, 11, 28, 0.65);
+      border: 1.8px solid rgba(109, 15, 34, 0.65);
       display: grid;
       place-items: center;
       font-size: 13px;
@@ -319,52 +286,45 @@
       z-index: 2;
       max-width: 458px;
       margin: 0 auto;
-      padding: 14px 14px 86px;
+      padding: 12px 14px 86px;
     }
 
-    /* Sticky Glass Royal Header */
+    /* Sticky Top Pill Bar */
     .top-bar {
       position: sticky;
       top: 8px;
-      z-index: 30;
+      z-index: 40;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 6px;
       padding: 7px 10px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       border-radius: 999px;
-      background: rgba(255, 253, 249, 0.88);
+      background: rgba(255, 253, 248, 0.92);
       backdrop-filter: blur(10px);
-      border: 1.2px solid rgba(196, 141, 52, 0.55);
-      box-shadow: 0 8px 22px rgba(36, 2, 9, 0.1);
+      border: 1.3px solid rgba(198, 142, 54, 0.6);
+      box-shadow: 0 8px 22px rgba(43, 3, 11, 0.12);
       font-size: 11.5px;
       font-weight: 700;
-      color: var(--maroon);
+      color: var(--crimson);
     }
 
     .top-btns {
       display: flex;
       gap: 5px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
     .gold-pill-btn {
-      background: var(--parchment);
-      border: 1.2px solid rgba(196, 141, 52, 0.65);
-      color: var(--maroon);
+      background: var(--cream-warm);
+      border: 1.2px solid rgba(198, 142, 54, 0.65);
+      color: var(--crimson);
       padding: 4px 10px;
       border-radius: 999px;
       font-size: 10.8px;
       font-weight: 700;
       font-family: inherit;
       cursor: pointer;
-      transition: transform 0.18s ease, background 0.2s ease;
-    }
-
-    .gold-pill-btn:active {
-      transform: scale(0.94);
     }
 
     .gold-pill-btn.music-on {
@@ -373,121 +333,135 @@
       border-color: rgba(248, 227, 180, 0.85);
     }
 
-    /* Scroll Reveal Motion */
-    .reveal-block {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .reveal-block.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Royal Arch Hero Card */
-    .royal-arch-hero {
-      background:
-        radial-gradient(circle at 50% 8%, rgba(248, 227, 180, 0.34), transparent 56%),
-        var(--ivory);
-      border-radius: 224px 224px 28px 28px;
-      border: 2px solid rgba(196, 141, 52, 0.72);
-      box-shadow: var(--shadow-royal), var(--shadow-gold);
-      padding: 44px 20px 28px;
-      text-align: center;
+    /* Video-Style Royal Unrolling Parchment Scroll */
+    .scroll-assembly {
       position: relative;
+      margin-bottom: 24px;
     }
 
-    .royal-arch-hero::before {
+    .scroll-roller {
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #b87b24 0%, #fae4a6 38%, #c78d32 70%, #8b5610 100%);
+      box-shadow: 0 8px 18px rgba(107, 63, 12, 0.35);
+      position: relative;
+      z-index: 3;
+      border: 1px solid rgba(255, 243, 204, 0.85);
+    }
+
+    .scroll-roller::before,
+    .scroll-roller::after {
       content: "";
       position: absolute;
-      inset: 9px;
-      border-radius: 215px 215px 21px 21px;
-      border: 1px solid rgba(196, 141, 52, 0.48);
+      top: -3px;
+      width: 14px;
+      height: 28px;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #8e5912, #f5d88e, #7a480a);
+      border: 1px solid rgba(255, 240, 196, 0.8);
+    }
+    .scroll-roller::before { left: -4px; }
+    .scroll-roller::after { right: -4px; }
+
+    .scroll-parchment {
+      margin: -6px 10px;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(248, 227, 180, 0.38), transparent 55%),
+        linear-gradient(180deg, #fffdf8 0%, #fcf4e4 50%, #fffdf8 100%);
+      border-left: 2px solid rgba(198, 142, 54, 0.72);
+      border-right: 2px solid rgba(198, 142, 54, 0.72);
+      box-shadow: var(--shadow-royal);
+      padding: 28px 18px 26px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: unrollParchment 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes unrollParchment {
+      from { max-height: 120px; opacity: 0.4; }
+      to { max-height: 1200px; opacity: 1; }
+    }
+
+    .scroll-parchment::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(198, 142, 54, 0.45);
       pointer-events: none;
     }
 
-    .ganesh-seal {
-      width: 60px;
-      height: 60px;
+    .ganesh-emblem {
+      width: 58px;
+      height: 58px;
       margin: 0 auto 8px;
       border-radius: 50%;
       background: linear-gradient(145deg, #7e1125, #470613);
-      border: 1.6px solid var(--gold-light);
+      border: 1.5px solid var(--gold-light);
       color: var(--gold-light);
       display: grid;
       place-items: center;
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       font-weight: 700;
-      box-shadow: 0 10px 22px rgba(71, 6, 19, 0.28);
+      box-shadow: 0 8px 18px rgba(71, 6, 19, 0.25);
     }
 
-    .shloka-box {
+    .shloka-line {
       font-size: 11.5px;
       color: var(--muted);
       line-height: 1.55;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .gold-kicker {
-      font-size: 13px;
+    .scroll-host-names {
+      font-size: 14px;
       font-weight: 700;
-      background: linear-gradient(90deg, #9b6718, #d9a13b, #9b6718);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--crimson);
     }
 
-    .couple-hero-name {
-      font-size: clamp(2.05rem, 8.2vw, 2.75rem);
-      color: var(--maroon);
+    .scroll-invite-sub {
+      font-size: 12.2px;
+      color: var(--muted);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    .scroll-couple-title {
+      font-size: clamp(2rem, 8.2vw, 2.7rem);
+      color: var(--crimson);
       font-weight: 700;
       line-height: 1.18;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
-    .sang-divider {
+    .scroll-sang {
       display: block;
       font-size: 1.15rem;
       color: var(--gold);
       margin: 2px 0;
     }
 
-    .wedding-date-badge {
-      margin: 12px auto 0;
+    .hashtag-pill {
       display: inline-block;
-      padding: 7px 18px;
+      margin-top: 10px;
+      padding: 5px 15px;
       border-radius: 999px;
-      background: linear-gradient(135deg, #7e1125, #490714);
-      color: #fff4d8;
-      border: 1px solid rgba(248, 227, 180, 0.78);
-      font-size: 12.5px;
-      font-weight: 700;
-      box-shadow: 0 8px 20px rgba(73, 7, 20, 0.24);
-    }
-
-    /* Front Page Preshak Se */
-    .hero-preshak {
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px dashed rgba(196, 141, 52, 0.58);
-    }
-
-    .hero-preshak-title {
+      background: rgba(109, 15, 34, 0.07);
+      border: 1px solid rgba(198, 142, 54, 0.55);
+      color: var(--crimson);
       font-size: 12px;
       font-weight: 700;
-      color: var(--gold);
     }
 
-    .hero-preshak-names {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--maroon);
-      margin-top: 3px;
+    .floral-divider {
+      margin-top: 12px;
+      font-size: 15px;
+      color: var(--gold);
+      letter-spacing: 0.22em;
     }
 
     .call-grid {
-      margin-top: 10px;
+      margin-top: 12px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
@@ -497,7 +471,7 @@
       text-decoration: none;
       background: linear-gradient(135deg, #7e1125, #470613);
       color: #fff6de;
-      border: 1px solid rgba(248, 227, 180, 0.6);
+      border: 1px solid rgba(248, 227, 180, 0.65);
       border-radius: 999px;
       padding: 9px 10px;
       font-size: 12px;
@@ -506,14 +480,13 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
-      box-shadow: 0 6px 14px rgba(71, 6, 19, 0.18);
     }
 
     .call-btn-gold {
       text-decoration: none;
-      background: var(--parchment);
-      color: var(--maroon);
-      border: 1.3px solid rgba(196, 141, 52, 0.75);
+      background: var(--cream-warm);
+      color: var(--crimson);
+      border: 1.3px solid rgba(198, 142, 54, 0.75);
       border-radius: 999px;
       padding: 9px 10px;
       font-size: 12px;
@@ -524,326 +497,365 @@
       gap: 5px;
     }
 
-    /* Royal Section Card */
-    .royal-panel {
+    /* Snehi Swajan / Meet The Couple */
+    .ivory-royal-card {
       margin-top: 22px;
-      background: linear-gradient(180deg, rgba(255, 253, 249, 0.98), rgba(253, 244, 231, 0.96));
+      background: var(--ivory);
       border-radius: 26px;
-      border: 1.8px solid rgba(196, 141, 52, 0.62);
+      border: 1.8px solid rgba(198, 142, 54, 0.62);
       box-shadow: var(--shadow-royal);
       padding: 22px 16px;
       text-align: center;
-      position: relative;
     }
 
-    .panel-title {
-      font-size: 1.52rem;
-      color: var(--maroon);
+    .section-kicker {
+      font-size: 11.5px;
       font-weight: 700;
-      margin-bottom: 6px;
+      color: var(--gold);
     }
 
-    .panel-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 14px;
+    .section-heading {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--crimson);
+      margin-top: 2px;
+      margin-bottom: 10px;
     }
 
-    /* Snehi Swajan Boxes */
-    .swajan-stack {
+    .swajan-grid {
       display: grid;
       gap: 12px;
+      margin-top: 10px;
     }
 
-    .swajan-box {
-      background: var(--ivory);
-      border: 1.3px solid rgba(196, 141, 52, 0.48);
+    .swajan-tile {
+      background: var(--cream);
+      border: 1.2px solid rgba(198, 142, 54, 0.48);
       border-radius: 18px;
       padding: 14px 12px;
-      box-shadow: inset 0 0 0 4px rgba(248, 227, 180, 0.16);
     }
 
-    .swajan-tag {
+    .swajan-role {
       font-size: 11px;
       font-weight: 700;
       color: var(--gold);
     }
 
-    .swajan-name {
+    .swajan-person {
       font-size: 1.48rem;
       font-weight: 700;
-      color: var(--maroon);
+      color: var(--crimson);
       margin-top: 2px;
     }
 
-    .swajan-detail {
+    .swajan-bio {
       font-size: 12.8px;
       color: var(--ink);
       line-height: 1.6;
       margin-top: 4px;
     }
 
-    /* Golden Scroll Countdown */
-    .gold-rod {
-      height: 14px;
-      border-radius: 999px;
-      background: var(--gold-foil);
-      box-shadow: 0 5px 14px rgba(169, 113, 29, 0.35);
+    /* Video-Style Deep Crimson Velvet Save The Date Section */
+    .crimson-velvet-band {
+      margin-top: 24px;
+      border-radius: 28px;
+      padding: 26px 16px;
+      text-align: center;
+      color: #fff6e2;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(248, 227, 180, 0.14), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(248, 227, 180, 0.12), transparent 45%),
+        linear-gradient(160deg, #740e21 0%, #480613 55%, #2b030b 100%);
+      border: 2px solid rgba(248, 227, 180, 0.8);
+      box-shadow: var(--shadow-royal);
+      position: relative;
     }
 
-    .tassel-btn {
-      margin: 12px auto 4px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      color: var(--maroon);
-      font-size: 12px;
-      font-weight: 700;
-      font-family: inherit;
-    }
-
-    .tassel-thread {
-      width: 2px;
-      height: 20px;
-      background: linear-gradient(180deg, var(--gold), var(--maroon));
-    }
-
-    .tassel-pendant {
-      width: 18px;
-      height: 30px;
-      border-radius: 5px 5px 14px 14px;
-      background: linear-gradient(180deg, #e7bc62, var(--maroon));
-      transition: transform 0.35s ease;
-    }
-
-    .timer-drawer {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: max-height 0.7s ease, opacity 0.55s ease, margin-top 0.45s ease;
-    }
-
-    .timer-drawer.open {
-      max-height: 340px;
-      opacity: 1;
+    .velvet-inner-frame {
       margin-top: 14px;
+      border-radius: 20px;
+      border: 1.2px dashed rgba(248, 227, 180, 0.55);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 18px 12px;
     }
 
-    .timer-4 {
+    .velvet-date-big {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      margin: 6px 0 4px;
+    }
+
+    .velvet-timer-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-bottom: 14px;
+      margin: 14px 0;
     }
 
-    .timer-cell {
-      background: var(--ivory);
-      border: 1.3px solid rgba(196, 141, 52, 0.55);
+    .velvet-timer-box {
       border-radius: 14px;
-      padding: 10px 4px;
+      border: 1px solid rgba(248, 227, 180, 0.45);
+      background: rgba(34, 2, 9, 0.45);
+      padding: 9px 4px;
     }
 
-    .timer-val {
+    .velvet-num {
       font-size: 1.35rem;
       font-weight: 700;
-      color: var(--maroon);
+      color: #fff;
       display: block;
     }
 
-    .timer-unit {
+    .velvet-lbl {
       font-size: 10.5px;
-      color: var(--muted);
-      font-weight: 700;
+      color: var(--gold-light);
+      font-weight: 600;
     }
 
-    .primary-gold-btn {
+    .gold-foil-btn {
       width: 100%;
-      padding: 12px 16px;
+      padding: 11px 16px;
       border-radius: 999px;
-      border: 1.2px solid rgba(248, 227, 180, 0.8);
-      background: linear-gradient(135deg, #7e1125, #470613);
-      color: #fff6de;
-      font-size: 12px;
+      border: none;
+      background: var(--gold-foil);
+      color: var(--crimson-velvet);
+      font-size: 12.5px;
       font-weight: 700;
       font-family: inherit;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(71, 6, 19, 0.22);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
     }
 
-    /* Section Headers */
-    .sec-head {
+    /* Video-Style Fairy Lights + Polaroid Photo Memories Deck */
+    .memories-wrapper {
+      margin-top: 28px;
       text-align: center;
-      margin: 32px 0 14px;
+      position: relative;
     }
 
-    .sec-sub {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .sec-main {
-      font-size: 1.88rem;
-      font-weight: 700;
-      color: var(--maroon);
-      margin-top: 2px;
-    }
-
-    /* Interactive 01 / 07 Touch-Swipe & Flip Event Stage */
-    .event-stage-box {
-      border-radius: 26px;
-      padding: 24px 18px;
-      color: #fff;
-      text-align: center;
-      box-shadow: var(--shadow-royal);
-      border: 2px solid rgba(248, 227, 180, 0.78);
-      min-height: 345px;
+    .fairy-lights-bar {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-around;
+      align-items: center;
+      padding: 6px 8px 12px;
+      border-top: 1.5px solid rgba(139, 90, 43, 0.45);
+      border-radius: 50% 50% 0 0 / 16px 16px 0 0;
+      margin: 8px 4px 4px;
+    }
+
+    .bulb {
+      width: 11px;
+      height: 15px;
+      border-radius: 50% 50% 45% 45%;
+      background: radial-gradient(circle, #fffbe6 15%, #ffd257 65%, #e69c19 100%);
+      box-shadow: 0 0 14px 4px rgba(255, 210, 87, 0.72);
+      animation: twinkleBulb 2.2s ease-in-out infinite alternate;
+    }
+
+    .bulb:nth-child(even) {
+      animation-delay: 1.1s;
+    }
+
+    @keyframes twinkleBulb {
+      0% { opacity: 0.65; transform: scale(0.94); }
+      100% { opacity: 1; transform: scale(1.08); }
+    }
+
+    .polaroid-deck-stage {
+      position: relative;
+      height: 405px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: pan-y;
+    }
+
+    .polaroid-card {
+      position: absolute;
+      width: 84%;
+      max-width: 334px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 12px 12px 18px;
+      box-shadow: 0 18px 40px rgba(43, 3, 11, 0.2);
+      border: 1px solid rgba(198, 142, 54, 0.35);
+      cursor: pointer;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+    }
+
+    .polaroid-card img {
+      width: 100%;
+      height: 312px;
+      object-fit: cover;
+      object-position: center 58%;
+      transform: scale(1.08);
+      border-radius: 10px;
+      display: block;
+      background: #ead8d2;
+    }
+
+    .polaroid-caption {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--crimson);
+    }
+
+    .deck-nav-bar {
+      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--crimson);
+    }
+
+    /* Video-Style Page-Fold / Calendar Flip Event Card (EVENT 01 - 07) */
+    .event-flip-wrapper {
+      margin-top: 30px;
+      perspective: 1400px;
+    }
+
+    .event-booklet-card {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(248, 227, 180, 0.3), transparent 55%),
+        var(--ivory);
+      border-radius: 24px;
+      border: 2px solid rgba(198, 142, 54, 0.72);
+      box-shadow: var(--shadow-royal);
+      overflow: hidden;
       touch-action: pan-y;
       user-select: none;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
     }
 
-    .event-stage-box.flip-left {
-      transform: perspective(1000px) rotateY(-14deg) scale(0.96);
-      opacity: 0.55;
+    .booklet-top-half {
+      padding: 20px 16px 16px;
+      text-align: center;
+      border-bottom: 1.5px dashed rgba(198, 142, 54, 0.55);
+      background: linear-gradient(180deg, #fffdf9 0%, #fcf4e6 100%);
     }
 
-    .event-stage-box.flip-right {
-      transform: perspective(1000px) rotateY(14deg) scale(0.96);
-      opacity: 0.55;
-    }
-
-    .event-counter-pill {
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.48);
-      border-radius: 999px;
-      padding: 4px 14px;
+    .event-code-tag {
       font-size: 11px;
+      letter-spacing: 0.22em;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 10px;
     }
 
-    .event-card-title {
-      font-size: 1.54rem;
+    .event-art-medallion {
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 10px;
+      border-radius: 26px;
+      border: 1.6px solid rgba(198, 142, 54, 0.75);
+      display: grid;
+      place-items: center;
+      font-size: 2.6rem;
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(63, 6, 18, 0.2);
+    }
+
+    .event-quote-hi {
+      font-size: 12.2px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .booklet-bottom-half {
+      padding: 18px 16px 20px;
+      text-align: center;
+      background: var(--ivory);
+      transform-origin: top center;
+      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    }
+
+    .booklet-bottom-half.page-turning {
+      transform: rotateX(68deg);
+      opacity: 0.35;
+    }
+
+    .booklet-event-name {
+      font-size: 1.65rem;
       font-weight: 700;
-      margin-top: 8px;
+      color: var(--crimson);
       line-height: 1.25;
     }
 
-    .event-card-note {
-      font-size: 12.2px;
-      line-height: 1.52;
-      opacity: 0.96;
-      margin-top: 6px;
-    }
-
-    .event-icon-circle {
-      width: 62px;
-      height: 62px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.22);
-      border: 1.3px solid rgba(255, 255, 255, 0.55);
-      display: grid;
-      place-items: center;
-      font-size: 1.55rem;
-      margin: 10px auto;
-    }
-
-    .event-venue-line {
+    .booklet-event-day {
       font-size: 12px;
-      line-height: 1.45;
-      opacity: 0.96;
-    }
-
-    .event-time-badge {
-      margin-top: 8px;
-      display: inline-block;
-      background: #fffdf8;
-      color: var(--ink);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 11.5px;
       font-weight: 700;
+      color: var(--gold);
+      margin-top: 4px;
     }
 
-    .event-map-link {
-      margin-top: 8px;
-      display: inline-block;
-      color: #fff6dc;
-      font-size: 11.5px;
-      text-decoration: underline;
+    .booklet-meta {
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: var(--ink);
+      line-height: 1.6;
     }
 
-    .event-nav-row {
-      margin-top: 12px;
+    .booklet-cta-row {
+      margin-top: 14px;
       display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .booklet-footer-nav {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(198, 142, 54, 0.35);
+      display: flex;
+      justify-content: space-between;
       align-items: center;
       gap: 8px;
     }
 
-    .nav-step-btn {
-      background: var(--ivory);
-      color: var(--maroon);
-      border: 1.3px solid rgba(196, 141, 52, 0.7);
+    .circle-arrow-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.3px solid rgba(198, 142, 54, 0.75);
+      background: var(--cream-warm);
+      color: var(--crimson);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .nav-pill-small {
+      background: var(--cream-warm);
+      border: 1.2px solid rgba(198, 142, 54, 0.7);
+      color: var(--crimson);
       border-radius: 999px;
-      padding: 9px 12px;
-      font-size: 12px;
+      padding: 6px 14px;
+      font-size: 11.5px;
       font-weight: 700;
       font-family: inherit;
       cursor: pointer;
     }
 
-    .nav-step-btn:active {
-      transform: scale(0.95);
-    }
-
-    .step-dots {
-      display: flex;
-      gap: 5px;
-      justify-content: center;
-    }
-
-    .step-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: rgba(94, 11, 28, 0.24);
-      border: none;
-      cursor: pointer;
-      transition: width 0.25s ease, background 0.25s ease;
-    }
-
-    .step-dot.active {
-      width: 18px;
-      border-radius: 999px;
-      background: var(--maroon);
-    }
-
-    /* Full 7 Function Schedule */
+    /* Full 7 Function Schedule List */
     .schedule-list-card {
-      margin-top: 16px;
+      margin-top: 18px;
       background: var(--ivory);
       border-radius: 24px;
-      border: 1.8px solid rgba(196, 141, 52, 0.58);
+      border: 1.8px solid rgba(198, 142, 54, 0.58);
       box-shadow: var(--shadow-royal);
       padding: 18px 16px;
     }
 
     .part-pill {
       display: inline-block;
-      background: rgba(94, 11, 28, 0.08);
-      color: var(--maroon);
-      border: 1px solid rgba(196, 141, 52, 0.48);
+      background: rgba(109, 15, 34, 0.08);
+      color: var(--crimson);
+      border: 1px solid rgba(198, 142, 54, 0.48);
       border-radius: 999px;
       padding: 4px 12px;
       font-size: 11.5px;
@@ -853,7 +865,7 @@
 
     .sched-item {
       padding: 10px 4px;
-      border-bottom: 1px dashed rgba(196, 141, 52, 0.45);
+      border-bottom: 1px dashed rgba(198, 142, 54, 0.45);
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -869,7 +881,7 @@
     .sched-name {
       font-size: 13.5px;
       font-weight: 700;
-      color: var(--maroon);
+      color: var(--crimson);
     }
 
     .sched-place {
@@ -889,8 +901,8 @@
 
     /* Family Groups */
     .parivaar-box {
-      background: var(--ivory);
-      border: 1.3px solid rgba(196, 141, 52, 0.48);
+      background: var(--cream);
+      border: 1.3px solid rgba(198, 142, 54, 0.48);
       border-radius: 18px;
       padding: 14px 12px;
       margin-bottom: 12px;
@@ -903,7 +915,7 @@
     .parivaar-head {
       font-size: 14.5px;
       font-weight: 700;
-      color: var(--maroon);
+      color: var(--crimson);
       margin-bottom: 6px;
     }
 
@@ -919,90 +931,30 @@
       font-weight: 700;
     }
 
-    /* Stacked Photo Memories Deck (Touch Swipe Enabled) */
-    .deck-stage {
-      position: relative;
-      height: 396px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      touch-action: pan-y;
-    }
-
-    .deck-card {
-      position: absolute;
-      width: 84%;
-      max-width: 338px;
-      background: var(--ivory);
-      border-radius: 152px 152px 22px 22px;
-      border: 2px solid rgba(196, 141, 52, 0.78);
-      padding: 10px 10px 14px;
-      box-shadow: var(--shadow-royal);
-      text-align: center;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
-    }
-
-    .deck-card img {
-      width: 100%;
-      height: 304px;
-      object-fit: cover;
-      object-position: center 58%;
-      transform: scale(1.12);
-      transform-origin: center 55%;
-      border-radius: 142px 142px 14px 14px;
-      display: block;
-      background: #ead8d2;
-    }
-
-    .deck-caption-chip {
-      margin-top: 10px;
-      display: inline-block;
-      background: var(--parchment);
-      border: 1px solid rgba(196, 141, 52, 0.55);
-      color: var(--maroon);
-      padding: 5px 15px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .deck-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--maroon);
-    }
-
     /* Map & Venue Cards */
     .venue-card {
+      margin-top: 16px;
       background: var(--ivory);
       border-radius: 24px;
-      border: 1.8px solid rgba(196, 141, 52, 0.6);
+      border: 1.8px solid rgba(198, 142, 54, 0.6);
       box-shadow: var(--shadow-royal);
       padding: 18px 16px 20px;
-      margin-bottom: 14px;
       text-align: center;
     }
 
     .leaflet-map-box {
       width: 100%;
-      height: 175px;
+      height: 185px;
       border-radius: 16px;
       overflow: hidden;
-      border: 1.2px solid rgba(196, 141, 52, 0.58);
+      border: 1.3px solid rgba(198, 142, 54, 0.6);
       margin-bottom: 12px;
     }
 
     .venue-title {
       font-size: 1.42rem;
       font-weight: 700;
-      color: var(--maroon);
+      color: var(--crimson);
     }
 
     .venue-addr {
@@ -1024,7 +976,7 @@
       color: #fff6de;
       border: 1px solid rgba(248, 227, 180, 0.68);
       border-radius: 999px;
-      padding: 11px 12px;
+      padding: 10px 12px;
       font-size: 11.5px;
       font-weight: 700;
       display: inline-flex;
@@ -1036,11 +988,11 @@
 
     .btn-gold-outline {
       text-decoration: none;
-      background: var(--parchment);
-      color: var(--maroon);
-      border: 1.3px solid rgba(196, 141, 52, 0.72);
+      background: var(--cream-warm);
+      color: var(--crimson);
+      border: 1.3px solid rgba(198, 142, 54, 0.72);
       border-radius: 999px;
-      padding: 11px 12px;
+      padding: 10px 12px;
       font-size: 11.5px;
       font-weight: 700;
       display: inline-flex;
@@ -1055,7 +1007,7 @@
       margin-top: 22px;
       background: var(--ivory);
       border-radius: 24px;
-      border: 1.8px solid rgba(196, 141, 52, 0.62);
+      border: 1.8px solid rgba(198, 142, 54, 0.62);
       box-shadow: var(--shadow-royal);
       padding: 20px 16px;
       text-align: center;
@@ -1068,7 +1020,7 @@
       bottom: 22px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
-      background: var(--maroon-velvet);
+      background: var(--crimson-velvet);
       color: var(--gold-light);
       border: 1px solid rgba(248, 227, 180, 0.65);
       padding: 10px 18px;
@@ -1087,7 +1039,10 @@
   </style>
 </head>
 <body>
-  <!-- Royal PS Watermark Layer -->
+  <!-- Optional MP3 Audio Support (Place song.mp3 in repo if desired; otherwise soft melody plays automatically) -->
+  <audio id="bg-mp3-audio" src="song.mp3" loop preload="none"></audio>
+
+  <!-- Subtle Royal PS Watermark Layer -->
   <div class="ps-watermark-layer" aria-hidden="true">
     <div class="ps-grid">
       <div class="ps-cell"><span class="ps-crest">PS</span><span class="ps-tag">SHUBHPAL</span></div>
@@ -1108,11 +1063,6 @@
   <!-- Royal Velvet Book Cover -->
   <div id="royal-cover">
     <div class="cover-velvet-box" onclick="openInviteBook()">
-      <span class="corner-gem cg-tl">❖</span>
-      <span class="corner-gem cg-tr">❖</span>
-      <span class="corner-gem cg-bl">❖</span>
-      <span class="corner-gem cg-br">❖</span>
-
       <div>
         <div style="font-size: 13.5px; font-weight: 700;">॥ मंगल परिणय ॥</div>
         <div style="font-size: 10.5px; letter-spacing: 0.18em; color: var(--gold-light); margin-top: 4px;">SHUBHPAL</div>
@@ -1152,64 +1102,58 @@
       </div>
     </div>
 
-    <!-- Hero Arch -->
-    <section class="royal-arch-hero reveal-block in-view">
-      <div class="ganesh-seal">ॐ</div>
-      <div class="shloka-box">
-        वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
-        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
-      </div>
-      <div class="gold-kicker">॥ स्नेह-बंधन • मंगल परिणय ॥</div>
-      <h1 class="couple-hero-name">
-        पलाश
-        <span class="sang-divider">संग</span>
-        शुभी
-      </h1>
-      <div style="font-size: 13.5px; color: var(--maroon); font-weight: 700; margin-top: 6px;">
-        चि. पलाश &nbsp;&bull;&nbsp; सौ. का. शुभी
-      </div>
-      <div class="wedding-date-badge">
-        शुक्रवार • 11 दिसम्बर 2026 • भोपाल
-      </div>
-
-      <div class="hero-preshak">
-        <div class="hero-preshak-title">प्रेषक से</div>
-        <div class="hero-preshak-names">श्रीमती संगीता, चंद्रभान तिवारी</div>
-        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px;">
-          निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल
+    <!-- Video-Style Unrolling Royal Parchment Scroll -->
+    <section class="scroll-assembly">
+      <div class="scroll-roller"></div>
+      <div class="scroll-parchment">
+        <div class="ganesh-emblem">ॐ</div>
+        <div class="shloka-line">
+          वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
+          निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
         </div>
+
+        <div class="scroll-host-names">श्रीमती संगीता एवं श्री चंद्रभान तिवारी</div>
+        <div class="scroll-invite-sub">
+          सपरिवार आपके स्नेह एवं आशीर्वाद की आकांक्षा के साथ आमंत्रित करते हैं
+        </div>
+
+        <h1 class="scroll-couple-title">
+          पलाश तिवारी
+          <span class="scroll-sang">संग</span>
+          शुभी शर्मा
+        </h1>
+
+        <div class="hashtag-pill">#shubhpal • 11 दिसम्बर 2026</div>
+
         <div class="call-grid">
           <a class="call-btn-dark" href="tel:+917354959808">&#128222; 7354959808</a>
           <a class="call-btn-gold" href="tel:+919977753725">&#128222; 9977753725</a>
         </div>
-      </div>
 
-      <div style="margin-top: 14px; font-size: 11px; font-weight: 700; color: var(--gold);">
-        नीचे स्क्रॉल करें &darr;
+        <div class="floral-divider">❀ ❁ ❀</div>
       </div>
+      <div class="scroll-roller"></div>
     </section>
 
-    <!-- Snehi Swajan -->
-    <section class="royal-panel reveal-block">
-      <h2 class="panel-title">स्नेही स्वजन</h2>
-      <p class="panel-desc">
-        परमपिता परमेश्वर की असीम अनुकम्पा एवं पूर्वजों के आशीर्वाद से हमारे परिवार में मांगलिक बेला का शुभ अवसर आया है। इस पावन अवसर पर सपरिवार पधारकर वर-वधू को स्नेहाशीष प्रदान करें।
-      </p>
+    <!-- Snehi Swajan / Meet The Couple -->
+    <section class="ivory-royal-card">
+      <div class="section-kicker">स्नेही स्वजन • वर-वधू परिचय</div>
+      <h2 class="section-heading">मंगल परिणय</h2>
 
-      <div class="swajan-stack">
-        <div class="swajan-box">
-          <div class="swajan-tag">वर पक्ष</div>
-          <div class="swajan-name">चि. पलाश</div>
-          <div class="swajan-detail">
+      <div class="swajan-grid">
+        <div class="swajan-tile">
+          <div class="swajan-role">वर पक्ष</div>
+          <div class="swajan-person">चि. पलाश तिवारी</div>
+          <div class="swajan-bio">
             सुपुत्र: श्रीमती सुनीता एवं श्री यशवन्त तिवारी<br>
             निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)
           </div>
         </div>
 
-        <div class="swajan-box">
-          <div class="swajan-tag">वधू पक्ष</div>
-          <div class="swajan-name">सौ. का. शुभी</div>
-          <div class="swajan-detail">
+        <div class="swajan-tile">
+          <div class="swajan-role">वधू पक्ष</div>
+          <div class="swajan-person">सौ. का. शुभी शर्मा</div>
+          <div class="swajan-bio">
             सुपुत्री: श्रीमती एवं श्री राजेन्द्र शर्मा<br>
             निवास: दतिया / टीकमगढ़ (म.प्र.)
           </div>
@@ -1217,54 +1161,99 @@
       </div>
     </section>
 
-    <!-- Countdown Scroll -->
-    <section class="royal-panel reveal-block">
-      <div class="gold-rod"></div>
-      <div style="margin-top: 12px; font-size: 11.5px; color: var(--gold); font-weight: 700;">
-        शुभ विवाह की पावन बेला
-      </div>
-      <h2 class="panel-title" style="margin-top: 2px;">समय गणना देखें</h2>
+    <!-- Video-Style Crimson Velvet Save The Date & Live Countdown -->
+    <section class="crimson-velvet-band">
+      <div style="font-size: 11.5px; color: var(--gold-light); font-weight: 700;">शुभ विवाह की पावन बेला</div>
+      <h2 style="font-size: 1.85rem; font-weight: 700; margin-top: 2px;">मंगल फेरे</h2>
+      <p style="font-size: 12.5px; opacity: 0.92; margin-top: 4px;">
+        अग्नि को साक्षी मानकर सात जन्मों के पावन बंधन की शुभ घड़ी
+      </p>
 
-      <div style="font-size: 13px; color: var(--ink); margin-top: 6px; line-height: 1.55;">
-        <strong>मंगल फेरे:</strong> शुक्रवार, 11 दिसम्बर 2026 • रात्रि 11:00 बजे बेला<br>
-        <span style="color: var(--muted);">होटल प्राइड इनसेंट, VIP रोड, भोपाल</span>
-      </div>
-
-      <button type="button" class="tassel-btn" onclick="toggleTimerDrawer()">
-        <span class="tassel-thread"></span>
-        <span class="tassel-pendant" id="tassel-pendant"></span>
-        <span id="tassel-text">डोरी खींचकर समय देखें</span>
-      </button>
-
-      <div class="timer-drawer" id="timer-drawer">
-        <div class="timer-4">
-          <div class="timer-cell"><span class="timer-val" id="t-days">--</span><span class="timer-unit">दिन</span></div>
-          <div class="timer-cell"><span class="timer-val" id="t-hours">--</span><span class="timer-unit">घंटे</span></div>
-          <div class="timer-cell"><span class="timer-val" id="t-mins">--</span><span class="timer-unit">मिनट</span></div>
-          <div class="timer-cell"><span class="timer-val" id="t-secs">--</span><span class="timer-unit">सेकंड</span></div>
+      <div class="velvet-inner-frame">
+        <div style="font-size: 11px; letter-spacing: 0.14em; color: var(--gold-light); font-weight: 700;">
+          शुभ विवाह तिथि
         </div>
-        <button type="button" class="primary-gold-btn" onclick="saveCalendarICS()">कैलेंडर में सेव करें</button>
+        <div class="velvet-date-big">शुक्रवार, 11 दिसम्बर 2026</div>
+        <div style="font-size: 12.5px; opacity: 0.95;">रात्रि 11:00 बजे बेला • होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+
+        <div class="velvet-timer-grid">
+          <div class="velvet-timer-box"><span class="velvet-num" id="t-days">--</span><span class="velvet-lbl">दिन</span></div>
+          <div class="velvet-timer-box"><span class="velvet-num" id="t-hours">--</span><span class="velvet-lbl">घंटे</span></div>
+          <div class="velvet-timer-box"><span class="velvet-num" id="t-mins">--</span><span class="velvet-lbl">मिनट</span></div>
+          <div class="velvet-timer-box"><span class="velvet-num" id="t-secs">--</span><span class="velvet-lbl">सेकंड</span></div>
+        </div>
+
+        <button type="button" class="gold-foil-btn" onclick="saveCalendarICS()">📅 कैलेंडर में सेव करें</button>
       </div>
     </section>
 
-    <!-- Interactive 01 / 07 Festivity Card (Swipe + Flip) -->
-    <div class="sec-head reveal-block">
-      <div class="sec-sub">मांगलिक उत्सव • कार्ड स्वाइप करें (01 से 07)</div>
-      <h2 class="sec-main">विवाह के कार्यक्रम</h2>
-    </div>
+    <!-- Video-Style Fairy Lights + Polaroid Photo Deck -->
+    <section class="memories-wrapper">
+      <div class="section-kicker">स्नेह की यादगार तस्वीरें • स्वाइप या स्पर्श करें</div>
+      <h2 class="section-heading">हमारी कहानी</h2>
 
-    <div class="reveal-block">
-      <div class="event-stage-box" id="event-stage"></div>
-
-      <div class="event-nav-row">
-        <button type="button" class="nav-step-btn" onclick="prevEventCard()">&larr; पिछला</button>
-        <div class="step-dots" id="step-dots"></div>
-        <button type="button" class="nav-step-btn" onclick="nextEventCard()">अगला &rarr;</button>
+      <div class="fairy-lights-bar" aria-hidden="true">
+        <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+        <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
+        <span class="bulb"></span><span class="bulb"></span><span class="bulb"></span>
       </div>
-    </div>
 
-    <!-- Complete 7 Function Schedule -->
-    <div class="schedule-list-card reveal-block">
+      <div class="polaroid-deck-stage" id="deck-stage"></div>
+
+      <div class="deck-nav-bar">
+        <button type="button" class="nav-pill-small" onclick="stepPhotoDeck(-1)">&larr; पिछली</button>
+        <span id="deck-counter">01 / 02</span>
+        <button type="button" class="nav-pill-small" onclick="stepPhotoDeck(1)">अगली &rarr;</button>
+      </div>
+    </section>
+
+    <!-- Video-Style Page-Fold Booklet Event Cards (01 / 07) -->
+    <section class="event-flip-wrapper">
+      <div style="text-align: center; margin-bottom: 12px;">
+        <div class="section-kicker">मांगलिक उत्सव • पेज पलटें</div>
+        <h2 class="section-heading" style="margin-bottom: 0;">विवाह के कार्यक्रम</h2>
+      </div>
+
+      <div class="event-booklet-card" id="event-booklet">
+        <div class="booklet-top-half">
+          <div class="event-code-tag" id="ev-code">कार्यक्रम • 01</div>
+          <div class="event-art-medallion" id="ev-medallion">🪔</div>
+          <div class="event-quote-hi" id="ev-quote">शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।</div>
+        </div>
+
+        <div class="booklet-bottom-half" id="booklet-bottom">
+          <h3 class="booklet-event-name" id="ev-title">श्री गणेश एवं माता पूजन</h3>
+          <div class="booklet-event-day" id="ev-day">मंगलवार, 08 दिसम्बर 2026</div>
+          <div class="booklet-meta">
+            <div id="ev-time">⏰ सायं 4:00 बजे</div>
+            <div id="ev-venue">📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल</div>
+          </div>
+
+          <div class="booklet-cta-row">
+            <a class="btn-maroon-grad" id="ev-map-btn" target="_blank" rel="noopener"
+               href="https://www.google.com/maps/dir/?api=1&destination=23.2671376,77.4597344">
+              📍 दिशा देखें
+            </a>
+            <button type="button" class="btn-gold-outline" onclick="saveCalendarICS()">
+              📅 सेव करें
+            </button>
+          </div>
+
+          <div class="booklet-footer-nav">
+            <button type="button" class="nav-pill-small" onclick="flipEventCard(-1)">&larr; पिछला</button>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" class="circle-arrow-btn" onclick="flipEventCard(-1)">&lsaquo;</button>
+              <span style="font-size: 12px; font-weight: 700; color: var(--crimson);" id="ev-counter">01 / 07</span>
+              <button type="button" class="circle-arrow-btn" onclick="flipEventCard(1)">&rsaquo;</button>
+            </div>
+            <button type="button" class="nav-pill-small" onclick="flipEventCard(1)">अगला &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complete 7 Function Schedule List -->
+    <div class="schedule-list-card">
       <div style="text-align: center;">
         <span class="part-pill">भाग 1 • निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल</span>
       </div>
@@ -1331,12 +1320,10 @@
     </div>
 
     <!-- Family Section -->
-    <div class="sec-head reveal-block">
-      <div class="sec-sub">स्नेह एवं निमंत्रण • तिवारी परिवार</div>
-      <h2 class="sec-main">परिवारजन</h2>
-    </div>
+    <section class="ivory-royal-card">
+      <div class="section-kicker">स्नेह एवं निमंत्रण • तिवारी परिवार</div>
+      <h2 class="section-heading">परिवारजन</h2>
 
-    <section class="royal-panel reveal-block" style="margin-top: 0;">
       <div class="parivaar-box">
         <div class="parivaar-head">स्वागतकाभी</div>
         <div class="parivaar-names">
@@ -1365,7 +1352,7 @@
         <div class="parivaar-head">बालमनुहार</div>
         <div class="parivaar-names">
           देवांश <span class="gold-sep">|</span> बेबी <span class="gold-sep">|</span> लक्ष्य <span class="gold-sep">|</span> अविषा
-          <div style="margin-top: 6px; color: var(--maroon); font-weight: 700;">
+          <div style="margin-top: 6px; color: var(--crimson); font-weight: 700;">
             नन्हे कदमों की रुनझुन, ढोल की धुन पर नाचेंगे,<br>
             हमारे चाचा की शादी में #shubhpal बन जाएंगे।
           </div>
@@ -1385,28 +1372,13 @@
       </div>
     </section>
 
-    <!-- Stacked Photo Deck -->
-    <div class="sec-head reveal-block">
-      <div class="sec-sub">स्नेह की यादगार तस्वीरें • स्वाइप या स्पर्श करें</div>
-      <h2 class="sec-main">हमारी कहानी</h2>
+    <!-- Video-Style Embedded Bhopal Live Map + Exact Venue Cards -->
+    <div style="text-align: center; margin-top: 28px;">
+      <div class="section-kicker">गूगल मैप • सटीक लोकेशन</div>
+      <h2 class="section-heading" style="margin-bottom: 0;">कार्यक्रम स्थल कैसे पहुँचें</h2>
     </div>
 
-    <div class="reveal-block">
-      <div class="deck-stage" id="deck-stage"></div>
-      <div class="deck-controls">
-        <button type="button" class="nav-step-btn" onclick="stepPhotoDeck(-1)">&larr; पिछली</button>
-        <span id="deck-counter">01 / 02</span>
-        <button type="button" class="nav-step-btn" onclick="stepPhotoDeck(1)">अगली &rarr;</button>
-      </div>
-    </div>
-
-    <!-- Exact GPS Maps & Locations -->
-    <div class="sec-head reveal-block">
-      <div class="sec-sub">गूगल मैप • सटीक लोकेशन</div>
-      <h2 class="sec-main">कार्यक्रम स्थल कैसे पहुँचें</h2>
-    </div>
-
-    <div class="venue-card reveal-block">
+    <div class="venue-card">
       <div id="map-vip" class="leaflet-map-box"></div>
       <div class="venue-title">होटल प्राइड इनसेंट, VIP रोड</div>
       <div class="venue-addr">होटल प्राइड इनसेंट, VIP रोड, भोपाल (23.261740, 77.371996)</div>
@@ -1422,7 +1394,7 @@
       </div>
     </div>
 
-    <div class="venue-card reveal-block">
+    <div class="venue-card">
       <div id="map-ghar" class="leaflet-map-box"></div>
       <div class="venue-title">84, ट्रायटन हिल्स, बी.के. रोड</div>
       <div class="venue-addr">निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (23.2671376, 77.4597344)</div>
@@ -1439,11 +1411,11 @@
     </div>
 
     <!-- Footer Preshak -->
-    <div class="footer-preshak reveal-block">
+    <div class="footer-preshak">
       <div style="color: var(--gold); font-weight: 700; font-size: 14px; margin-bottom: 4px;">
         प्रेषक से • सम्पर्क सूत्र
       </div>
-      <div style="font-weight: 700; color: var(--maroon); font-size: 15px;">श्रीमती संगीता, चंद्रभान तिवारी</div>
+      <div style="font-weight: 700; color: var(--crimson); font-size: 15px;">श्रीमती संगीता, चंद्रभान तिवारी</div>
       <div style="color: var(--muted); font-size: 12.5px;">
         निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)
       </div>
@@ -1460,138 +1432,112 @@
   <script>
     const gharCoords = [23.2671376, 77.4597344];
     const vipCoords = [23.261740, 77.371996];
-    const gharMapLink = "https://www.google.com/maps/search/?api=1&query=23.2671376,77.4597344";
-    const vipMapLink = "https://www.google.com/maps/search/?api=1&query=23.261740,77.371996";
+    const gharDirUrl = "https://www.google.com/maps/dir/?api=1&destination=23.2671376,77.4597344";
+    const vipDirUrl = "https://www.google.com/maps/dir/?api=1&destination=23.261740,77.371996";
 
-    /* 01 / 07 Interactive Event Cards + Swipe Gesture */
-    const eventsData = [
+    /* 7 Events Booklet Data */
+    const eventsList = [
       {
-        day: "मंगलवार • 08 दिसम्बर 2026",
         title: "श्री गणेश एवं माता पूजन",
-        note: "शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।",
+        day: "मंगलवार, 08 दिसम्बर 2026",
+        time: "⏰ सायं 4:00 बजे",
+        venue: "📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
+        quote: "शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।",
         icon: "🪔",
-        venue: "निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
-        time: "सायं 4:00 बजे",
-        map: gharMapLink,
-        grad: "linear-gradient(155deg, #c76224, #7e2e0c)"
+        bg: "linear-gradient(145deg, #c76224, #7e2e0c)",
+        dir: gharDirUrl
       },
       {
-        day: "बुधवार • 09 दिसम्बर 2026",
         title: "मण्डपाच्छादन एवं मामेर",
-        note: "मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।",
+        day: "बुधवार, 09 दिसम्बर 2026",
+        time: "⏰ प्रातः 9:30 बजे",
+        venue: "📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
+        quote: "मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।",
         icon: "🌿",
-        venue: "निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
-        time: "प्रातः 9:30 बजे",
-        map: gharMapLink,
-        grad: "linear-gradient(155deg, #b55422, #6b260d)"
+        bg: "linear-gradient(145deg, #b55422, #6b260d)",
+        dir: gharDirUrl
       },
       {
-        day: "बुधवार • 09 दिसम्बर 2026",
         title: "रतजगा मेहंदी",
-        note: "ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।",
+        day: "बुधवार, 09 दिसम्बर 2026",
+        time: "⏰ रात्रि 8:00 बजे",
+        venue: "📍 निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
+        quote: "ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।",
         icon: "🍃",
-        venue: "निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
-        time: "रात्रि 8:00 बजे",
-        map: gharMapLink,
-        grad: "linear-gradient(155deg, #257345, #114225)"
+        bg: "linear-gradient(145deg, #257345, #114225)",
+        dir: gharDirUrl
       },
       {
-        day: "गुरुवार • 10 दिसम्बर 2026",
         title: "हल्दी कार्यक्रम",
-        note: "हल्दी के पावन रंगों और मंगल गीतों के साथ उत्सव की शुरुआत।",
+        day: "गुरुवार, 10 दिसम्बर 2026",
+        time: "⏰ दोपहर 2:00 बजे",
+        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        quote: "हल्दी के पावन रंगों और मंगल गीतों के साथ उत्सव की शुरुआत।",
         icon: "🌼",
-        venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "दोपहर 2:00 बजे",
-        map: vipMapLink,
-        grad: "linear-gradient(155deg, #d79416, #9d6203)"
+        bg: "linear-gradient(145deg, #d79416, #9d6203)",
+        dir: vipDirUrl
       },
       {
-        day: "गुरुवार • 10 दिसम्बर 2026",
         title: "संगीत संध्या",
-        note: "सुर, ताल और खुशियों से सजी एक यादगार शाम।",
+        day: "गुरुवार, 10 दिसम्बर 2026",
+        time: "⏰ रात्रि 8:00 बजे",
+        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        quote: "सुर, ताल और खुशियों से सजी एक यादगार शाम।",
         icon: "🎶",
-        venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "रात्रि 8:00 बजे",
-        map: vipMapLink,
-        grad: "linear-gradient(155deg, #74327f, #43144c)"
+        bg: "linear-gradient(145deg, #74327f, #43144c)",
+        dir: vipDirUrl
       },
       {
-        day: "शुक्रवार • 11 दिसम्बर 2026",
         title: "आशीर्वाद समारोह एवं स्वरुचिभोज",
-        note: "वर-वधू को स्नेहाशीष प्रदान कर प्रीतिभोज में सम्मिलित हों।",
+        day: "शुक्रवार, 11 दिसम्बर 2026",
+        time: "⏰ रात्रि 8:00 बजे",
+        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        quote: "वर-वधू को स्नेहाशीष प्रदान कर प्रीतिभोज में सम्मिलित हों।",
         icon: "✨",
-        venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "रात्रि 8:00 बजे",
-        map: vipMapLink,
-        grad: "linear-gradient(155deg, #931b32, #520917)"
+        bg: "linear-gradient(145deg, #931b32, #520917)",
+        dir: vipDirUrl
       },
       {
-        day: "शुक्रवार • 11 दिसम्बर 2026",
         title: "मंगल फेरे",
-        note: "अग्नि को साक्षी मानकर सात जन्मों के पावन बंधन की बेला।",
+        day: "शुक्रवार, 11 दिसम्बर 2026",
+        time: "⏰ रात्रि 11:00 बजे बेला",
+        venue: "📍 होटल प्राइड इनसेंट, VIP रोड, भोपाल",
+        quote: "अग्नि को साक्षी मानकर सात जन्मों के पावन बंधन की बेला।",
         icon: "🔥",
-        venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "रात्रि 11:00 बजे बेला",
-        map: vipMapLink,
-        grad: "linear-gradient(155deg, #5e0b1c, #29030b)"
+        bg: "linear-gradient(145deg, #6d0f22, #2b030b)",
+        dir: vipDirUrl
       }
     ];
 
-    let activeEventIndex = 0;
-    const stageEl = document.getElementById("event-stage");
-    const dotsEl = document.getElementById("step-dots");
+    let curEvent = 0;
+    const bottomHalf = document.getElementById("booklet-bottom");
 
-    function renderEventStage(dir = 1) {
-      stageEl.classList.add(dir > 0 ? "flip-left" : "flip-right");
+    function updateBookletUI() {
+      const ev = eventsList[curEvent];
+      const num = String(curEvent + 1).padStart(2, "0");
+      const tot = String(eventsList.length).padStart(2, "0");
+      document.getElementById("ev-code").textContent = `कार्यक्रम • ${num}`;
+      const med = document.getElementById("ev-medallion");
+      med.textContent = ev.icon;
+      med.style.background = ev.bg;
+      document.getElementById("ev-quote").textContent = ev.quote;
+      document.getElementById("ev-title").textContent = ev.title;
+      document.getElementById("ev-day").textContent = ev.day;
+      document.getElementById("ev-time").textContent = ev.time;
+      document.getElementById("ev-venue").textContent = ev.venue;
+      document.getElementById("ev-map-btn").href = ev.dir;
+      document.getElementById("ev-counter").textContent = `${num} / ${tot}`;
+    }
+
+    function flipEventCard(dir) {
+      bottomHalf.classList.add("page-turning");
       setTimeout(() => {
-        const ev = eventsData[activeEventIndex];
-        const num = String(activeEventIndex + 1).padStart(2, "0");
-        const total = String(eventsData.length).padStart(2, "0");
-        stageEl.style.background = ev.grad;
-        stageEl.innerHTML = `
-          <div>
-            <span class="event-counter-pill">${num} / ${total} • ${ev.day}</span>
-            <h3 class="event-card-title">${ev.title}</h3>
-            <p class="event-card-note">${ev.note}</p>
-          </div>
-          <div class="event-icon-circle">${ev.icon}</div>
-          <div>
-            <div class="event-venue-line">${ev.venue}</div>
-            <div class="event-time-badge">${ev.time}</div><br>
-            <a class="event-map-link" target="_blank" rel="noopener" href="${ev.map}">गूगल मैप पर लोकेशन देखें &rarr;</a>
-          </div>
-        `;
-        stageEl.classList.remove("flip-left", "flip-right");
-        renderDots();
-      }, 140);
+        curEvent = (curEvent + dir + eventsList.length) % eventsList.length;
+        updateBookletUI();
+        bottomHalf.classList.remove("page-turning");
+      }, 180);
     }
 
-    function renderDots() {
-      dotsEl.innerHTML = "";
-      eventsData.forEach((_, idx) => {
-        const dot = document.createElement("button");
-        dot.type = "button";
-        dot.className = "step-dot" + (idx === activeEventIndex ? " active" : "");
-        dot.onclick = () => {
-          const dir = idx >= activeEventIndex ? 1 : -1;
-          activeEventIndex = idx;
-          renderEventStage(dir);
-        };
-        dotsEl.appendChild(dot);
-      });
-    }
-
-    function nextEventCard() {
-      activeEventIndex = (activeEventIndex + 1) % eventsData.length;
-      renderEventStage(1);
-    }
-
-    function prevEventCard() {
-      activeEventIndex = (activeEventIndex - 1 + eventsData.length) % eventsData.length;
-      renderEventStage(-1);
-    }
-
-    /* Touch Swipe helper */
     function attachSwipe(el, onLeft, onRight) {
       let startX = 0;
       el.addEventListener("touchstart", (e) => {
@@ -1599,53 +1545,52 @@
       }, { passive: true });
       el.addEventListener("touchend", (e) => {
         const dx = e.changedTouches[0].clientX - startX;
-        if (Math.abs(dx) > 40) {
+        if (Math.abs(dx) > 38) {
           if (dx < 0) onLeft();
           else onRight();
         }
       }, { passive: true });
     }
 
-    attachSwipe(stageEl, nextEventCard, prevEventCard);
-    renderEventStage(1);
+    attachSwipe(document.getElementById("event-booklet"), () => flipEventCard(1), () => flipEventCard(-1));
+    updateBookletUI();
 
-    /* Stacked Photo Deck + Touch Swipe */
-    const photoDeckItems = [
+    /* Polaroid Photo Memories Deck */
+    const photos = [
       { src: "photo1.jpeg", caption: "हर पल साथ-साथ" },
       { src: "photo2.jpeg", caption: "खुशियाँ, स्नेह और उत्सव" }
     ];
-    let deckTopIdx = 0;
+    let topPhoto = 0;
     const deckStage = document.getElementById("deck-stage");
     const deckCounter = document.getElementById("deck-counter");
 
-    function renderPhotoDeck() {
+    function renderPolaroids() {
       deckStage.innerHTML = "";
-      photoDeckItems.forEach((item, idx) => {
-        const offset = (idx - deckTopIdx + photoDeckItems.length) % photoDeckItems.length;
+      photos.forEach((p, idx) => {
+        const off = (idx - topPhoto + photos.length) % photos.length;
         const card = document.createElement("div");
-        card.className = "deck-card";
-        card.style.zIndex = String(photoDeckItems.length - offset);
-        card.style.transform = `translateX(${offset * 10}px) translateY(${offset * 6}px) rotate(${offset === 0 ? 0 : 4}deg) scale(${1 - offset * 0.04})`;
-        card.style.opacity = offset > 1 ? "0" : "1";
+        card.className = "polaroid-card";
+        card.style.zIndex = String(photos.length - off);
+        card.style.transform = `translateX(${off * 8}px) translateY(${off * 6}px) rotate(${off === 0 ? -1.5 : 3.5}deg) scale(${1 - off * 0.04})`;
         card.onclick = () => stepPhotoDeck(1);
         card.innerHTML = `
-          <img src="${item.src}" alt="${item.caption}">
-          <div class="deck-caption-chip">${item.caption}</div>
+          <img src="${p.src}" alt="${p.caption}">
+          <div class="polaroid-caption">${p.caption}</div>
         `;
         deckStage.appendChild(card);
       });
-      deckCounter.textContent = `${String(deckTopIdx + 1).padStart(2, "0")} / ${String(photoDeckItems.length).padStart(2, "0")}`;
+      deckCounter.textContent = `${String(topPhoto + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
     }
 
     function stepPhotoDeck(dir) {
-      deckTopIdx = (deckTopIdx + dir + photoDeckItems.length) % photoDeckItems.length;
-      renderPhotoDeck();
+      topPhoto = (topPhoto + dir + photos.length) % photos.length;
+      renderPolaroids();
     }
 
     attachSwipe(deckStage, () => stepPhotoDeck(1), () => stepPhotoDeck(-1));
-    renderPhotoDeck();
+    renderPolaroids();
 
-    /* Leaflet Exact Coordinate Maps */
+    /* Leaflet Live Maps */
     if (window.L) {
       const m1 = L.map("map-vip", { scrollWheelZoom: false }).setView(vipCoords, 15);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(m1);
@@ -1656,11 +1601,11 @@
       L.marker(gharCoords).addTo(m2).bindPopup("84, ट्रायटन हिल्स, बी.के. रोड").openPopup();
     }
 
-    /* Interactive Flower Shower (पुष्प वर्षा) */
+    /* Interactive Flower Shower */
     const petalsBox = document.getElementById("petals-wrap");
     function triggerFlowerShower() {
       showToast("🌸 पुष्प वर्षा एवं स्नेहाशीष 🌸");
-      for (let i = 0; i < 26; i++) {
+      for (let i = 0; i < 28; i++) {
         const bp = document.createElement("div");
         bp.className = "burst-petal";
         bp.style.left = Math.random() * 100 + "%";
@@ -1671,80 +1616,104 @@
       }
     }
 
-    /* Soft Royal Wedding Dhun */
+    /* Upgraded Rich Wedding Music Engine (Uses song.mp3 if present, otherwise warm polyphonic wedding melody) */
     let audioCtx = null;
-    let dhunInterval = null;
-    let isDhunOn = false;
-    let stepIdx = 0;
-    const notes = [293.66, 329.63, 392.00, 440.00, 392.00, 329.63, 293.66, 220.00];
+    let musicLoop = null;
+    let musicActive = false;
+    let chordStep = 0;
+    const mp3El = document.getElementById("bg-mp3-audio");
 
-    function playNote(freq) {
+    // Warm Indian Raag Bhupali / Yaman style wedding progression
+    const progression = [
+      [261.63, 329.63, 392.00], // Sa Ga Pa
+      [293.66, 369.99, 440.00], // Re Ma# Dha
+      [329.63, 392.00, 493.88], // Ga Pa Ni
+      [293.66, 392.00, 440.00], // Re Pa Dha
+      [261.63, 329.63, 523.25], // Sa Ga Sa'
+      [220.00, 329.63, 392.00]  // Dha_ Pa Ga
+    ];
+
+    function playWarmChord(freqs) {
       if (!audioCtx) return;
       const now = audioCtx.currentTime;
-      const osc = audioCtx.createOscillator();
-      const sub = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, now);
-      sub.type = "triangle";
-      sub.frequency.setValueAtTime(freq * 0.5, now);
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.032, now + 0.18);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.45);
-      osc.connect(gain);
-      sub.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start(now);
-      sub.start(now);
-      osc.stop(now + 1.5);
-      sub.stop(now + 1.5);
+      freqs.forEach((f, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = idx === 2 ? "sine" : "triangle";
+        osc.frequency.setValueAtTime(f, now + idx * 0.08);
+        gain.gain.setValueAtTime(0.0001, now + idx * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.022, now + idx * 0.08 + 0.25);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.1);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(now + idx * 0.08);
+        osc.stop(now + 2.15);
+      });
     }
 
-    function startDhun() {
+    function startWeddingMusic() {
+      if (musicActive) return;
+      musicActive = true;
+      updateMusicUI();
+
+      // Try song.mp3 first if user added one, fallback to built-in polyphonic wedding melody
+      if (mp3El) {
+        mp3El.volume = 0.45;
+        mp3El.play().catch(() => {
+          startSynthMelody();
+        });
+      } else {
+        startSynthMelody();
+      }
+    }
+
+    function startSynthMelody() {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return;
       if (!audioCtx) audioCtx = new AC();
       if (audioCtx.state === "suspended") audioCtx.resume();
-      if (isDhunOn) return;
-      isDhunOn = true;
-      syncMusicBtn();
-      playNote(notes[stepIdx % notes.length]);
-      stepIdx++;
-      dhunInterval = setInterval(() => {
-        playNote(notes[stepIdx % notes.length]);
-        stepIdx++;
-      }, 1550);
+      if (musicLoop) clearInterval(musicLoop);
+      playWarmChord(progression[chordStep % progression.length]);
+      chordStep++;
+      musicLoop = setInterval(() => {
+        if (!musicActive) return;
+        playWarmChord(progression[chordStep % progression.length]);
+        chordStep++;
+      }, 2100);
     }
 
-    function stopDhun() {
-      isDhunOn = false;
-      if (dhunInterval) {
-        clearInterval(dhunInterval);
-        dhunInterval = null;
+    function stopWeddingMusic() {
+      musicActive = false;
+      if (mp3El) {
+        mp3El.pause();
       }
-      syncMusicBtn();
+      if (musicLoop) {
+        clearInterval(musicLoop);
+        musicLoop = null;
+      }
+      updateMusicUI();
     }
 
     function toggleDhun() {
-      if (isDhunOn) {
-        stopDhun();
+      if (musicActive) {
+        stopWeddingMusic();
         showToast("संगीत बंद कर दिया गया");
       } else {
-        startDhun();
-        showToast("मधुर वाद्य धुन शुरू हुई");
+        startWeddingMusic();
+        showToast("मधुर मंगल संगीत शुरू हुआ");
       }
     }
 
-    function syncMusicBtn() {
+    function updateMusicUI() {
       const btn = document.getElementById("music-btn");
       if (!btn) return;
-      btn.textContent = isDhunOn ? "🎵 संगीत: चालू" : "🎵 संगीत";
-      btn.classList.toggle("music-on", isDhunOn);
+      btn.textContent = musicActive ? "🎵 संगीत: चालू" : "🎵 संगीत";
+      btn.classList.toggle("music-on", musicActive);
     }
 
     function openInviteBook() {
       document.getElementById("royal-cover").classList.add("opened");
-      startDhun();
+      startWeddingMusic();
       triggerFlowerShower();
     }
 
@@ -1752,15 +1721,7 @@
       document.getElementById("royal-cover").classList.remove("opened");
     }
 
-    function toggleTimerDrawer() {
-      const drawer = document.getElementById("timer-drawer");
-      const pendant = document.getElementById("tassel-pendant");
-      const label = document.getElementById("tassel-text");
-      const opened = drawer.classList.toggle("open");
-      pendant.style.transform = opened ? "translateY(8px)" : "translateY(0)";
-      label.textContent = opened ? "समय खुल गया है" : "डोरी खींचकर समय देखें";
-    }
-
+    /* Live Countdown */
     const phereTime = new Date("2026-12-11T23:00:00+05:30").getTime();
     function updateCountdown() {
       const diff = Math.max(0, phereTime - Date.now());
@@ -1813,17 +1774,6 @@
       p.style.animationDelay = (Math.random() * 6) + "s";
       petalsBox.appendChild(p);
     }
-
-    /* Smooth Scroll Reveal Observer */
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("in-view");
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".reveal-block").forEach((block) => observer.observe(block));
   </script>
 </body>
 </html>
