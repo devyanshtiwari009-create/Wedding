@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Palash weds Shubhi — 11 December 2026</title>
+  <title>पलाश संग शुभी — 11 दिसम्बर 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,10 +15,9 @@
       --maroon-dark: #3d0711;
       --gold: #bc8e46;
       --gold-soft: #efe0bc;
-      --silver: #9aa0a6;
       --ink: #291518;
       --muted: #72575b;
-      --surface: rgba(255, 253, 250, 0.95);
+      --surface: rgba(255, 253, 250, 0.94);
       --shadow: 0 22px 48px rgba(61, 7, 17, 0.12);
     }
 
@@ -34,13 +33,68 @@
 
     body {
       background:
-        radial-gradient(circle at 14% 8%, rgba(223, 157, 165, 0.26), transparent 40%),
-        radial-gradient(circle at 88% 18%, rgba(188, 142, 70, 0.2), transparent 42%),
+        radial-gradient(circle at 14% 8%, rgba(223, 157, 165, 0.28), transparent 42%),
+        radial-gradient(circle at 88% 18%, rgba(188, 142, 70, 0.22), transparent 44%),
         linear-gradient(180deg, #fcf8f3 0%, #f5e7e5 52%, #fbf7f1 100%);
       color: var(--ink);
-      font-family: 'Plus Jakarta Sans', 'Noto Serif Devanagari', sans-serif;
+      font-family: 'Noto Serif Devanagari', 'Plus Jakarta Sans', serif;
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Royal PS Branding Watermark Across Background */
+    .royal-ps-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      opacity: 0.055;
+      background-image:
+        repeating-linear-gradient(
+          -28deg,
+          transparent 0px,
+          transparent 130px,
+          rgba(188, 142, 70, 0.22) 130px,
+          rgba(188, 142, 70, 0.22) 131px
+        );
+    }
+
+    .ps-watermark-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 54px;
+      padding: 36px 12px;
+      transform: rotate(-14deg) scale(1.15);
+    }
+
+    .ps-mark-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--maroon);
+      user-select: none;
+    }
+
+    .ps-mark-monogram {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 2.15rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      border: 1px solid rgba(104, 19, 34, 0.45);
+      border-radius: 36px 36px 10px 10px;
+      padding: 10px 14px;
+    }
+
+    .ps-mark-sub {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      margin-top: 6px;
+      color: var(--gold);
+      font-weight: 700;
     }
 
     .hi {
@@ -81,7 +135,7 @@
       100% { transform: translateY(112vh) rotate(330deg); opacity: 0; }
     }
 
-    /* Book Cover Intro (Matches Royal Elephant & P&S Arch Folder) */
+    /* Book Cover Intro */
     #book-cover {
       position: fixed;
       inset: 0;
@@ -136,8 +190,8 @@
     }
 
     .monogram-arch {
-      width: 96px;
-      height: 112px;
+      width: 98px;
+      height: 114px;
       border-radius: 52px 52px 14px 14px;
       border: 1.3px solid rgba(239, 224, 188, 0.78);
       background: radial-gradient(circle, rgba(239, 224, 188, 0.16), transparent 74%);
@@ -153,10 +207,9 @@
       align-items: center;
       gap: 8px;
       color: var(--maroon);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 600;
+      font-size: 11.5px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -188,26 +241,28 @@
       justify-content: space-between;
       align-items: center;
       padding: 4px 2px 12px;
-      font-size: 12px;
+      font-size: 12.5px;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .cover-btn {
       background: var(--surface);
-      border: 1px solid rgba(188, 142, 70, 0.45);
+      border: 1px solid rgba(188, 142, 70, 0.5);
       color: var(--maroon);
-      padding: 5px 12px;
+      padding: 5px 13px;
       border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 11.5px;
+      font-weight: 700;
       cursor: pointer;
+      font-family: inherit;
     }
 
     /* Royal Arch Hero */
     .arch-card {
       background: var(--surface);
       border-radius: 215px 215px 26px 26px;
-      border: 1.5px solid rgba(188, 142, 70, 0.5);
+      border: 1.5px solid rgba(188, 142, 70, 0.52);
       box-shadow: var(--shadow);
       padding: 42px 20px 28px;
       text-align: center;
@@ -233,37 +288,39 @@
       place-items: center;
       color: var(--maroon);
       background: rgba(188, 142, 70, 0.1);
+      font-size: 1.4rem;
+      font-weight: 700;
     }
 
     .shloka-text {
-      font-size: 11px;
+      font-size: 11.5px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.55;
       margin: 4px auto 8px;
-      max-width: 290px;
+      max-width: 300px;
     }
 
     .mangal-tag {
-      font-size: 12.5px;
+      font-size: 13px;
       color: var(--gold);
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
     }
 
-    .hero-couple {
-      font-size: clamp(2.15rem, 8.6vw, 2.95rem);
-      line-height: 1.08;
+    .hero-couple-hi {
+      font-size: clamp(1.85rem, 7.6vw, 2.45rem);
+      line-height: 1.2;
       color: var(--maroon);
-      font-weight: 600;
-      margin-top: 4px;
+      font-weight: 700;
+      margin-top: 6px;
     }
 
     .hero-amp {
       display: block;
-      font-style: italic;
-      font-size: 1.45rem;
+      font-size: 1.2rem;
       color: var(--gold);
       margin: 2px 0;
+      font-weight: 600;
     }
 
     .date-pill-box {
@@ -272,10 +329,69 @@
       padding: 7px 16px;
       border-radius: 999px;
       background: rgba(104, 19, 34, 0.06);
-      border: 1px solid rgba(188, 142, 70, 0.42);
+      border: 1px solid rgba(188, 142, 70, 0.45);
       color: var(--maroon);
       font-size: 12.5px;
-      font-weight: 600;
+      font-weight: 700;
+    }
+
+    /* Front Page Preshak Box */
+    .front-preshak-box {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(188, 142, 70, 0.45);
+      text-align: center;
+    }
+
+    .front-preshak-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
+
+    .front-preshak-names {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--maroon);
+      margin-top: 3px;
+    }
+
+    .front-call-pills {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .call-chip-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #7a1829, #4d0b17);
+      color: #fff7e6;
+      padding: 9px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 6px 14px rgba(77, 11, 23, 0.16);
+    }
+
+    .call-chip-soft {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      background: #fffdf9;
+      color: var(--maroon);
+      border: 1px solid rgba(104, 19, 34, 0.35);
+      padding: 9px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
     }
 
     /* Card Box Generic */
@@ -290,16 +406,16 @@
     }
 
     .card-heading-hi {
-      font-size: 1.45rem;
+      font-size: 1.48rem;
       color: var(--maroon);
       font-weight: 700;
       margin-bottom: 6px;
     }
 
     .card-sub-hi {
-      font-size: 12.8px;
+      font-size: 13px;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
       margin-bottom: 14px;
     }
 
@@ -316,24 +432,22 @@
     }
 
     .person-label {
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-size: 11px;
       color: var(--gold);
       font-weight: 700;
     }
 
     .person-name {
-      font-size: 1.42rem;
+      font-size: 1.45rem;
       color: var(--maroon);
       font-weight: 700;
       margin-top: 2px;
     }
 
     .person-sub {
-      font-size: 12.5px;
+      font-size: 12.8px;
       color: var(--ink);
-      line-height: 1.55;
+      line-height: 1.6;
       margin-top: 4px;
     }
 
@@ -355,8 +469,9 @@
       align-items: center;
       gap: 6px;
       color: var(--maroon);
-      font-size: 11.5px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: inherit;
     }
 
     .tassel-line {
@@ -408,10 +523,9 @@
     }
 
     .timer-lbl {
-      font-size: 9.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-size: 10.5px;
       color: var(--muted);
+      font-weight: 600;
     }
 
     .cal-action-btn {
@@ -421,11 +535,10 @@
       border: 1px solid rgba(188, 142, 70, 0.65);
       background: #fffdf9;
       color: var(--maroon);
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
       cursor: pointer;
+      font-family: inherit;
     }
 
     /* Section Headings */
@@ -435,18 +548,16 @@
     }
 
     .sec-kicker {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-size: 11px;
       color: var(--gold);
       font-weight: 700;
     }
 
     .sec-heading {
-      font-size: 1.9rem;
+      font-size: 1.85rem;
       color: var(--maroon);
-      margin-top: 3px;
-      font-weight: 600;
+      margin-top: 2px;
+      font-weight: 700;
     }
 
     /* Swipeable Festivities */
@@ -479,10 +590,9 @@
     }
 
     .fest-when {
-      font-size: 10.5px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      opacity: 0.94;
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.95;
     }
 
     .fest-hi-title {
@@ -492,19 +602,11 @@
       line-height: 1.25;
     }
 
-    .fest-en-title {
-      font-size: 1.1rem;
-      font-style: italic;
-      opacity: 0.92;
-      margin-top: 2px;
-    }
-
     .fest-note-hi {
-      font-size: 11.8px;
-      line-height: 1.45;
-      opacity: 0.94;
+      font-size: 12px;
+      line-height: 1.5;
+      opacity: 0.95;
       margin-top: 6px;
-      font-style: italic;
     }
 
     .fest-emblem {
@@ -531,8 +633,8 @@
       color: var(--ink);
       padding: 6px 14px;
       border-radius: 999px;
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 11.5px;
+      font-weight: 700;
       display: inline-block;
     }
 
@@ -540,16 +642,15 @@
       margin-top: 8px;
       display: inline-block;
       color: #fff8e7;
-      font-size: 11px;
+      font-size: 11.5px;
       text-decoration: underline;
     }
 
     .swipe-caption {
       text-align: center;
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-size: 11.5px;
       color: var(--muted);
+      font-weight: 600;
     }
 
     /* Two-Page Card Schedule Sheet */
@@ -569,7 +670,7 @@
       border: 1px solid rgba(188, 142, 70, 0.35);
       border-radius: 999px;
       padding: 4px 12px;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
       margin-bottom: 8px;
     }
@@ -599,18 +700,18 @@
       font-size: 11.5px;
       color: var(--muted);
       margin-top: 2px;
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .program-time {
       font-size: 11.5px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--ink);
       text-align: right;
       white-space: nowrap;
     }
 
-    /* Family / Parivaar Cards (All Names Included Cleanly) */
+    /* Family / Parivaar Cards */
     .family-block {
       background: #fdf8f2;
       border: 1px solid rgba(188, 142, 70, 0.35);
@@ -625,16 +726,22 @@
     }
 
     .family-role-title {
-      font-size: 14px;
+      font-size: 14.5px;
       font-weight: 700;
       color: var(--maroon);
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
     .family-names-list {
-      font-size: 12.8px;
+      font-size: 13px;
       color: var(--ink);
-      line-height: 1.7;
+      line-height: 1.78;
+    }
+
+    .family-dot {
+      color: var(--gold);
+      margin: 0 5px;
+      font-weight: 700;
     }
 
     /* Our Story / Moments Gallery */
@@ -683,8 +790,8 @@
       color: var(--maroon);
       padding: 6px 16px;
       border-radius: 999px;
-      font-style: italic;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      font-weight: 600;
     }
 
     /* Navigate to our Celebrations (Exact GPS Coordinates) */
@@ -719,8 +826,8 @@
       color: var(--maroon);
       padding: 4px 12px;
       border-radius: 999px;
-      font-size: 10.5px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       margin-bottom: 8px;
     }
 
@@ -729,8 +836,8 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      font-size: 11.5px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 700;
       color: var(--maroon);
     }
 
@@ -750,9 +857,9 @@
     }
 
     .loc-title {
-      font-size: 1.55rem;
+      font-size: 1.42rem;
       color: var(--maroon);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .loc-addr {
@@ -775,15 +882,14 @@
       border: none;
       border-radius: 999px;
       padding: 11px 14px;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      font-family: inherit;
     }
 
     .btn-soft-border {
@@ -792,15 +898,14 @@
       border: 1px solid rgba(104, 19, 34, 0.35);
       border-radius: 999px;
       padding: 11px 14px;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       text-decoration: none;
+      font-family: inherit;
     }
 
     /* Preshak Se / Contact Card */
@@ -845,14 +950,29 @@
   </style>
 </head>
 <body>
+  <!-- Subtle Royal PS Watermark Layer -->
+  <div class="royal-ps-bg" aria-hidden="true">
+    <div class="ps-watermark-grid">
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+      <div class="ps-mark-item"><span class="ps-mark-monogram">PS</span><span class="ps-mark-sub">SHUBHPAL</span></div>
+    </div>
+  </div>
+
   <div class="petals" id="petals"></div>
 
   <!-- Royal Cover -->
   <div id="book-cover">
     <div class="book-cover-card" onclick="openCardInvite()">
       <div>
-        <div class="hi" style="font-size: 12.5px; letter-spacing: 0.1em;">॥ मंगल परिणय ॥</div>
-        <div class="display" style="font-size: 1.18rem; margin-top: 6px; letter-spacing: 0.08em;">SHUBH VIVAAH</div>
+        <div style="font-size: 13px; font-weight: 600;">॥ मंगल परिणय ॥</div>
+        <div class="display" style="font-size: 1.15rem; margin-top: 6px; letter-spacing: 0.08em;">PS</div>
       </div>
 
       <div class="monogram-arch">
@@ -860,8 +980,8 @@
       </div>
 
       <div>
-        <div class="serif" style="font-size: 1.4rem; font-style: italic;">Palash weds Shubhi</div>
-        <div class="hi" style="font-size: 12px; opacity: 0.92; margin-top: 4px;">
+        <div style="font-size: 1.35rem; font-weight: 700;">पलाश संग शुभी</div>
+        <div style="font-size: 12px; opacity: 0.92; margin-top: 4px;">
           शुक्रवार • 11 दिसम्बर 2026 • भोपाल
         </div>
       </div>
@@ -869,62 +989,75 @@
 
     <div class="tap-open-trigger" onclick="openCardInvite()">
       <span class="tap-pulse-ring"></span>
-      <span>TAP THE BOOK TO OPEN</span>
+      <span>निमंत्रण पत्र खोलने के लिए स्पर्श करें</span>
     </div>
   </div>
 
   <main class="invite-container">
     <div class="top-header-bar">
-      <span class="hi">॥ श्री गणेशाय नमः ॥</span>
-      <button type="button" class="cover-btn" onclick="showCardCover()">View Cover</button>
+      <span>॥ श्री गणेशाय नमः ॥</span>
+      <button type="button" class="cover-btn" onclick="showCardCover()">आवरण देखें</button>
     </div>
 
-    <!-- Arch Hero -->
+    <!-- Arch Hero + Front Page Preshak -->
     <section class="arch-card">
-      <div class="om-badge hi" style="font-size: 1.35rem; font-weight: 700;">ॐ</div>
-      <div class="shloka-text hi">
+      <div class="om-badge">ॐ</div>
+      <div class="shloka-text">
         वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
         निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
       </div>
-      <div class="mangal-tag hi">॥ मंगल परिणय • शुभ विवाह ॥</div>
-      <h1 class="hero-couple serif">
-        Palash
-        <span class="hero-amp">&amp;</span>
-        Shubhi
+      <div class="mangal-tag">॥ मंगल परिणय • शुभ विवाह ॥</div>
+      <h1 class="hero-couple-hi">
+        पलाश
+        <span class="hero-amp">संग</span>
+        शुभी
       </h1>
-      <div class="hi" style="font-size: 13.5px; color: var(--maroon); font-weight: 600; margin-top: 6px;">
+      <div style="font-size: 13.5px; color: var(--maroon); font-weight: 700; margin-top: 6px;">
         चि. पलाश &nbsp;&bull;&nbsp; सौ. का. शुभी
       </div>
-      <div class="date-pill-box hi">
+      <div class="date-pill-box">
         शुक्रवार • 11 दिसम्बर 2026 • भोपाल
       </div>
-      <div style="margin-top: 14px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold);">
-        SCROLL &darr;
+
+      <!-- Front Page Preshak Se + Direct Call Links -->
+      <div class="front-preshak-box">
+        <div class="front-preshak-label">प्रेषक से</div>
+        <div class="front-preshak-names">श्रीमती संगीता, चंद्रभान तिवारी</div>
+        <div style="font-size: 11.5px; color: var(--muted); margin-top: 2px;">
+          निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल
+        </div>
+        <div class="front-call-pills">
+          <a class="call-chip-btn" href="tel:+917354959808">&#128222; 7354959808</a>
+          <a class="call-chip-soft" href="tel:+919977753725">&#128222; 9977753725</a>
+        </div>
+      </div>
+
+      <div style="margin-top: 14px; font-size: 11px; font-weight: 700; color: var(--gold);">
+        नीचे स्क्रॉल करें &darr;
       </div>
     </section>
 
-    <!-- Snehi Swajan / Couple & Family Section (Card Page 2) -->
+    <!-- Snehi Swajan / Couple & Family Section -->
     <section class="royal-card">
-      <div class="card-heading-hi hi">स्नेही स्वजन</div>
-      <p class="card-sub-hi hi">
+      <div class="card-heading-hi">स्नेही स्वजन</div>
+      <p class="card-sub-hi">
         परमपिता परमेश्वर की असीम अनुकम्पा एवं पूर्वजों के आशीर्वाद से हमारे परिवार में मांगलिक बेला का शुभ अवसर आया है। इस पावन अवसर पर सपरिवार पधारकर वर-वधू को स्नेहाशीष प्रदान करें।
       </p>
 
       <div class="couple-grid">
         <div class="person-box">
-          <div class="person-label">Bridegroom • वर पक्ष</div>
-          <div class="person-name hi">चि. पलाश</div>
-          <div class="person-sub hi">
-            सुपुत्र: श्रीमती सीमा एवं श्री यशवन्त तिवारी<br>
-            (पौत्र: स्व. श्री बालचन्द्र जी तिवारी)<br>
+          <div class="person-label">वर पक्ष</div>
+          <div class="person-name">चि. पलाश</div>
+          <div class="person-sub">
+            सुपुत्र: श्रीमती सुनीता एवं श्री यशवन्त तिवारी<br>
             निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)
           </div>
         </div>
 
         <div class="person-box">
-          <div class="person-label">Bride • वधू पक्ष</div>
-          <div class="person-name hi">सौ. का. शुभी</div>
-          <div class="person-sub hi">
+          <div class="person-label">वधू पक्ष</div>
+          <div class="person-name">सौ. का. शुभी</div>
+          <div class="person-sub">
             सुपुत्री: श्रीमती एवं श्री राजेन्द्र शर्मा<br>
             निवास: दतिया / टीकमगढ़ (म.प्र.)
           </div>
@@ -935,12 +1068,12 @@
     <!-- Pull to Reveal Countdown -->
     <section class="royal-card">
       <div class="scroll-rod-bar"></div>
-      <div style="margin-top: 12px; font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 700;">
-        Save The Date
+      <div style="margin-top: 12px; font-size: 11.5px; color: var(--gold); font-weight: 700;">
+        शुभ विवाह की पावन बेला
       </div>
-      <h2 class="serif" style="font-size: 1.85rem; color: var(--maroon); margin-top: 2px;">Pull to Reveal</h2>
+      <h2 class="card-heading-hi" style="margin-top: 2px;">समय गणना देखें</h2>
 
-      <div class="hi" style="font-size: 13px; color: var(--ink); margin-top: 8px; line-height: 1.55;">
+      <div style="font-size: 13px; color: var(--ink); margin-top: 6px; line-height: 1.55;">
         <strong>मंगल फेरे:</strong> शुक्रवार, 11 दिसम्बर 2026 • रात्रि 11:00 बजे बेला<br>
         <span style="color: var(--muted);">होटल प्राइड इनसेंट, VIP रोड, भोपाल</span>
       </div>
@@ -948,181 +1081,195 @@
       <button type="button" class="tassel-trigger-btn" onclick="toggleCountdownPanel()">
         <span class="tassel-line"></span>
         <span class="tassel-cap" id="tassel-cap"></span>
-        <span id="tassel-label">Pull Tassel to Reveal</span>
+        <span id="tassel-label">डोरी खींचकर समय देखें</span>
       </button>
 
       <div class="countdown-panel" id="countdown-panel">
         <div class="timer-grid">
-          <div class="timer-box"><span class="timer-num" id="c-days">--</span><span class="timer-lbl">Days</span></div>
-          <div class="timer-box"><span class="timer-num" id="c-hours">--</span><span class="timer-lbl">Hours</span></div>
-          <div class="timer-box"><span class="timer-num" id="c-mins">--</span><span class="timer-lbl">Mins</span></div>
-          <div class="timer-box"><span class="timer-num" id="c-secs">--</span><span class="timer-lbl">Secs</span></div>
+          <div class="timer-box"><span class="timer-num" id="c-days">--</span><span class="timer-lbl">दिन</span></div>
+          <div class="timer-box"><span class="timer-num" id="c-hours">--</span><span class="timer-lbl">घंटे</span></div>
+          <div class="timer-box"><span class="timer-num" id="c-mins">--</span><span class="timer-lbl">मिनट</span></div>
+          <div class="timer-box"><span class="timer-num" id="c-secs">--</span><span class="timer-lbl">सेकंड</span></div>
         </div>
-        <button type="button" class="cal-action-btn" onclick="downloadWeddingICS()">Add to Calendar</button>
+        <button type="button" class="cal-action-btn" onclick="downloadWeddingICS()">कैलेंडर में सेव करें</button>
       </div>
     </section>
 
     <!-- Swipeable Festivities -->
     <div class="sec-title-wrap">
-      <div class="sec-kicker">Manglik Karyakram • Swipe Cards</div>
-      <h2 class="serif sec-heading">Wedding Festivities</h2>
+      <div class="sec-kicker">मांगलिक उत्सव • कार्ड स्वाइप करें</div>
+      <h2 class="sec-heading">विवाह के कार्यक्रम</h2>
     </div>
 
     <div class="fest-carousel" id="fest-carousel"></div>
-    <div class="swipe-caption">&lsaquo; Swipe to see all 7 functions &rsaquo;</div>
+    <div class="swipe-caption">&lsaquo; सभी 7 कार्यक्रम देखने के लिए दाएँ-बाएँ स्वाइप करें &rsaquo;</div>
 
     <!-- Complete Card Program Schedule -->
     <div class="program-sheet">
       <div style="text-align: center;">
-        <span class="sheet-part-tag hi">भाग 1 • निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल</span>
+        <span class="sheet-part-tag">भाग 1 • निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल</span>
       </div>
 
       <div class="program-row">
         <div>
-          <div class="program-name hi">श्री गणेश एवं माता पूजन</div>
-          <div class="program-sub hi">शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।</div>
+          <div class="program-name">श्री गणेश एवं माता पूजन</div>
+          <div class="program-sub">शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।</div>
         </div>
-        <div class="program-time hi">08 Dec (मंगलवार)<br>सायं 4:00 बजे</div>
+        <div class="program-time">08 दिसम्बर (मंगलवार)<br>सायं 4:00 बजे</div>
       </div>
 
       <div class="program-row">
         <div>
-          <div class="program-name hi">मण्डपाच्छादन एवं मामेर</div>
-          <div class="program-sub hi">मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।</div>
+          <div class="program-name">मण्डपाच्छादन एवं मामेर</div>
+          <div class="program-sub">मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।</div>
         </div>
-        <div class="program-time hi">09 Dec (बुधवार)<br>प्रातः 9:30 बजे</div>
+        <div class="program-time">09 दिसम्बर (बुधवार)<br>प्रातः 9:30 बजे</div>
       </div>
 
       <div class="program-row">
         <div>
-          <div class="program-name hi">रतजगा मेहंदी</div>
-          <div class="program-sub hi">ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।</div>
+          <div class="program-name">रतजगा मेहंदी</div>
+          <div class="program-sub">ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।</div>
         </div>
-        <div class="program-time hi">09 Dec (बुधवार)<br>रात्रि 8:00 बजे</div>
+        <div class="program-time">09 दिसम्बर (बुधवार)<br>रात्रि 8:00 बजे</div>
       </div>
 
       <div style="text-align: center; margin-top: 14px;">
-        <span class="sheet-part-tag hi">भाग 2 • होटल प्राइड इनसेंट, VIP रोड, भोपाल</span>
+        <span class="sheet-part-tag">भाग 2 • होटल प्राइड इनसेंट, VIP रोड, भोपाल</span>
       </div>
 
       <div class="program-row">
         <div>
-          <div class="program-name hi">हल्दी कार्यक्रम</div>
-          <div class="program-sub hi">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="program-name">हल्दी कार्यक्रम</div>
+          <div class="program-sub">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
         </div>
-        <div class="program-time hi">10 Dec (गुरुवार)<br>दोपहर 2:00 बजे</div>
+        <div class="program-time">10 दिसम्बर (गुरुवार)<br>दोपहर 2:00 बजे</div>
       </div>
 
       <div class="program-row">
         <div>
-          <div class="program-name hi">संगीत संध्या</div>
-          <div class="program-sub hi">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="program-name">संगीत संध्या</div>
+          <div class="program-sub">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
         </div>
-        <div class="program-time hi">10 Dec (गुरुवार)<br>रात्रि 8:00 बजे</div>
+        <div class="program-time">10 दिसम्बर (गुरुवार)<br>रात्रि 8:00 बजे</div>
       </div>
 
       <div class="program-row">
         <div>
-          <div class="program-name hi">आशीर्वाद समारोह एवं स्वरुचिभोज</div>
-          <div class="program-sub hi">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="program-name">आशीर्वाद समारोह एवं स्वरुचिभोज</div>
+          <div class="program-sub">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
         </div>
-        <div class="program-time hi">11 Dec (शुक्रवार)<br>रात्रि 8:00 बजे</div>
+        <div class="program-time">11 दिसम्बर (शुक्रवार)<br>रात्रि 8:00 बजे</div>
       </div>
 
       <div class="program-row">
         <div>
-          <div class="program-name hi">मंगल फेरे</div>
-          <div class="program-sub hi">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
+          <div class="program-name">मंगल फेरे</div>
+          <div class="program-sub">होटल प्राइड इनसेंट, VIP रोड, भोपाल</div>
         </div>
-        <div class="program-time hi">11 Dec (शुक्रवार)<br>रात्रि 11:00 बजे बेला</div>
+        <div class="program-time">11 दिसम्बर (शुक्रवार)<br>रात्रि 11:00 बजे बेला</div>
       </div>
     </div>
 
-    <!-- Family & Blessings Section (Every Group Included) -->
+    <!-- Family Section (Exact Serial & Order) -->
     <div class="sec-title-wrap">
-      <div class="sec-kicker">With Warm Regards • तिवारी परिवार</div>
-      <h2 class="serif sec-heading">Family &amp; Inviters</h2>
+      <div class="sec-kicker">स्नेह एवं निमंत्रण • तिवारी परिवार</div>
+      <h2 class="sec-heading">परिवारजन</h2>
     </div>
 
     <section class="royal-card" style="margin-top: 0;">
       <div class="family-block">
-        <div class="family-role-title hi">स्वागतकाभी</div>
-        <div class="family-names-list hi">
-          श्रीमती शकुन्तला तिवारी<br>
-          श्रीमती सीमा एवं श्री यशवन्त तिवारी<br>
-          श्रीमती प्रीति एवं श्री पंकज तिवारी<br>
-          एवं समस्त तिवारी परिवार
+        <div class="family-role-title">स्वागतकाभी</div>
+        <div class="family-names-list">
+          श्रीमती सुनीता, यशवन्त तिवारी <span class="family-dot">•</span>
+          श्रीमती सृष्टि, संतोष तिवारी <span class="family-dot">•</span>
+          श्रीमती मुनमुन, पवन तिवारी <span class="family-dot">•</span>
+          कु. साक्षी तिवारी <span class="family-dot">•</span>
+          न्हवेश तिवारी <span class="family-dot">•</span>
+          कु. सुचिता तिवारी <span class="family-dot">•</span>
+          अक्षत तिवारी <span class="family-dot">•</span>
+          चीकू तिवारी
         </div>
       </div>
 
       <div class="family-block">
-        <div class="family-role-title hi">दर्शनाभिलाषी</div>
-        <div class="family-names-list hi">
-          बालचन्द्र जी एवं समस्त परिवारजन
+        <div class="family-role-title">दर्शनाभिलाषी</div>
+        <div class="family-names-list">
+          श्रीमती सरोज तिवारी <span class="family-dot">•</span>
+          श्रीमती सुधा, संजय तिवारी <span class="family-dot">•</span>
+          श्रीमती सबिता, अजय तिवारी <span class="family-dot">•</span>
+          श्रीमती शर्मिला, मनीष तिवारी
         </div>
       </div>
 
       <div class="family-block">
-        <div class="family-role-title hi">विनीत</div>
-        <div class="family-names-list hi">
-          श्री यशवन्त तिवारी • श्री पंकज तिवारी<br>
-          श्रीमती एवं श्री तिवारी परिवार • समस्त तिवारी परिवारजन, भोपाल (म.प्र.)
+        <div class="family-role-title">बालमनुहार</div>
+        <div class="family-names-list">
+          देवांश <span class="family-dot">|</span> बेबी <span class="family-dot">|</span> लक्ष्य <span class="family-dot">|</span> अविषा
+          <div style="margin-top: 6px; color: var(--maroon); font-weight: 700;">
+            नन्हे कदमों की रुनझुन, ढोल की धुन पर नाचेंगे,<br>
+            हमारे चाचा की शादी में #shubhpal बन जाएंगे।
+          </div>
         </div>
       </div>
 
       <div class="family-block">
-        <div class="family-role-title hi">बालमनुहार</div>
-        <div class="family-names-list hi">
-          देवांश, अद्विक, रिद्धिका एवं समस्त नन्हे-मुन्ने<br>
-          <span style="color: var(--maroon); font-style: italic;">“हमारे भैया-भाभी / चाचा-चाची की शादी में जलूल-जलूल आना!”</span>
+        <div class="family-role-title">विनीत</div>
+        <div class="family-names-list">
+          श्री रामविलास तिवारी <span class="family-dot">•</span>
+          श्री साहब लाल <span class="family-dot">•</span>
+          श्रीमती वैजयंती <span class="family-dot">•</span>
+          मुन्ना लाल तिवारी <span class="family-dot">•</span>
+          श्रीमती संगीता <span class="family-dot">•</span>
+          चंद्रभान तिवारी
         </div>
       </div>
     </section>
 
     <!-- Our Story / Moments Gallery -->
     <div class="sec-title-wrap">
-      <div class="sec-kicker">Cherished Frames</div>
-      <h2 class="serif sec-heading">Our Story</h2>
+      <div class="sec-kicker">स्नेह की यादगार तस्वीरें</div>
+      <h2 class="sec-heading">हमारी कहानी</h2>
     </div>
 
     <div class="moments-carousel">
       <div class="moment-frame-card">
-        <img src="photo1.jpeg" alt="Palash and Shubhi Moment 1">
-        <div class="moment-note serif">Together in every moment</div>
+        <img src="photo1.jpeg" alt="पलाश और शुभी — पल 1">
+        <div class="moment-note">हर पल साथ-साथ</div>
       </div>
       <div class="moment-frame-card">
-        <img src="photo2.jpeg" alt="Palash and Shubhi Moment 2">
-        <div class="moment-note serif">Grace, joy &amp; celebration</div>
+        <img src="photo2.jpeg" alt="पलाश और शुभी — पल 2">
+        <div class="moment-note">खुशियाँ, स्नेह और उत्सव</div>
       </div>
     </div>
 
     <!-- Navigate to our Celebrations (Exact GPS Coordinates) -->
     <div class="sec-title-wrap">
-      <div class="sec-kicker">Exact GPS Coordinates • Google Maps</div>
-      <h2 class="serif sec-heading">Navigate to our Celebrations!</h2>
+      <div class="sec-kicker">गूगल मैप • सटीक लोकेशन</div>
+      <h2 class="sec-heading">कार्यक्रम स्थल कैसे पहुँचें</h2>
     </div>
 
     <div class="location-card">
       <a class="map-preview-link" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=23.261740,77.371996">
-        <div class="map-chip">Wedding &amp; Reception • Tap for Exact Pin</div>
+        <div class="map-chip">विवाह एवं आशीर्वाद समारोह • मैप खोलने के लिए स्पर्श करें</div>
         <div class="route-row">
-          <span>Bhopal</span>
+          <span>भोपाल</span>
           <span class="route-connector"></span>
-          <span>Hotel Pride Inn, VIP Rd</span>
+          <span>होटल प्राइड इनसेंट, VIP रोड</span>
         </div>
       </a>
 
-      <div class="loc-title serif">Hotel Pride Inn, VIP Road</div>
-      <div class="loc-addr hi">होटल प्राइड इनसेंट, VIP रोड, भोपाल (म.प्र.)</div>
+      <div class="loc-title">होटल प्राइड इनसेंट, VIP रोड</div>
+      <div class="loc-addr">होटल प्राइड इनसेंट, VIP रोड, भोपाल (म.प्र.)</div>
 
       <div class="action-pair">
         <a class="btn-gold-maroon" target="_blank" rel="noopener"
            href="https://www.google.com/maps/dir/?api=1&destination=23.261740,77.371996">
-          Get Directions
+          दिशा देखें
         </a>
-        <button type="button" class="btn-soft-border" onclick="copyText('Hotel Pride Inn, VIP Road, Bhopal (23.261740, 77.371996)')">
-          Copy Address
+        <button type="button" class="btn-soft-border" onclick="copyText('होटल प्राइड इनसेंट, VIP रोड, भोपाल (23.261740, 77.371996)')">
+          पता कॉपी करें
         </button>
       </div>
     </div>
@@ -1130,45 +1277,45 @@
     <div class="location-card">
       <a class="map-preview-link" target="_blank" rel="noopener"
          href="https://www.google.com/maps/search/?api=1&query=23.2671376,77.4597344">
-        <div class="map-chip">Residence • Tap for Exact Pin</div>
+        <div class="map-chip">निज निवास • मैप खोलने के लिए स्पर्श करें</div>
         <div class="route-row">
-          <span>B.K. Road</span>
+          <span>बी.के. रोड</span>
           <span class="route-connector"></span>
-          <span>84, Triton Hills</span>
+          <span>84, ट्रायटन हिल्स</span>
         </div>
       </a>
 
-      <div class="loc-title serif">84, Triton Hills, B.K. Road</div>
-      <div class="loc-addr hi">निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)</div>
+      <div class="loc-title">84, ट्रायटन हिल्स, बी.के. रोड</div>
+      <div class="loc-addr">निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)</div>
 
       <div class="action-pair">
         <a class="btn-gold-maroon" target="_blank" rel="noopener"
            href="https://www.google.com/maps/dir/?api=1&destination=23.2671376,77.4597344">
-          Get Directions
+          दिशा देखें
         </a>
-        <button type="button" class="btn-soft-border" onclick="copyText('84, Triton Hills, B.K. Road, Bhopal (23.2671376, 77.4597344)')">
-          Copy Address
+        <button type="button" class="btn-soft-border" onclick="copyText('निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (23.2671376, 77.4597344)')">
+          पता कॉपी करें
         </button>
       </div>
     </div>
 
     <!-- Preshak Se / Contact Footer -->
-    <div class="preshak-card hi">
+    <div class="preshak-card">
       <div style="color: var(--gold); font-weight: 700; font-size: 14px; margin-bottom: 4px;">
         प्रेषक से • सम्पर्क सूत्र
       </div>
-      <div style="font-weight: 700; color: var(--maroon); font-size: 15px;">श्री यशवन्त तिवारी</div>
+      <div style="font-weight: 700; color: var(--maroon); font-size: 15px;">श्रीमती संगीता, चंद्रभान तिवारी</div>
       <div style="color: var(--muted); font-size: 12.5px;">
         निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल (म.प्र.)
       </div>
       <div class="phone-row">
-        <a class="btn-gold-maroon" href="tel:+917354999928">Call 7354999928</a>
-        <a class="btn-soft-border" href="tel:+919977735725">Call 9977735725</a>
+        <a class="btn-gold-maroon" href="tel:+917354959808">&#128222; 7354959808</a>
+        <a class="btn-soft-border" href="tel:+919977753725">&#128222; 9977753725</a>
       </div>
     </div>
   </main>
 
-  <div class="toast-bar" id="toast-bar">Copied</div>
+  <div class="toast-bar" id="toast-bar">पता कॉपी हो गया</div>
 
   <script>
     const gharMapUrl = "https://www.google.com/maps/search/?api=1&query=23.2671376,77.4597344";
@@ -1176,79 +1323,72 @@
 
     const cardFunctions = [
       {
-        when: "मंगलवार • 08 DEC 2026",
+        when: "मंगलवार • 08 दिसम्बर 2026",
         hi: "श्री गणेश एवं माता पूजन",
-        en: "Ganesh & Mata Pujan",
         note: "शुभ मंगल बेला में पधारकर देव पूजन एवं आशीर्वाद का लाभ लें।",
         emblem: "🪔",
         venue: "निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
-        time: "सायं 4:00 बजे (4:00 PM)",
+        time: "सायं 4:00 बजे",
         mapUrl: gharMapUrl,
         bg: "linear-gradient(155deg, #c76929, #8c3d11)"
       },
       {
-        when: "बुधवार • 09 DEC 2026",
+        when: "बुधवार • 09 दिसम्बर 2026",
         hi: "मण्डपाच्छादन एवं मामेर",
-        en: "Mandap & Mamer",
         note: "मण्डप की पावन छाया में मामेर एवं स्नेह मिलन का आनंद लें।",
         emblem: "🌿",
         venue: "निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
-        time: "प्रातः 9:30 बजे (9:30 AM)",
+        time: "प्रातः 9:30 बजे",
         mapUrl: gharMapUrl,
         bg: "linear-gradient(155deg, #b55b26, #743110)"
       },
       {
-        when: "बुधवार • 09 DEC 2026",
+        when: "बुधवार • 09 दिसम्बर 2026",
         hi: "रतजगा मेहंदी",
-        en: "Ratjaga Mehendi",
         note: "ढोलक की थाप और मेहंदी के रंगों संग रतजगा की शाम सजाएं।",
         emblem: "🍃",
         venue: "निज निवास: 84, ट्रायटन हिल्स, बी.के. रोड, भोपाल",
-        time: "रात्रि 8:00 बजे (8:00 PM)",
+        time: "रात्रि 8:00 बजे",
         mapUrl: gharMapUrl,
         bg: "linear-gradient(155deg, #2a7849, #15492a)"
       },
       {
-        when: "गुरुवार • 10 DEC 2026",
+        when: "गुरुवार • 10 दिसम्बर 2026",
         hi: "हल्दी कार्यक्रम",
-        en: "Haldi Ceremony",
         note: "हल्दी के पावन रंगों और मंगल गीतों के साथ उत्सव की शुरुआत।",
         emblem: "🌼",
         venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "दोपहर 2:00 बजे (2:00 PM)",
+        time: "दोपहर 2:00 बजे",
         mapUrl: vipMapUrl,
         bg: "linear-gradient(155deg, #dc9b1d, #ae7005)"
       },
       {
-        when: "गुरुवार • 10 DEC 2026",
+        when: "गुरुवार • 10 दिसम्बर 2026",
         hi: "संगीत संध्या",
-        en: "Sangeet Sandhya",
         note: "सुर, ताल और खुशियों से सजी एक यादगार शाम।",
         emblem: "🎶",
         venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "रात्रि 8:00 बजे (8:00 PM)",
+        time: "रात्रि 8:00 बजे",
         mapUrl: vipMapUrl,
         bg: "linear-gradient(155deg, #793984, #491b52)"
       },
       {
-        when: "शुक्रवार • 11 DEC 2026",
+        when: "शुक्रवार • 11 दिसम्बर 2026",
         hi: "आशीर्वाद समारोह एवं स्वरुचिभोज",
-        en: "Ashirwad & Dinner",
         note: "वर-वधू को स्नेहाशीष प्रदान कर प्रीतिभोज में सम्मिलित हों।",
         emblem: "✨",
         venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "रात्रि 8:00 बजे (8:00 PM)",
+        time: "रात्रि 8:00 बजे",
         mapUrl: vipMapUrl,
         bg: "linear-gradient(155deg, #982036, #5b0d1b)"
       },
       {
-        when: "शुक्रवार • 11 DEC 2026",
+        when: "शुक्रवार • 11 दिसम्बर 2026",
         hi: "मंगल फेरे",
-        en: "Mangal Phere",
         note: "अग्नि को साक्षी मानकर सात जन्मों के पावन बंधन की बेला।",
         emblem: "🔥",
         venue: "होटल प्राइड इनसेंट, VIP रोड, भोपाल",
-        time: "रात्रि 11:00 बजे बेला (11:00 PM)",
+        time: "रात्रि 11:00 बजे बेला",
         mapUrl: vipMapUrl,
         bg: "linear-gradient(155deg, #681322, #3b060f)"
       }
@@ -1262,15 +1402,14 @@
       card.innerHTML = `
         <div>
           <div class="fest-when">${item.when}</div>
-          <h3 class="fest-hi-title hi">${item.hi}</h3>
-          <div class="fest-en-title serif">${item.en}</div>
-          <div class="fest-note-hi hi">${item.note}</div>
+          <h3 class="fest-hi-title">${item.hi}</h3>
+          <div class="fest-note-hi">${item.note}</div>
         </div>
         <div class="fest-emblem">${item.emblem}</div>
         <div>
-          <div class="fest-venue-text hi">${item.venue}</div>
-          <div class="fest-time-pill hi">${item.time}</div><br>
-          <a class="fest-map-link" target="_blank" rel="noopener" href="${item.mapUrl}">Open Exact Location in Maps &rarr;</a>
+          <div class="fest-venue-text">${item.venue}</div>
+          <div class="fest-time-pill">${item.time}</div><br>
+          <a class="fest-map-link" target="_blank" rel="noopener" href="${item.mapUrl}">गूगल मैप पर लोकेशन देखें &rarr;</a>
         </div>
       `;
       festContainer.appendChild(card);
@@ -1290,7 +1429,7 @@
       const label = document.getElementById("tassel-label");
       const isOpen = panel.classList.toggle("open");
       cap.style.transform = isOpen ? "translateY(8px)" : "translateY(0)";
-      label.textContent = isOpen ? "Revealed" : "Pull Tassel to Reveal";
+      label.textContent = isOpen ? "समय खुल गया है" : "डोरी खींचकर समय देखें";
     }
 
     const weddingMoment = new Date("2026-12-11T23:00:00+05:30").getTime();
@@ -1311,8 +1450,8 @@
         "BEGIN:VEVENT",
         "DTSTART:20261211T173000Z",
         "DTEND:20261211T203000Z",
-        "SUMMARY:Palash weds Shubhi — Mangal Phere",
-        "LOCATION:Hotel Pride Inn, VIP Road, Bhopal (23.261740, 77.371996)",
+        "SUMMARY:पलाश संग शुभी — मंगल फेरे",
+        "LOCATION:होटल प्राइड इनसेंट, VIP रोड, भोपाल (23.261740, 77.371996)",
         "END:VEVENT",
         "END:VCALENDAR"
       ].join("\r\n");
@@ -1321,12 +1460,12 @@
       link.href = URL.createObjectURL(blob);
       link.download = "Palash-weds-Shubhi-2026.ics";
       link.click();
-      showToastMsg("Calendar invite downloaded");
+      showToastMsg("कैलेंडर रिमाइंडर सेव हो गया");
     }
 
     function copyText(txt) {
       navigator.clipboard?.writeText(txt);
-      showToastMsg("Address copied");
+      showToastMsg("पता कॉपी हो गया");
     }
 
     function showToastMsg(msg) {
