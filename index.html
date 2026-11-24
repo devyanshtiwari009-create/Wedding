@@ -177,7 +177,6 @@
       overflow: hidden;
     }
 
-    /* Spine & Inner Gold Filigree */
     .book-cover-card::before {
       content: "";
       position: absolute;
@@ -209,7 +208,6 @@
       background: linear-gradient(90deg, transparent, rgba(244, 215, 153, 0.85), transparent);
     }
 
-    /* Arch Jharokha + Rotating Gold Mandala */
     .monogram-stage {
       position: relative;
       width: 136px;
@@ -430,7 +428,6 @@
       font-weight: 700;
     }
 
-    /* Front Page Preshak Box */
     .front-preshak-box {
       margin-top: 16px;
       padding-top: 14px;
@@ -488,7 +485,6 @@
       font-weight: 700;
     }
 
-    /* Card Box Generic */
     .royal-card {
       margin-top: 20px;
       background: var(--surface);
@@ -545,7 +541,6 @@
       margin-top: 4px;
     }
 
-    /* Pull to Reveal Scroll & Countdown */
     .scroll-rod-bar {
       height: 14px;
       border-radius: 999px;
@@ -635,7 +630,6 @@
       font-family: inherit;
     }
 
-    /* Section Headings */
     .sec-title-wrap {
       text-align: center;
       margin: 32px 0 14px;
@@ -654,7 +648,6 @@
       font-weight: 700;
     }
 
-    /* Swipeable Festivities */
     .fest-carousel {
       display: flex;
       gap: 14px;
@@ -747,7 +740,6 @@
       font-weight: 600;
     }
 
-    /* Two-Page Card Schedule Sheet */
     .program-sheet {
       margin-top: 16px;
       background: var(--surface);
@@ -805,7 +797,6 @@
       white-space: nowrap;
     }
 
-    /* Family / Parivaar Cards */
     .family-block {
       background: #fdf8f2;
       border: 1px solid rgba(188, 142, 70, 0.35);
@@ -838,7 +829,6 @@
       font-weight: 700;
     }
 
-    /* Our Story / Moments Gallery */
     .moments-carousel {
       display: flex;
       gap: 14px;
@@ -888,7 +878,6 @@
       font-weight: 600;
     }
 
-    /* Navigate to our Celebrations (Exact GPS Coordinates) */
     .location-card {
       background: var(--surface);
       border-radius: 24px;
@@ -1002,7 +991,6 @@
       font-family: inherit;
     }
 
-    /* Preshak Se / Contact Card */
     .preshak-card {
       margin-top: 20px;
       background: var(--surface);
@@ -1044,6 +1032,11 @@
   </style>
 </head>
 <body>
+  <!-- Wedding Song Audio -->
+  <audio id="weddingAudio" loop preload="auto">
+    <source src="./assets/aaj-sajeya.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- Subtle Royal PS Watermark Layer -->
   <div class="royal-ps-bg" aria-hidden="true">
     <div class="ps-watermark-grid">
@@ -1096,7 +1089,7 @@
     <div class="top-header-bar">
       <span>॥ श्री गणेशाय नमः ॥</span>
       <div class="header-actions">
-        <button type="button" class="pill-btn" id="music-toggle-btn" onclick="toggleSoftDhun()">🎵 संगीत: बंद</button>
+        <button type="button" class="pill-btn" id="music-toggle-btn" onclick="toggleWeddingMusic()">🎵 संगीत: बंद</button>
         <button type="button" class="pill-btn" onclick="showCardCover()">आवरण देखें</button>
       </div>
     </div>
@@ -1273,7 +1266,7 @@
       </div>
     </div>
 
-    <!-- Family Section (Exact Serial & Order) -->
+    <!-- Family Section -->
     <div class="sec-title-wrap">
       <div class="sec-kicker">स्नेह एवं निमंत्रण • तिवारी परिवार</div>
       <h2 class="sec-heading">परिवारजन</h2>
@@ -1345,7 +1338,7 @@
       </div>
     </div>
 
-    <!-- Navigate to our Celebrations (Exact GPS Coordinates) -->
+    <!-- Navigate to our Celebrations -->
     <div class="sec-title-wrap">
       <div class="sec-kicker">गूगल मैप • सटीक लोकेशन</div>
       <h2 class="sec-heading">कार्यक्रम स्थल कैसे पहुँचें</h2>
@@ -1517,95 +1510,49 @@
       festContainer.appendChild(card);
     });
 
-    /* Soft Royal Wedding Instrumental Melody (Web Audio API) */
-    let audioCtx = null;
-    let dhunTimer = null;
-    let isDhunPlaying = false;
-    let noteStep = 0;
-
-    const softMelody = [293.66, 329.63, 392.00, 440.00, 392.00, 329.63, 293.66, 220.00];
-
-    function playSoftTone(freq) {
-      if (!audioCtx) return;
-      const now = audioCtx.currentTime;
-      const osc = audioCtx.createOscillator();
-      const subOsc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, now);
-
-      subOsc.type = "triangle";
-      subOsc.frequency.setValueAtTime(freq * 0.5, now);
-
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.032, now + 0.18);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.45);
-
-      osc.connect(gain);
-      subOsc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start(now);
-      subOsc.start(now);
-      osc.stop(now + 1.5);
-      subOsc.stop(now + 1.5);
-    }
-
-    function startSoftDhun() {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContextClass) return;
-      if (!audioCtx) {
-        audioCtx = new AudioContextClass();
-      }
-      if (audioCtx.state === "suspended") {
-        audioCtx.resume();
-      }
-      if (isDhunPlaying) return;
-      isDhunPlaying = true;
-      updateMusicButton();
-      playSoftTone(softMelody[noteStep % softMelody.length]);
-      noteStep++;
-      dhunTimer = setInterval(() => {
-        playSoftTone(softMelody[noteStep % softMelody.length]);
-        noteStep++;
-      }, 1550);
-    }
-
-    function stopSoftDhun() {
-      isDhunPlaying = false;
-      if (dhunTimer) {
-        clearInterval(dhunTimer);
-        dhunTimer = null;
-      }
-      updateMusicButton();
-    }
-
-    function toggleSoftDhun() {
-      if (isDhunPlaying) {
-        stopSoftDhun();
-        showToastMsg("संगीत बंद कर दिया गया");
-      } else {
-        startSoftDhun();
-        showToastMsg("मधुर वाद्य धुन शुरू हुई");
-      }
-    }
+    /* MP3 Wedding Music Control */
+    const weddingAudio = document.getElementById("weddingAudio");
+    const musicBtn = document.getElementById("music-toggle-btn");
+    weddingAudio.volume = 0.45;
 
     function updateMusicButton() {
-      const btn = document.getElementById("music-toggle-btn");
-      if (!btn) return;
-      if (isDhunPlaying) {
-        btn.textContent = "🎵 संगीत: चालू";
-        btn.classList.add("active-music");
+      if (!musicBtn) return;
+      if (!weddingAudio.paused) {
+        musicBtn.textContent = "🎵 संगीत: चालू";
+        musicBtn.classList.add("active-music");
       } else {
-        btn.textContent = "🎵 संगीत: बंद";
-        btn.classList.remove("active-music");
+        musicBtn.textContent = "🎵 संगीत: बंद";
+        musicBtn.classList.remove("active-music");
+      }
+    }
+
+    async function startWeddingMusic() {
+      try {
+        await weddingAudio.play();
+        updateMusicButton();
+      } catch (err) {
+        console.error("Audio playback failed:", err);
+      }
+    }
+
+    function stopWeddingMusic() {
+      weddingAudio.pause();
+      updateMusicButton();
+    }
+
+    async function toggleWeddingMusic() {
+      if (weddingAudio.paused) {
+        await startWeddingMusic();
+        showToastMsg("विवाह गीत शुरू हुआ");
+      } else {
+        stopWeddingMusic();
+        showToastMsg("संगीत बंद कर दिया गया");
       }
     }
 
     function openCardInvite() {
       document.getElementById("book-cover").classList.add("open");
-      startSoftDhun();
+      startWeddingMusic();
     }
 
     function showCardCover() {
@@ -1674,37 +1621,5 @@
       petalsLayer.appendChild(petal);
     }
   </script>
-  <!-- Tera baaki purana code yahan tak hoga -->
-
-  <!-- Yahan se music code shuru -->
-  <audio id="weddingAudio" loop preload="metadata">
-    <source src="./assets/aaj-sajeya.mp3" type="audio/mpeg">
-  </audio>
-
-  <button id="musicBtn" type="button" aria-label="Toggle Background Music">
-    🎵 Play Music
-  </button>
-
-  <script>
-    const weddingAudio = document.getElementById("weddingAudio");
-    const musicBtn = document.getElementById("musicBtn");
-
-    weddingAudio.volume = 0.35;
-
-    musicBtn.addEventListener("click", async () => {
-      try {
-        if (weddingAudio.paused) {
-          await weddingAudio.play();
-          musicBtn.textContent = "🔊 Pause Music";
-        } else {
-          weddingAudio.pause();
-          musicBtn.textContent = "🎵 Play Music";
-        }
-      } catch (err) {
-        console.error("Audio playback failed:", err);
-      }
-    });
-  </script>
-  <!-- Yahan tak music code -->
 </body>
 </html>
