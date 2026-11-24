@@ -333,7 +333,7 @@
       border-color: rgba(248, 227, 180, 0.85);
     }
 
-    /* Video-Style Royal Unrolling Parchment Scroll */
+    /* Royal Unrolling Parchment Scroll */
     .scroll-assembly {
       position: relative;
       margin-bottom: 24px;
@@ -555,7 +555,7 @@
       margin-top: 4px;
     }
 
-    /* Video-Style Deep Crimson Velvet Save The Date Section */
+    /* Crimson Velvet Save The Date Section */
     .crimson-velvet-band {
       margin-top: 24px;
       border-radius: 28px;
@@ -627,7 +627,7 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
     }
 
-    /* Video-Style Fairy Lights + Polaroid Photo Memories Deck */
+    /* Fairy Lights + Polaroid Photo Memories Deck */
     .memories-wrapper {
       margin-top: 28px;
       text-align: center;
@@ -713,7 +713,7 @@
       color: var(--crimson);
     }
 
-    /* Video-Style Page-Fold / Calendar Flip Event Card (EVENT 01 - 07) */
+    /* Page-Fold / Calendar Flip Event Card (EVENT 01 - 07) */
     .event-flip-wrapper {
       margin-top: 30px;
       perspective: 1400px;
@@ -1020,7 +1020,7 @@
       bottom: 22px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
-      background: var(--crimson-velvet);
+      background: var(--maroon-velvet);
       color: var(--gold-light);
       border: 1px solid rgba(248, 227, 180, 0.65);
       padding: 10px 18px;
@@ -1039,10 +1039,7 @@
   </style>
 </head>
 <body>
-  <!-- Optional MP3 Audio Support (Place song.mp3 in repo if desired; otherwise soft melody plays automatically) -->
-  <audio id="bg-mp3-audio" src="song.mp3" loop preload="none"></audio>
-
-  <!-- Subtle Royal PS Watermark Layer -->
+  <!-- Subtle Royal PS Watermark -->
   <div class="ps-watermark-layer" aria-hidden="true">
     <div class="ps-grid">
       <div class="ps-cell"><span class="ps-crest">PS</span><span class="ps-tag">SHUBHPAL</span></div>
@@ -1057,7 +1054,7 @@
     </div>
   </div>
 
-  <!-- Rose Petals & Shower Layer -->
+  <!-- Floating Petals & Shower Layer -->
   <div class="petals-wrap" id="petals-wrap"></div>
 
   <!-- Royal Velvet Book Cover -->
@@ -1102,7 +1099,7 @@
       </div>
     </div>
 
-    <!-- Video-Style Unrolling Royal Parchment Scroll -->
+    <!-- Unrolling Royal Parchment Scroll -->
     <section class="scroll-assembly">
       <div class="scroll-roller"></div>
       <div class="scroll-parchment">
@@ -1161,7 +1158,7 @@
       </div>
     </section>
 
-    <!-- Video-Style Crimson Velvet Save The Date & Live Countdown -->
+    <!-- Crimson Velvet Save The Date & Live Countdown -->
     <section class="crimson-velvet-band">
       <div style="font-size: 11.5px; color: var(--gold-light); font-weight: 700;">शुभ विवाह की पावन बेला</div>
       <h2 style="font-size: 1.85rem; font-weight: 700; margin-top: 2px;">मंगल फेरे</h2>
@@ -1187,7 +1184,7 @@
       </div>
     </section>
 
-    <!-- Video-Style Fairy Lights + Polaroid Photo Deck -->
+    <!-- Fairy Lights + Polaroid Photo Deck -->
     <section class="memories-wrapper">
       <div class="section-kicker">स्नेह की यादगार तस्वीरें • स्वाइप या स्पर्श करें</div>
       <h2 class="section-heading">हमारी कहानी</h2>
@@ -1207,7 +1204,7 @@
       </div>
     </section>
 
-    <!-- Video-Style Page-Fold Booklet Event Cards (01 / 07) -->
+    <!-- Page-Fold Booklet Event Cards (01 / 07) -->
     <section class="event-flip-wrapper">
       <div style="text-align: center; margin-bottom: 12px;">
         <div class="section-kicker">मांगलिक उत्सव • पेज पलटें</div>
@@ -1372,7 +1369,7 @@
       </div>
     </section>
 
-    <!-- Video-Style Embedded Bhopal Live Map + Exact Venue Cards -->
+    <!-- Embedded Bhopal Live Map + Exact Venue Cards -->
     <div style="text-align: center; margin-top: 28px;">
       <div class="section-kicker">गूगल मैप • सटीक लोकेशन</div>
       <h2 class="section-heading" style="margin-bottom: 0;">कार्यक्रम स्थल कैसे पहुँचें</h2>
@@ -1616,77 +1613,80 @@
       }
     }
 
-    /* Upgraded Rich Wedding Music Engine (Uses song.mp3 if present, otherwise warm polyphonic wedding melody) */
+    /* Brand-New Soft Royal Flute/Harp Wedding Melody (No song.mp3 dependency) */
     let audioCtx = null;
     let musicLoop = null;
     let musicActive = false;
-    let chordStep = 0;
-    const mp3El = document.getElementById("bg-mp3-audio");
+    let phraseIdx = 0;
 
-    // Warm Indian Raag Bhupali / Yaman style wedding progression
-    const progression = [
-      [261.63, 329.63, 392.00], // Sa Ga Pa
-      [293.66, 369.99, 440.00], // Re Ma# Dha
-      [329.63, 392.00, 493.88], // Ga Pa Ni
-      [293.66, 392.00, 440.00], // Re Pa Dha
-      [261.63, 329.63, 523.25], // Sa Ga Sa'
-      [220.00, 329.63, 392.00]  // Dha_ Pa Ga
+    // Gentle romantic wedding phrases in D major / Yaman feel
+    const newSoftPhrases = [
+      [293.66, 369.99, 440.00, 587.33],
+      [329.63, 440.00, 554.37, 659.25],
+      [369.99, 440.00, 587.33, 739.99],
+      [329.63, 392.00, 493.88, 587.33],
+      [293.66, 369.99, 440.00, 554.37],
+      [246.94, 329.63, 440.00, 587.33]
     ];
 
-    function playWarmChord(freqs) {
+    function playNewSoftPhrase(notesArr) {
       if (!audioCtx) return;
       const now = audioCtx.currentTime;
-      freqs.forEach((f, idx) => {
+      notesArr.forEach((freq, i) => {
         const osc = audioCtx.createOscillator();
+        const overtone = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        osc.type = idx === 2 ? "sine" : "triangle";
-        osc.frequency.setValueAtTime(f, now + idx * 0.08);
-        gain.gain.setValueAtTime(0.0001, now + idx * 0.08);
-        gain.gain.exponentialRampToValueAtTime(0.022, now + idx * 0.08 + 0.25);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.1);
+
+        const startAt = now + i * 0.42;
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, startAt);
+
+        overtone.type = "triangle";
+        overtone.frequency.setValueAtTime(freq * 2, startAt);
+
+        const subGain = audioCtx.createGain();
+        subGain.gain.setValueAtTime(0.0001, startAt);
+        subGain.gain.exponentialRampToValueAtTime(0.006, startAt + 0.14);
+        subGain.gain.exponentialRampToValueAtTime(0.0001, startAt + 1.6);
+
+        gain.gain.setValueAtTime(0.0001, startAt);
+        gain.gain.exponentialRampToValueAtTime(0.024, startAt + 0.16);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startAt + 1.75);
+
         osc.connect(gain);
+        overtone.connect(subGain);
         gain.connect(audioCtx.destination);
-        osc.start(now + idx * 0.08);
-        osc.stop(now + 2.15);
+        subGain.connect(audioCtx.destination);
+
+        osc.start(startAt);
+        overtone.start(startAt);
+        osc.stop(startAt + 1.8);
+        overtone.stop(startAt + 1.8);
       });
     }
 
     function startWeddingMusic() {
       if (musicActive) return;
-      musicActive = true;
-      updateMusicUI();
-
-      // Try song.mp3 first if user added one, fallback to built-in polyphonic wedding melody
-      if (mp3El) {
-        mp3El.volume = 0.45;
-        mp3El.play().catch(() => {
-          startSynthMelody();
-        });
-      } else {
-        startSynthMelody();
-      }
-    }
-
-    function startSynthMelody() {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (!AC) return;
       if (!audioCtx) audioCtx = new AC();
       if (audioCtx.state === "suspended") audioCtx.resume();
+      musicActive = true;
+      updateMusicUI();
+
+      playNewSoftPhrase(newSoftPhrases[phraseIdx % newSoftPhrases.length]);
+      phraseIdx++;
+
       if (musicLoop) clearInterval(musicLoop);
-      playWarmChord(progression[chordStep % progression.length]);
-      chordStep++;
       musicLoop = setInterval(() => {
         if (!musicActive) return;
-        playWarmChord(progression[chordStep % progression.length]);
-        chordStep++;
-      }, 2100);
+        playNewSoftPhrase(newSoftPhrases[phraseIdx % newSoftPhrases.length]);
+        phraseIdx++;
+      }, 2400);
     }
 
     function stopWeddingMusic() {
       musicActive = false;
-      if (mp3El) {
-        mp3El.pause();
-      }
       if (musicLoop) {
         clearInterval(musicLoop);
         musicLoop = null;
@@ -1700,7 +1700,7 @@
         showToast("संगीत बंद कर दिया गया");
       } else {
         startWeddingMusic();
-        showToast("मधुर मंगल संगीत शुरू हुआ");
+        showToast("नई मधुर मंगल धुन शुरू हुई");
       }
     }
 
