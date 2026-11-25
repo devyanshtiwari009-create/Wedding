@@ -1877,14 +1877,17 @@
       }
     }
 
-    /* लाइव मानचित्र */
+    
     if (window.L) {
+      const royalTileUrl = "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+      const royalTileOpts = { maxZoom: 19, subdomains: "abcd" };
+
       const m1 = L.map("map-vip", { scrollWheelZoom: false }).setView(vipCoords, 15);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(m1);
+      L.tileLayer(royalTileUrl, royalTileOpts).addTo(m1);
       L.marker(vipCoords).addTo(m1).bindPopup(vipAddressText).openPopup();
 
       const m2 = L.map("map-ghar", { scrollWheelZoom: false }).setView(gharCoords, 15);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19 }).addTo(m2);
+      L.tileLayer(royalTileUrl, royalTileOpts).addTo(m2);
       L.marker(gharCoords).addTo(m2).bindPopup(gharAddressText).openPopup();
     }
 
