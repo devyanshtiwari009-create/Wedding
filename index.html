@@ -11,17 +11,17 @@
   <style>
     :root {
       --cream: #fbf5ec;
-      --cream-warm: #f6eadb;
-      --crimson: #6e0f22;
+      --cream-warm: #f7ebdc;
+      --crimson: #6d0f22;
       --crimson-dark: #420613;
-      --crimson-velvet: #29020a;
+      --crimson-velvet: #280209;
       --gold: #c68e36;
-      --gold-foil: linear-gradient(125deg, #a66f1c 0%, #f9e4a8 45%, #c58d33 70%, #fff2c8 100%);
-      --gold-light: #f8e3b2;
+      --gold-foil: linear-gradient(125deg, #9d6616 0%, #fce8b2 42%, #c99034 68%, #fff4cf 100%);
+      --gold-light: #f9e4b4;
       --ivory: #fffdf9;
-      --ink: #291116;
-      --muted: #6f4f55;
-      --shadow-royal: 0 24px 55px rgba(41, 2, 10, 0.18);
+      --ink: #281015;
+      --muted: #6e4e54;
+      --shadow-royal: 0 24px 58px rgba(40, 2, 9, 0.2);
     }
 
     * {
@@ -39,13 +39,39 @@
       font-family: 'Noto Serif Devanagari', serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 8%, rgba(218, 124, 140, 0.2), transparent 44%),
-        radial-gradient(circle at 86% 14%, rgba(226, 173, 72, 0.24), transparent 46%),
-        linear-gradient(180deg, #faf2e8 0%, #f5e6de 52%, #fbf5ec 100%);
+        radial-gradient(circle at 14% 8%, rgba(214, 118, 134, 0.2), transparent 44%),
+        radial-gradient(circle at 88% 14%, rgba(226, 173, 72, 0.25), transparent 46%),
+        linear-gradient(180deg, #faf1e6 0%, #f5e5dc 50%, #fbf5ec 100%);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
     }
+
+    /* शाही काँच (Sheesh/Kaanch) नक्काशी बॉर्डर मिक्सिन */
+    .royal-kaanch-card {
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 250, 242, 0.92) 50%, rgba(252, 241, 224, 0.85) 100%);
+      backdrop-filter: blur(8px);
+      border-radius: 26px;
+      border: 2px solid rgba(198, 142, 54, 0.72);
+      box-shadow:
+        var(--shadow-royal),
+        inset 0 0 0 5px rgba(255, 255, 255, 0.55),
+        inset 0 0 0 6.5px rgba(198, 142, 54, 0.35);
+      position: relative;
+    }
+
+    .royal-kaanch-card::before,
+    .royal-kaanch-card::after {
+      content: "❖";
+      position: absolute;
+      font-size: 11px;
+      color: var(--gold);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+    .royal-kaanch-card::before { top: 10px; left: 14px; }
+    .royal-kaanch-card::after { top: 10px; right: 14px; }
 
     /* शाही PS वाटरमार्क */
     .ps-watermark-layer {
@@ -77,7 +103,7 @@
       font-family: 'Cinzel Decorative', serif;
       font-size: 2rem;
       font-weight: 700;
-      border: 1.2px solid rgba(110, 15, 34, 0.55);
+      border: 1.2px solid rgba(109, 15, 34, 0.55);
       border-radius: 34px 34px 10px 10px;
       padding: 8px 14px;
       line-height: 1.05;
@@ -106,7 +132,7 @@
       width: 11px;
       height: 15px;
       border-radius: 80% 15% 80% 25%;
-      background: linear-gradient(135deg, rgba(212, 72, 98, 0.72), rgba(232, 180, 74, 0.42));
+      background: linear-gradient(135deg, rgba(208, 66, 92, 0.72), rgba(232, 180, 74, 0.4));
       animation: fallPetal linear infinite;
     }
 
@@ -133,169 +159,6 @@
       100% { transform: translateY(108vh) translateX(var(--drift, 40px)) rotate(540deg) scale(1.05); opacity: 0; }
     }
 
-    /* क्रीम फ्लोरल एनवेलप + गणेश वैक्स सील + गोल्डन लाइट बर्स्ट */
-    #seal-envelope-cover {
-      position: fixed;
-      inset: 0;
-      z-index: 95;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background:
-        radial-gradient(circle at 50% 42%, rgba(255, 224, 152, 0.45), transparent 55%),
-        linear-gradient(180deg, #f8f1e6 0%, #efe2d2 55%, #f7eee2 100%);
-      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.9s ease;
-      overflow: hidden;
-    }
-
-    #seal-envelope-cover.bursting {
-      background: radial-gradient(circle at 50% 45%, #fff9e6 0%, #f6d588 35%, #f8f1e6 75%);
-    }
-
-    #seal-envelope-cover.opened {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    .envelope-card {
-      width: 100%;
-      max-width: 372px;
-      min-height: 540px;
-      border-radius: 22px;
-      background:
-        radial-gradient(circle at 50% 35%, rgba(255, 248, 232, 0.95), rgba(243, 231, 214, 0.96));
-      border: 1.6px solid rgba(198, 142, 54, 0.45);
-      box-shadow: 0 26px 65px rgba(41, 2, 10, 0.2);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 36px 20px;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .envelope-flap-top {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 52%;
-      background: linear-gradient(180deg, #efe2d1 0%, #f8efe4 100%);
-      clip-path: polygon(0 0, 100% 0, 50% 82%);
-      border-bottom: 1px solid rgba(198, 142, 54, 0.35);
-      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.7s ease;
-      transform-origin: top center;
-      pointer-events: none;
-    }
-
-    #seal-envelope-cover.bursting .envelope-flap-top {
-      transform: rotateX(72deg) translateY(-18px);
-      opacity: 0.25;
-    }
-
-    .corner-rose-badge {
-      position: absolute;
-      font-size: 22px;
-      opacity: 0.38;
-      color: #b78d6b;
-      pointer-events: none;
-    }
-    .cr-tl { top: 14px; left: 16px; }
-    .cr-tr { top: 14px; right: 16px; }
-    .cr-bl { bottom: 14px; left: 16px; }
-    .cr-br { bottom: 14px; right: 16px; }
-
-    .golden-ray-halo {
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 226, 142, 0.88) 0%, rgba(244, 194, 88, 0.35) 45%, transparent 72%);
-      opacity: 0;
-      transform: scale(0.5);
-      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
-      pointer-events: none;
-      z-index: 2;
-    }
-
-    #seal-envelope-cover.bursting .golden-ray-halo {
-      opacity: 1;
-      transform: scale(3.4);
-    }
-
-    .wax-seal-btn {
-      position: relative;
-      z-index: 4;
-      width: 104px;
-      height: 104px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 30%, #9b1830 0%, #650b1c 62%, #3b040e 100%);
-      border: 3px solid rgba(248, 227, 180, 0.85);
-      box-shadow:
-        0 14px 30px rgba(59, 4, 14, 0.4),
-        inset 0 2px 8px rgba(255, 224, 152, 0.45);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-light);
-      margin: 12px 0 14px;
-      transition: transform 0.45s ease;
-    }
-
-    #seal-envelope-cover.bursting .wax-seal-btn {
-      transform: scale(1.22);
-    }
-
-    .seal-ganesh-glyph {
-      font-size: 2.3rem;
-      line-height: 1;
-      text-shadow: 0 2px 10px rgba(255, 224, 152, 0.5);
-    }
-
-    .seal-ps-mini {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      margin-top: 2px;
-      opacity: 0.92;
-    }
-
-    .tap-reveal-label {
-      position: relative;
-      z-index: 4;
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      color: #8c6a58;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .seal-heading-hi {
-      position: relative;
-      z-index: 4;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--crimson);
-      margin-top: 4px;
-    }
-
-    .seal-shloka-hi {
-      position: relative;
-      z-index: 4;
-      font-size: 11.5px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-top: 6px;
-      max-width: 280px;
-    }
-
     /* मुख्य पेज ढाँचा */
     .page-shell {
       position: relative;
@@ -319,8 +182,8 @@
       border-radius: 999px;
       background: rgba(255, 253, 249, 0.94);
       backdrop-filter: blur(10px);
-      border: 1.3px solid rgba(198, 142, 54, 0.6);
-      box-shadow: 0 8px 22px rgba(41, 2, 10, 0.12);
+      border: 1.3px solid rgba(198, 142, 54, 0.65);
+      box-shadow: 0 8px 22px rgba(40, 2, 9, 0.12);
       font-size: 11.5px;
       font-weight: 700;
       color: var(--crimson);
@@ -363,7 +226,7 @@
       text-decoration: none;
       flex: 0 0 auto;
       background: var(--ivory);
-      border: 1px solid rgba(198, 142, 54, 0.55);
+      border: 1px solid rgba(198, 142, 54, 0.58);
       color: var(--crimson);
       padding: 5px 12px;
       border-radius: 999px;
@@ -371,73 +234,82 @@
       font-weight: 700;
     }
 
-    /* खुलता हुआ शाही स्वर्ण पत्र */
-    .scroll-assembly {
+    /* शुरुआत में ही खुलता हुआ शाही स्वर्णिम रोल (Royal Golden Unrolling Scroll) */
+    .golden-royal-scroll {
       position: relative;
       margin-bottom: 24px;
+      cursor: pointer;
     }
 
-    .scroll-roller {
-      height: 22px;
+    .golden-roller-bar {
+      height: 26px;
       border-radius: 999px;
-      background: linear-gradient(180deg, #b87b24 0%, #fae4a6 38%, #c78d32 70%, #8b5610 100%);
-      box-shadow: 0 8px 18px rgba(107, 63, 12, 0.35);
+      background:
+        linear-gradient(180deg, #9b6211 0%, #fff0bd 34%, #cf9334 68%, #7d4b0a 100%);
+      box-shadow:
+        0 10px 22px rgba(125, 75, 10, 0.38),
+        inset 0 2px 4px rgba(255, 250, 225, 0.85);
       position: relative;
-      z-index: 3;
-      border: 1px solid rgba(255, 243, 204, 0.85);
+      z-index: 4;
+      border: 1.3px solid rgba(255, 244, 204, 0.92);
     }
 
-    .scroll-roller::before,
-    .scroll-roller::after {
-      content: "";
+    .golden-roller-bar::before,
+    .golden-roller-bar::after {
+      content: "❖";
       position: absolute;
-      top: -3px;
-      width: 14px;
-      height: 28px;
-      border-radius: 6px;
-      background: linear-gradient(180deg, #8e5912, #f5d88e, #7a480a);
-      border: 1px solid rgba(255, 240, 196, 0.8);
+      top: -4px;
+      width: 20px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #87520d, #fae09b, #734207);
+      border: 1.2px solid #fff2c6;
+      color: #420613;
+      font-size: 11px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
     }
-    .scroll-roller::before { left: -4px; }
-    .scroll-roller::after { right: -4px; }
+    .golden-roller-bar::before { left: -6px; }
+    .golden-roller-bar::after { right: -6px; }
 
-    .scroll-parchment {
+    .golden-scroll-body {
       margin: -6px 10px;
       background:
-        radial-gradient(circle at 50% 12%, rgba(248, 227, 180, 0.38), transparent 55%),
-        linear-gradient(180deg, #fffdf9 0%, #fcf4e4 50%, #fffdf9 100%);
-      border-left: 2px solid rgba(198, 142, 54, 0.72);
-      border-right: 2px solid rgba(198, 142, 54, 0.72);
-      box-shadow: var(--shadow-royal);
+        radial-gradient(circle at 50% 10%, rgba(252, 232, 178, 0.45), transparent 56%),
+        linear-gradient(180deg, #fffdf9 0%, #fdf3e1 52%, #fffdf9 100%);
+      border-left: 2.5px solid rgba(198, 142, 54, 0.85);
+      border-right: 2.5px solid rgba(198, 142, 54, 0.85);
+      box-shadow:
+        var(--shadow-royal),
+        inset 0 0 0 7px rgba(255, 255, 255, 0.55),
+        inset 0 0 0 8.5px rgba(198, 142, 54, 0.38);
       padding: 28px 18px 26px;
       text-align: center;
       position: relative;
       overflow: hidden;
-      max-height: 1100px;
-      transition: max-height 1.15s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.9s ease;
+      max-height: 1200px;
+      animation: goldenScrollUnroll 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
-    .scroll-parchment::before {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border: 1px solid rgba(198, 142, 54, 0.45);
-      pointer-events: none;
+    @keyframes goldenScrollUnroll {
+      0% { max-height: 70px; opacity: 0.35; }
+      100% { max-height: 1200px; opacity: 1; }
     }
 
     .ganesh-emblem {
-      width: 58px;
-      height: 58px;
+      width: 62px;
+      height: 62px;
       margin: 0 auto 8px;
       border-radius: 50%;
-      background: linear-gradient(145deg, #7e1125, #470613);
-      border: 1.5px solid var(--gold-light);
+      background: linear-gradient(145deg, #7e1125, #420613);
+      border: 2px solid var(--gold-light);
       color: var(--gold-light);
       display: grid;
       place-items: center;
-      font-size: 1.45rem;
+      font-size: 1.55rem;
       font-weight: 700;
-      box-shadow: 0 8px 18px rgba(71, 6, 19, 0.25);
+      box-shadow: 0 10px 22px rgba(66, 6, 19, 0.28);
     }
 
     .shloka-line {
@@ -461,7 +333,7 @@
     }
 
     .scroll-couple-title {
-      font-size: clamp(2rem, 8.2vw, 2.7rem);
+      font-size: clamp(2.05rem, 8.2vw, 2.75rem);
       color: var(--crimson);
       font-weight: 700;
       line-height: 1.18;
@@ -480,8 +352,8 @@
       margin-top: 10px;
       padding: 5px 15px;
       border-radius: 999px;
-      background: rgba(109, 15, 34, 0.07);
-      border: 1px solid rgba(198, 142, 54, 0.55);
+      background: rgba(109, 15, 34, 0.08);
+      border: 1px solid rgba(198, 142, 54, 0.6);
       color: var(--crimson);
       font-size: 12px;
       font-weight: 700;
@@ -503,7 +375,7 @@
 
     .call-btn-dark {
       text-decoration: none;
-      background: linear-gradient(135deg, #7e1125, #470613);
+      background: linear-gradient(135deg, #7e1125, #420613);
       color: #fff6de;
       border: 1px solid rgba(248, 227, 180, 0.65);
       border-radius: 999px;
@@ -534,7 +406,7 @@
     /* स्क्रॉल पर स्मूथ खुलने वाला परिचय */
     .reveal-section {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(24px);
       transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
@@ -545,10 +417,6 @@
 
     .ivory-royal-card {
       margin-top: 22px;
-      background: var(--ivory);
-      border-radius: 26px;
-      border: 1.8px solid rgba(198, 142, 54, 0.62);
-      box-shadow: var(--shadow-royal);
       padding: 24px 16px;
       text-align: center;
     }
@@ -582,12 +450,12 @@
 
     .swajan-tile {
       background:
-        radial-gradient(circle at 50% 0%, rgba(248, 227, 180, 0.25), transparent 65%),
-        var(--cream);
-      border: 1.3px solid rgba(198, 142, 54, 0.55);
+        radial-gradient(circle at 50% 0%, rgba(248, 227, 180, 0.28), transparent 65%),
+        var(--ivory);
+      border: 1.4px solid rgba(198, 142, 54, 0.6);
       border-radius: 20px;
       padding: 16px 12px;
-      box-shadow: inset 0 0 0 4px rgba(248, 227, 180, 0.14);
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.65);
     }
 
     .gold-wreath-seal {
@@ -596,7 +464,7 @@
       margin: 0 auto 8px;
       border-radius: 50%;
       border: 2px dashed var(--gold);
-      background: var(--ivory);
+      background: var(--cream);
       display: grid;
       place-items: center;
       font-family: 'Cinzel Decorative', serif;
@@ -637,7 +505,7 @@
       line-height: 1.6;
     }
 
-    /* मखमली मंगल फेरे एवं खींचकर खोलने वाला समय गणना कार्ड */
+    /* मंगल फेरे — आकर्षक स्लाइड-टू-ओपन शटर एवं काउंटडाउन */
     .crimson-velvet-band {
       margin-top: 24px;
       border-radius: 28px;
@@ -645,54 +513,69 @@
       text-align: center;
       color: #fff6e2;
       background:
-        radial-gradient(circle at 20% 20%, rgba(248, 227, 180, 0.14), transparent 45%),
-        radial-gradient(circle at 80% 80%, rgba(248, 227, 180, 0.12), transparent 45%),
-        linear-gradient(160deg, #740e21 0%, #480613 55%, #2b030b 100%);
-      border: 2px solid rgba(248, 227, 180, 0.8);
+        radial-gradient(circle at 20% 20%, rgba(248, 227, 180, 0.16), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(248, 227, 180, 0.14), transparent 45%),
+        linear-gradient(160deg, #740e21 0%, #480613 55%, #280209 100%);
+      border: 2px solid rgba(248, 227, 180, 0.85);
       box-shadow: var(--shadow-royal);
       position: relative;
     }
 
-    .pull-seal-card {
+    .slide-open-shutter-box {
       margin-top: 14px;
-      border-radius: 20px;
-      border: 1.4px solid rgba(248, 227, 180, 0.72);
-      background: linear-gradient(180deg, #fcf4e4 0%, #f5e6cb 100%);
+      border-radius: 22px;
+      border: 1.8px solid rgba(248, 227, 180, 0.85);
+      background: linear-gradient(180deg, #fffdf8 0%, #f8ebd6 100%);
       color: var(--crimson);
-      padding: 18px 12px;
+      padding: 18px 14px;
       position: relative;
       overflow: hidden;
-      transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .pull-seal-trigger {
-      margin: 10px auto 4px;
-      padding: 8px 18px;
-      border-radius: 999px;
-      border: 1.5px solid var(--gold-light);
-      background: linear-gradient(135deg, #8b132a, #4d0715);
+    .shutter-door-panel {
+      background: linear-gradient(135deg, #8b142b 0%, #560817 60%, #2f030c 100%);
       color: var(--gold-light);
-      font-size: 12px;
-      font-weight: 700;
-      font-family: inherit;
+      border-radius: 16px;
+      border: 1.5px solid rgba(248, 227, 180, 0.8);
+      padding: 16px 12px;
       cursor: pointer;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease;
+      box-shadow: 0 12px 26px rgba(40, 2, 9, 0.35);
+    }
+
+    .slide-open-shutter-box.unsealed .shutter-door-panel {
+      transform: translateX(115%);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      inset: 14px;
+    }
+
+    .slide-track-pill {
+      margin: 10px auto 2px;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      box-shadow: 0 8px 18px rgba(41, 2, 10, 0.28);
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--gold-foil);
+      color: var(--crimson-velvet);
+      font-size: 12px;
+      font-weight: 700;
+      animation: gentleHintBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes gentleHintBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(6px); }
     }
 
     .revealed-date-panel {
       display: none;
-      margin-top: 10px;
-      animation: softFadeIn 0.55s ease forwards;
+      animation: softFadeIn 0.6s ease forwards;
     }
 
-    .pull-seal-card.unsealed .seal-cover-prompt {
-      display: none;
-    }
-
-    .pull-seal-card.unsealed .revealed-date-panel {
+    .slide-open-shutter-box.unsealed .revealed-date-panel {
       display: block;
     }
 
@@ -749,19 +632,19 @@
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
     }
 
-    /* परियों की रोशनी + नीचे से ऊपर स्मूथ स्टैक होती तस्वीरें */
+    /* परियों की रोशनी + स्मूथ स्लाइडिंग तस्वीरें */
     .memories-wrapper {
       margin-top: 28px;
-      padding: 16px 8px 20px;
-      border-radius: 26px;
+      padding: 18px 10px 20px;
       text-align: center;
       position: relative;
-      transition: box-shadow 0.45s ease, background 0.45s ease;
+      transition: box-shadow 0.45s ease;
     }
 
     .memories-wrapper.stage-locked {
-      box-shadow: 0 0 0 2px rgba(198, 142, 54, 0.72), var(--shadow-royal);
-      background: rgba(255, 253, 249, 0.65);
+      box-shadow:
+        0 0 0 2px rgba(198, 142, 54, 0.8),
+        var(--shadow-royal);
     }
 
     .fairy-lights-bar {
@@ -807,12 +690,12 @@
       width: 84%;
       max-width: 334px;
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 12px 12px 18px;
-      box-shadow: 0 18px 42px rgba(41, 2, 10, 0.22);
-      border: 1px solid rgba(198, 142, 54, 0.35);
+      box-shadow: 0 20px 44px rgba(40, 2, 9, 0.22);
+      border: 1.5px solid rgba(198, 142, 54, 0.5);
       cursor: pointer;
-      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.65s ease;
+      transition: transform 0.9s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.75s ease;
     }
 
     .polaroid-card img {
@@ -821,7 +704,7 @@
       object-fit: cover;
       object-position: center 58%;
       transform: scale(1.08);
-      border-radius: 10px;
+      border-radius: 12px;
       display: block;
       background: #ead8d2;
     }
@@ -844,18 +727,18 @@
       color: var(--crimson);
     }
 
-    /* मखमली बुकलेट कवर + पेज-फोल्ड कार्यक्रम कार्ड (01 / 07) */
+    /* मखमली बुकलेट कवर + स्मूथ स्लाइडिंग कार्यक्रम कार्ड (01 / 07) */
     .event-flip-wrapper {
       margin-top: 30px;
-      padding: 12px 6px 16px;
-      border-radius: 26px;
+      padding: 14px 8px 16px;
       perspective: 1600px;
-      transition: box-shadow 0.45s ease, background 0.45s ease;
+      transition: box-shadow 0.45s ease;
     }
 
     .event-flip-wrapper.stage-locked {
-      box-shadow: 0 0 0 2px rgba(198, 142, 54, 0.72), var(--shadow-royal);
-      background: rgba(255, 253, 249, 0.65);
+      box-shadow:
+        0 0 0 2px rgba(198, 142, 54, 0.82),
+        var(--shadow-royal);
     }
 
     .maroon-booklet-banner {
@@ -865,8 +748,8 @@
       color: #fff6e2;
       background:
         radial-gradient(circle at 50% 0%, rgba(248, 227, 180, 0.16), transparent 60%),
-        linear-gradient(155deg, #7c1125 0%, #4d0715 58%, #29020a 100%);
-      border: 1.8px solid rgba(248, 227, 180, 0.82);
+        linear-gradient(155deg, #7c1125 0%, #4d0715 58%, #280209 100%);
+      border: 2px solid rgba(248, 227, 180, 0.85);
       box-shadow: var(--shadow-royal);
       text-align: center;
       cursor: pointer;
@@ -890,7 +773,7 @@
         radial-gradient(circle at 50% 0%, rgba(248, 227, 180, 0.3), transparent 55%),
         var(--ivory);
       border-radius: 24px;
-      border: 2px solid rgba(198, 142, 54, 0.72);
+      border: 2px solid rgba(198, 142, 54, 0.75);
       box-shadow: var(--shadow-royal);
       overflow: hidden;
       touch-action: none;
@@ -917,13 +800,13 @@
       height: 112px;
       margin: 0 auto 10px;
       border-radius: 26px;
-      border: 1.6px solid rgba(198, 142, 54, 0.75);
+      border: 1.8px solid rgba(248, 227, 180, 0.85);
       display: grid;
       place-items: center;
       font-size: 2.6rem;
       color: #fff;
-      box-shadow: 0 12px 26px rgba(63, 6, 18, 0.2);
-      transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1), background 0.65s ease;
+      box-shadow: 0 12px 26px rgba(63, 6, 18, 0.22);
+      transition: transform 0.85s cubic-bezier(0.19, 1, 0.22, 1), background 0.75s ease;
     }
 
     .event-quote-hi {
@@ -938,12 +821,17 @@
       text-align: center;
       background: var(--ivory);
       transform-origin: top center;
-      transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.55s ease;
+      transition: transform 0.85s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.65s ease;
     }
 
-    .booklet-bottom-half.page-turning {
-      transform: rotateX(34deg) translateY(6px);
-      opacity: 0.45;
+    .booklet-bottom-half.slide-out-next {
+      transform: translateX(-28px);
+      opacity: 0.35;
+    }
+
+    .booklet-bottom-half.slide-out-prev {
+      transform: translateX(28px);
+      opacity: 0.35;
     }
 
     .booklet-event-name {
@@ -1011,10 +899,6 @@
     /* संपूर्ण 7 कार्यक्रम सूची */
     .schedule-list-card {
       margin-top: 18px;
-      background: var(--ivory);
-      border-radius: 24px;
-      border: 1.8px solid rgba(198, 142, 54, 0.58);
-      box-shadow: var(--shadow-royal);
       padding: 18px 16px;
     }
 
@@ -1133,10 +1017,6 @@
     /* मानचित्र एवं स्थल कार्ड */
     .venue-card {
       margin-top: 16px;
-      background: var(--ivory);
-      border-radius: 24px;
-      border: 1.8px solid rgba(198, 142, 54, 0.6);
-      box-shadow: var(--shadow-royal);
       padding: 18px 16px 20px;
       text-align: center;
     }
@@ -1204,10 +1084,6 @@
     /* नीचे प्रेषक संपर्क बॉक्स */
     .footer-preshak {
       margin-top: 22px;
-      background: var(--ivory);
-      border-radius: 24px;
-      border: 1.8px solid rgba(198, 142, 54, 0.62);
-      box-shadow: var(--shadow-royal);
       padding: 20px 16px;
       text-align: center;
       font-size: 13px;
@@ -1262,56 +1138,30 @@
   <!-- गिरती पंखुड़ियाँ एवं पुष्प वर्षा -->
   <div class="petals-wrap" id="petals-wrap"></div>
 
-  <!-- क्रीम फ्लोरल एनवेलप + गणेश वैक्स सील + गोल्डन लाइट बर्स्ट -->
-  <div id="seal-envelope-cover" onclick="openSealEnvelope()">
-    <div class="golden-ray-halo"></div>
-    <div class="envelope-card">
-      <div class="envelope-flap-top"></div>
-      <span class="corner-rose-badge cr-tl">❀</span>
-      <span class="corner-rose-badge cr-tr">❀</span>
-      <span class="corner-rose-badge cr-bl">❀</span>
-      <span class="corner-rose-badge cr-br">❀</span>
-
-      <div class="tap-reveal-label">स्पर्श करें • निमंत्रण खोलें</div>
-
-      <div class="wax-seal-btn" aria-label="गणेश वैक्स सील">
-        <span class="seal-ganesh-glyph">ॐ</span>
-        <span class="seal-ps-mini">P &amp; S</span>
-      </div>
-
-      <h1 class="seal-heading-hi">शुभ विवाह</h1>
-      <p class="seal-shloka-hi">
-        वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
-        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा॥
-      </p>
-    </div>
-  </div>
-
-  <!-- मुख्य निमंत्रण सामग्री -->
-  <main class="page-shell">
+  <!-- मुख्य निमंत्रण सामग्री (शुरुआत सीधे शाही स्वर्णिम रोल से) -->
+  <main class="page-shell" onclick="ensureAudioOnFirstTouch()">
     <div class="top-bar">
       <span>॥ श्री गणेशाय नमः ॥</span>
       <div class="top-btns">
         <button type="button" class="gold-pill-btn" onclick="triggerFlowerShower()">🌸 पुष्प वर्षा</button>
         <button type="button" class="gold-pill-btn" id="music-btn" onclick="toggleWeddingMusic()">🎵 आज सजैया</button>
-        <button type="button" class="gold-pill-btn" onclick="reopenSealCover()">आवरण</button>
       </div>
     </div>
 
     <!-- त्वरित नेविगेशन -->
     <nav class="jump-strip" aria-label="त्वरित नेविगेशन">
       <a class="jump-chip" href="#sec-intro">परिचय</a>
-      <a class="jump-chip" href="#sec-savethedate">मंगल बेला</a>
+      <a class="jump-chip" href="#sec-savethedate">मंगल फेरे</a>
       <a class="jump-chip" href="#sec-photos">हमारी कहानी</a>
       <a class="jump-chip" href="#sec-events">कार्यक्रम (01/07)</a>
       <a class="jump-chip" href="#sec-family">परिवारजन</a>
       <a class="jump-chip" href="#sec-maps">लोकेशन</a>
     </nav>
 
-    <!-- खुलता हुआ शाही स्वर्ण पत्र -->
-    <section class="scroll-assembly">
-      <div class="scroll-roller"></div>
-      <div class="scroll-parchment">
+    <!-- शुरुआत में ही खुलता हुआ शाही स्वर्णिम रोल -->
+    <section class="golden-royal-scroll" onclick="triggerFlowerShower()">
+      <div class="golden-roller-bar"></div>
+      <div class="golden-scroll-body">
         <div class="ganesh-emblem">ॐ</div>
         <div class="shloka-line">
           वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ।<br>
@@ -1331,18 +1181,18 @@
 
         <div class="hashtag-pill">#shubhpal • 11 दिसम्बर 2026</div>
 
-        <div class="call-grid">
+        <div class="call-grid" onclick="event.stopPropagation()">
           <a class="call-btn-dark" href="tel:+917354959808">&#128222; 7354959808</a>
           <a class="call-btn-gold" href="tel:+919977753725">&#128222; 9977753725</a>
         </div>
 
-        <div class="floral-divider">❀ ❁ ❀</div>
+        <div class="floral-divider">❀ ❖ ❀</div>
       </div>
-      <div class="scroll-roller"></div>
+      <div class="golden-roller-bar"></div>
     </section>
 
     <!-- स्क्रॉल पर स्मूथ खुलने वाला परिचय -->
-    <section class="ivory-royal-card reveal-section" id="sec-intro">
+    <section class="ivory-royal-card royal-kaanch-card reveal-section" id="sec-intro">
       <div class="section-kicker">स्नेही स्वजन • स्नेह-परिचय</div>
       <h2 class="section-heading">वर एवं वधू परिचय</h2>
       <p class="intro-subline">
@@ -1355,7 +1205,7 @@
           <div class="swajan-role">वर पक्ष</div>
           <div class="swajan-person">चि. पलाश तिवारी</div>
           <div class="swajan-bio">
-            सुपुत्र: श्रीमती सुनीता एवं श्री चंद्रभान तिवारी<br>
+            सुपुत्र: श्रीमती संगीता एवं श्री चंद्रभान तिवारी<br>
             पौत्र: स्व. श्यामा देवी एवं स्व. एच.पी. तिवारी<br>
             निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल (म.प्र.)
           </div>
@@ -1378,30 +1228,29 @@
       </div>
     </section>
 
-    <!-- मखमली मंगल फेरे एवं खींचकर खोलने वाला समय गणना कार्ड -->
+    <!-- मंगल फेरे — स्लाइड/स्पर्श करके खोलने वाला शटर एवं समय गणना -->
     <section class="crimson-velvet-band reveal-section" id="sec-savethedate">
       <div style="font-size: 11.5px; color: var(--gold-light); font-weight: 700;">शुभ विवाह की पावन बेला</div>
       <h2 style="font-size: 1.85rem; font-weight: 700; margin-top: 2px;">मंगल फेरे</h2>
-      <p style="font-size: 12.5px; opacity: 0.92; margin-top: 4px;">
-        इस सील के पीछे हमारे जीवन की सबसे पावन तिथि छिपी है
+      <p style="font-size: 12.5px; opacity: 0.94; margin-top: 4px;">
+        शाही शटर सरकाएं और शुभ लग्न का समय देखें
       </p>
 
-      <div class="pull-seal-card" id="pull-seal-card">
-        <div class="seal-cover-prompt">
-          <div style="font-size: 11px; letter-spacing: 0.14em; font-weight: 700; color: var(--gold);">
-            एक मधुर सरप्राइज
+      <div class="slide-open-shutter-box" id="slide-shutter-box">
+        <div class="shutter-door-panel" id="shutter-door" onclick="openMangalPhereShutter()">
+          <div style="font-size: 11px; letter-spacing: 0.16em; opacity: 0.9;">॥ शुभ लग्न शटर ॥</div>
+          <div style="font-size: 1.4rem; font-weight: 700; margin-top: 4px;">मंगल फेरे विवरण खोलें</div>
+          <div style="font-size: 12px; opacity: 0.92; margin-top: 3px;">
+            11 दिसम्बर 2026 • होटल इम्पीरियल सेवरे, VIP रोड, भोपाल
           </div>
-          <div style="font-size: 1.35rem; font-weight: 700; color: var(--crimson); margin-top: 2px;">
-            शुभ तिथि देखें
+          <div class="slide-track-pill">
+            <span>✦ स्लाइड या स्पर्श करें • खोलें &rarr;</span>
           </div>
-          <button type="button" class="pull-seal-trigger" onclick="revealSaveTheDate()">
-            ✦ खींचकर खोलें • तिथि देखें
-          </button>
         </div>
 
         <div class="revealed-date-panel">
           <div style="font-size: 11px; letter-spacing: 0.14em; font-weight: 700; color: var(--gold);">
-            शुभ विवाह तिथि
+            शुभ विवाह तिथि एवं लग्न
           </div>
           <div class="velvet-date-big">शुक्रवार, 11 दिसम्बर 2026</div>
           <div style="font-size: 12.2px; color: var(--ink); font-weight: 600;">
@@ -1420,9 +1269,9 @@
       </div>
     </section>
 
-    <!-- परियों की रोशनी + नीचे से ऊपर स्मूथ स्टैक होती हमारी कहानी की तस्वीरें -->
-    <section class="memories-wrapper reveal-section" id="sec-photos">
-      <div class="section-kicker" id="photo-lock-status">स्क्रॉल करें • तस्वीरें नीचे से ऊपर स्मूथ स्टैक होंगी</div>
+    <!-- परियों की रोशनी + स्मूथ स्लाइडिंग हमारी कहानी की तस्वीरें -->
+    <section class="memories-wrapper royal-kaanch-card reveal-section" id="sec-photos">
+      <div class="section-kicker" id="photo-lock-status">पहली बार स्क्रॉल करने पर तस्वीरें स्मूथ स्लाइड होंगी</div>
       <h2 class="section-heading">हमारी कहानी</h2>
       <p class="intro-subline" style="margin-bottom: 6px;">हर मुस्कान, हर पल और हर स्नेह — संजोई हुई यादें</p>
 
@@ -1441,10 +1290,10 @@
       </div>
     </section>
 
-    <!-- मखमली बुकलेट कवर + स्क्रॉल/स्पर्श पर पलटने वाले कार्यक्रम कार्ड (01 / 07) -->
-    <section class="event-flip-wrapper reveal-section" id="sec-events">
+    <!-- मखमली बुकलेट कवर + स्मूथ स्लाइडिंग कार्यक्रम कार्ड (01 / 07) -->
+    <section class="event-flip-wrapper royal-kaanch-card reveal-section" id="sec-events">
       <div style="text-align: center; margin-bottom: 12px;">
-        <div class="section-kicker" id="event-lock-status">स्क्रॉल करें • 01 से 07 तक सभी कार्यक्रम स्मूथ स्लाइड होंगे</div>
+        <div class="section-kicker" id="event-lock-status">पहली बार स्क्रॉल करने पर 01 से 07 कार्यक्रम स्मूथ स्लाइड होंगे</div>
         <h2 class="section-heading" style="margin-bottom: 0;">विवाह के कार्यक्रम</h2>
       </div>
 
@@ -1502,7 +1351,7 @@
     </section>
 
     <!-- संपूर्ण 7 कार्यक्रम सूची -->
-    <div class="schedule-list-card reveal-section">
+    <div class="schedule-list-card royal-kaanch-card reveal-section">
       <div style="text-align: center;">
         <span class="part-pill">भाग 1 • निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल</span>
       </div>
@@ -1569,7 +1418,7 @@
     </div>
 
     <!-- परिवारजन विभाग -->
-    <section class="ivory-royal-card reveal-section" id="sec-family">
+    <section class="ivory-royal-card royal-kaanch-card reveal-section" id="sec-family">
       <div class="section-kicker">स्नेह एवं निमंत्रण • तिवारी परिवार</div>
       <h2 class="section-heading">परिवारजन</h2>
 
@@ -1584,7 +1433,7 @@
       <div class="parivaar-box" id="fam-swagat">
         <div class="parivaar-head">स्वागतकाभी</div>
         <div class="parivaar-names">
-          श्रीमती संगीता, चंद्रभान तिवारी <span class="gold-sep">•</span>
+          श्रीमती सुनीता, यशवंत तिवारी <span class="gold-sep">•</span>
           श्रीमती सृष्टि, संतोष तिवारी <span class="gold-sep">•</span>
           श्रीमती मुनमुन, पवन तिवारी <span class="gold-sep">•</span>
           कु. साक्षी तिवारी <span class="gold-sep">•</span>
@@ -1619,7 +1468,6 @@
       <div class="parivaar-box" id="fam-vinit">
         <div class="parivaar-head">विनीत</div>
         <div class="parivaar-names">
-          स्व. श्यामा देवी, स्व. एच.पी. तिवारी <span class="gold-sep">•</span>
           श्री रामविलास तिवारी <span class="gold-sep">•</span>
           श्री साहब लाल <span class="gold-sep">•</span>
           श्रीमती वैजयंती <span class="gold-sep">•</span>
@@ -1635,7 +1483,7 @@
       <h2 class="section-heading" style="margin-bottom: 0;">कार्यक्रम स्थल कैसे पहुँचें</h2>
     </div>
 
-    <div class="venue-card reveal-section">
+    <div class="venue-card royal-kaanch-card reveal-section">
       <div id="map-vip" class="leaflet-map-box"></div>
       <div class="venue-title">होटल इम्पीरियल सेवरे, VIP रोड</div>
       <div class="venue-addr">होटल इम्पीरियल सेवरे, VIP रोड, भोपाल (23.261740, 77.371996)</div>
@@ -1651,7 +1499,7 @@
       </div>
     </div>
 
-    <div class="venue-card reveal-section">
+    <div class="venue-card royal-kaanch-card reveal-section">
       <div id="map-ghar" class="leaflet-map-box"></div>
       <div class="venue-title">निज निवास: 84, दुर्गेश विहार, जे.के. रोड</div>
       <div class="venue-addr">निज निवास: 84, दुर्गेश विहार, जे.के. रोड, भोपाल (23.2671376, 77.4597344)</div>
@@ -1668,7 +1516,7 @@
     </div>
 
     <!-- प्रेषक संपर्क सूत्र -->
-    <div class="footer-preshak reveal-section">
+    <div class="footer-preshak royal-kaanch-card reveal-section">
       <div style="color: var(--gold); font-weight: 700; font-size: 14px; margin-bottom: 4px;">
         प्रेषक से • सम्पर्क सूत्र
       </div>
@@ -1803,7 +1651,7 @@
       document.getElementById("ev-counter").textContent = `${num} / ${tot}`;
     }
 
-    function setEventIndex(nextIdx, animate = true) {
+    function setEventIndex(nextIdx, animate = true, dir = 1) {
       const clamped = Math.max(0, Math.min(eventsList.length - 1, nextIdx));
       if (clamped === curEvent) return;
       if (!animate) {
@@ -1811,32 +1659,34 @@
         updateBookletUI();
         return;
       }
-      bottomHalf.classList.add("page-turning");
+      const animClass = dir >= 0 ? "slide-out-next" : "slide-out-prev";
+      bottomHalf.classList.add(animClass);
       setTimeout(() => {
         curEvent = clamped;
         updateBookletUI();
-        bottomHalf.classList.remove("page-turning");
-      }, 280);
+        bottomHalf.classList.remove("slide-out-next", "slide-out-prev");
+      }, 340);
     }
 
     function flipEventCard(dir) {
       const next = (curEvent + dir + eventsList.length) % eventsList.length;
-      setEventIndex(next, true);
+      setEventIndex(next, true, dir);
     }
 
     function jumpToEvent(idx) {
-      eventCompleted = true;
-      setEventIndex(idx, true);
+      eventCycleDone = true;
+      setEventIndex(idx, true, 1);
       document.getElementById("event-booklet").scrollIntoView({ behavior: "smooth", block: "center" });
       showToast(`कार्यक्रम ${String(idx + 1).padStart(2, "0")} खुल गया`);
     }
 
-    /* हमारी कहानी फ़ोटो डेक (नीचे से ऊपर स्मूथ स्टैक) */
+    /* हमारी कहानी फ़ोटो डेक (स्मूथ स्लाइडिंग मोशन) */
     const photos = [
       { src: "photo1.jpeg", caption: "हर पल साथ-साथ" },
       { src: "photo2.jpeg", caption: "खुशियाँ, स्नेह और उत्सव" }
     ];
     let topPhoto = 0;
+    let lastPhotoDir = 1;
     const deckStage = document.getElementById("deck-stage");
     const deckCounter = document.getElementById("deck-counter");
 
@@ -1847,11 +1697,13 @@
         const card = document.createElement("div");
         card.className = "polaroid-card";
         card.style.zIndex = String(photos.length - off);
-        const yShift = off === 0 ? 0 : 34 + off * 14;
-        const xShift = off === 0 ? 0 : off * 9;
-        const rotDeg = off === 0 ? -1 : off * 3.5;
+        const yShift = off === 0 ? 0 : 28 + off * 12;
+        const xShift = off === 0 ? 0 : (lastPhotoDir >= 0 ? 22 : -22) * off;
+        const rotDeg = off === 0 ? -1 : (lastPhotoDir >= 0 ? 3 : -3) * off;
         card.style.transform = `translateX(${xShift}px) translateY(${yShift}px) rotate(${rotDeg}deg) scale(${1 - off * 0.045})`;
+        card.style.opacity = off === 0 ? "1" : "0.78";
         card.onclick = () => {
+          lastPhotoDir = 1;
           topPhoto = (topPhoto + 1) % photos.length;
           renderPolaroids();
         };
@@ -1865,6 +1717,7 @@
     }
 
     function stepPhotoDeck(dir) {
+      lastPhotoDir = dir;
       topPhoto = (topPhoto + dir + photos.length) % photos.length;
       renderPolaroids();
     }
@@ -1882,14 +1735,16 @@
 
     document.querySelectorAll(".reveal-section").forEach((sec) => revealObs.observe(sec));
 
-    /* केंद्र-लॉक स्क्रॉल इंजन */
+    /* पहली बार स्क्रॉल करने पर केंद्र में स्लाइड लॉक (दोबारा ऊपर/नीचे जाने पर लॉक नहीं) */
     const photoSection = document.getElementById("sec-photos");
     const eventSection = document.getElementById("sec-events");
+    const shutterBox = document.getElementById("slide-shutter-box");
     const photoStatusEl = document.getElementById("photo-lock-status");
     const eventStatusEl = document.getElementById("event-lock-status");
 
-    let photoCompleted = false;
-    let eventCompleted = false;
+    let photoCycleDone = false;
+    let eventCycleDone = false;
+    let shutterAutoOpened = false;
     let stepLockUntil = 0;
     let wheelAccum = 0;
     let touchStartY = 0;
@@ -1908,25 +1763,16 @@
     }
 
     function refreshLockBadges() {
-      photoSection.classList.toggle("stage-locked", !photoCompleted && isCenteredEnough(photoSection));
-      eventSection.classList.toggle("stage-locked", !eventCompleted && isCenteredEnough(eventSection));
+      photoSection.classList.toggle("stage-locked", !photoCycleDone && isCenteredEnough(photoSection));
+      eventSection.classList.toggle("stage-locked", !eventCycleDone && isCenteredEnough(eventSection));
     }
 
     window.addEventListener("scroll", () => {
-      const y = window.scrollY;
-      const pTop = photoSection.getBoundingClientRect().top + y;
-      if (y < pTop - window.innerHeight * 0.85) {
-        photoCompleted = false;
-        topPhoto = 0;
-        photoStatusEl.textContent = "स्क्रॉल करें • तस्वीरें नीचे से ऊपर स्मूथ स्टैक होंगी";
-        renderPolaroids();
-      }
-      const eTop = eventSection.getBoundingClientRect().top + y;
-      if (y < eTop - window.innerHeight * 0.85) {
-        eventCompleted = false;
-        curEvent = 0;
-        eventStatusEl.textContent = "स्क्रॉल करें • 01 से 07 तक सभी कार्यक्रम स्मूथ स्लाइड होंगे";
-        updateBookletUI();
+      if (!shutterAutoOpened && isCenteredEnough(shutterBox)) {
+        shutterAutoOpened = true;
+        setTimeout(() => {
+          shutterBox.classList.add("unsealed");
+        }, 380);
       }
       refreshLockBadges();
     }, { passive: true });
@@ -1935,50 +1781,48 @@
       const now = Date.now();
       if (now < stepLockUntil) return true;
 
-      if (!photoCompleted && isCenteredEnough(photoSection)) {
+      if (!photoCycleDone && isCenteredEnough(photoSection)) {
         centerSectionSmooth(photoSection);
         wheelAccum += deltaY;
-        if (Math.abs(wheelAccum) >= 110) {
+        if (Math.abs(wheelAccum) >= 120) {
           if (wheelAccum > 0) {
             if (topPhoto < photos.length - 1) {
-              topPhoto += 1;
-              renderPolaroids();
+              stepPhotoDeck(1);
             } else {
-              photoCompleted = true;
-              photoStatusEl.textContent = "सभी तस्वीरें दिख गईं • अब नीचे स्क्रॉल करें";
+              photoCycleDone = true;
+              photoStatusEl.textContent = "सभी तस्वीरें दिख गईं • आगे स्क्रॉल करें";
               refreshLockBadges();
               wheelAccum = 0;
               return false;
             }
           } else if (topPhoto > 0) {
-            topPhoto -= 1;
-            renderPolaroids();
+            stepPhotoDeck(-1);
           }
           wheelAccum = 0;
-          stepLockUntil = now + 620;
+          stepLockUntil = now + 720;
         }
         return true;
       }
 
-      if (!eventCompleted && isCenteredEnough(eventSection)) {
+      if (!eventCycleDone && isCenteredEnough(eventSection)) {
         centerSectionSmooth(eventSection);
         wheelAccum += deltaY;
-        if (Math.abs(wheelAccum) >= 110) {
+        if (Math.abs(wheelAccum) >= 120) {
           if (wheelAccum > 0) {
             if (curEvent < eventsList.length - 1) {
-              setEventIndex(curEvent + 1, true);
+              setEventIndex(curEvent + 1, true, 1);
             } else {
-              eventCompleted = true;
-              eventStatusEl.textContent = "सभी 7 कार्यक्रम दिख गए • अब नीचे स्क्रॉल करें";
+              eventCycleDone = true;
+              eventStatusEl.textContent = "सभी 7 कार्यक्रम दिख गए • आगे स्क्रॉल करें";
               refreshLockBadges();
               wheelAccum = 0;
               return false;
             }
           } else if (curEvent > 0) {
-            setEventIndex(curEvent - 1, true);
+            setEventIndex(curEvent - 1, true, -1);
           }
           wheelAccum = 0;
-          stepLockUntil = now + 620;
+          stepLockUntil = now + 720;
         }
         return true;
       }
@@ -2010,10 +1854,11 @@
       }
     }, { passive: false });
 
-    /* खींचकर खोलने वाला शुभ तिथि कार्ड */
-    function revealSaveTheDate() {
-      document.getElementById("pull-seal-card").classList.add("unsealed");
-      showToast("✦ 11 दिसम्बर 2026 — मंगल फेरे ✦");
+    /* मंगल फेरे शटर खोलना */
+    function openMangalPhereShutter() {
+      shutterAutoOpened = true;
+      shutterBox.classList.add("unsealed");
+      showToast("✦ मंगल फेरे • 11 दिसम्बर 2026 • दोपहर 1:30 बजे ✦");
     }
 
     /* परिवारजन हाइलाइट फ़िल्टर */
@@ -2061,19 +1906,26 @@
     /* संगीत प्लेयर (assets/aaj-sajeya.mp3) */
     const mp3Audio = document.getElementById("wedding-mp3");
     let isPlaying = false;
+    let firstTouchTried = false;
 
-    function startWeddingMusic() {
+    function startWeddingMusic(silentToast = false) {
       if (!mp3Audio) return;
       mp3Audio.volume = 0.72;
       mp3Audio.play().then(() => {
         isPlaying = true;
         updateMusicBtn();
-        showToast("🎵 आज सजैया शुरू हुआ");
+        if (!silentToast) showToast("🎵 आज सजैया शुरू हुआ");
       }).catch(() => {
         isPlaying = false;
         updateMusicBtn();
-        showToast("संगीत के लिए 🎵 बटन दबाएं");
       });
+    }
+
+    function ensureAudioOnFirstTouch() {
+      if (!firstTouchTried && !isPlaying) {
+        firstTouchTried = true;
+        startWeddingMusic(true);
+      }
     }
 
     function stopWeddingMusic() {
@@ -2088,7 +1940,7 @@
       if (!mp3Audio.paused) {
         stopWeddingMusic();
       } else {
-        startWeddingMusic();
+        startWeddingMusic(false);
       }
     }
 
@@ -2108,22 +1960,6 @@
       isPlaying = false;
       updateMusicBtn();
     });
-
-    function openSealEnvelope() {
-      const cover = document.getElementById("seal-envelope-cover");
-      if (cover.classList.contains("bursting")) return;
-      cover.classList.add("bursting");
-      startWeddingMusic();
-      triggerFlowerShower();
-      setTimeout(() => {
-        cover.classList.add("opened");
-      }, 720);
-    }
-
-    function reopenSealCover() {
-      const cover = document.getElementById("seal-envelope-cover");
-      cover.classList.remove("opened", "bursting");
-    }
 
     /* समय गणना (11 दिसम्बर 2026 • दोपहर 1:30 बजे) */
     const phereTime = new Date("2026-12-11T13:30:00+05:30").getTime();
